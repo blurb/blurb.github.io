@@ -30,3 +30,11 @@ Now you're ready to boot up the site. Middleman provides a runner to run
 a temporary server:
 
     $ middleman
+
+
+## Deploying to Github Pages
+
+    $ rake build
+    # Pushes to gh-pages branch on origin
+    $ rake publish 
+
