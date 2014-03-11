@@ -12,4 +12,32 @@
   %body{:class => page_classes}
     .row
       .columns.large-12
-        = yield
+        %header
+          .contain-to-grid
+            %nav.top-bar{:"data-topbar" => true}
+              %ul.title-area
+                %li.name
+                  %h3
+                    = link_to "/" do
+                      = image_tag "logo.png"
+                      %span.blurb-text.hide Blurb
+                      %span.blurb-engineering Engineering
+              %section.top-bar-section
+                %ul
+                  %li
+                    = link_to "Jobs", "jobs"
+                  %li
+                    = link_to "Blog", "blog"
+                  %li
+                    = link_to "Us", "us"
+
+
+        %section#main
+          = yield
+        %footer
+          %hr
+          %ul.inline-list
+            %li
+              %a{:href => "http://www.blurb.com"} Blurb
+            %li
+              %a.secondary{:href => "http://www.github.com/blurb"} Github
