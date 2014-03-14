@@ -1,0 +1,40 @@
+/**
+ * Font base styles.
+ */
+$base-font-dir: "http://assets2.blurb.com/stylesheets/framework/fonts/maquette/";
+
+@include font-face("ARSMaquettePro",
+  font-files(
+    "#{$base-font-dir}arsmaquettepro-regular-webfont.woff",
+    "#{$base-font-dir}arsmaquettepro-regular-webfont.svg"
+    ),
+  "#{$base-font-dir}arsmaquettepro-regular-webfont.eot",
+  normal
+  );
+
+@include font-face("ARSMaquettePro",
+  font-files(
+    "#{$base-font-dir}arsmaquettepro-bold-webfont.woff",
+    "#{$base-font-dir}arsmaquettepro-bold-webfont.svg"
+    ),
+  "#{$base-font-dir}arsmaquettepro-bold-webfont.eot",
+  700
+  );
+
+@include font-face("ARSMaquettePro",
+  font-files(
+    "#{$base-font-dir}arsmaquettepro-black-webfont.woff",
+    "#{$base-font-dir}arsmaquettepro-black-webfont.svg"
+    ),
+  "#{$base-font-dir}arsmaquettepro-black-webfont.eot",
+  900
+  );
+
+@include font-face("ARSMaquettePro",
+  font-files(
+    "#{$base-font-dir}arsmaquettepro-light-webfont.woff",
+    "#{$base-font-dir}arsmaquettepro-light-webfont.svg"
+    ),
+  "#{$base-font-dir}arsmaquettepro-light-webfont.eot",
+  300
+  );

@@ -1,8 +1,30 @@
 ---
 title: Blurb
 ---
-%h1 Publishing, meet the 21st century
-%h2 And here's the team that makes it happen.
-%p Hello this is a test. Blah blah.
-%a.button{:href => "http://www.blurb.com"} Our site
-%a.button.secondary{:href => "http://www.github.com/blurb"} Github
+
+%h1= lorem.words(5)
+%h2= lorem.words(10)
+
+.row
+  .columns.large-6
+    %ul{:"data-orbit" => true}
+      - 2.times do
+        %li
+          = image_tag lorem.image("600x480")
+          .orbit-caption
+            = lorem.words 10
+  .columns.large-6
+    %p
+      %strong= lorem.paragraph
+    %p
+      %strong.black= lorem.paragraph
+    %p.light= lorem.paragraph
+    %p= lorem.paragraphs(2).split("\n").join("<br />")
+
+- [:perks, :books, :technology].each do |thing|
+  .row
+    .columns.large-3
+      %h3= thing.capitalize
+    .columns.large-9
+      %p= lorem.paragraphs(2)
+
