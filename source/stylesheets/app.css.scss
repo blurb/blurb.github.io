@@ -19,8 +19,7 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  @include filter(blur(0px));
-
+  // @include filter(brightness(75%));
 
   h3 {
     margin-left: $column-gutter;
@@ -28,13 +27,42 @@ header {
   .top-bar-section {
     text-transform: uppercase;
   }
-
 }
 
-  // #navigation-wrapper {
-  //   margin: 0;
-  //   background-color: $secondary-color;
-  // }
+#values {
+  margin-top: 5em;
+  margin-bottom: 5em;
+
+  h2 {
+    @extend %blurb-orange-light;
+  }
+}
+
+// Any .icon SVG font should live above
+// its header container text.
+h1, h2, h3, h4, h5 {
+  .icon {
+    display: block;
+    font-size: 1.5em;
+  }
+}
+
+#engineering-callouts {
+  section {
+    h5 {
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+}
+
+$blurb-orange: #DB7123;
+%blurb-orange-light {
+  letter-spacing: -0.05em;
+  @extend %light;
+  color: $blurb-orange;
+}
 
 %black {
   font-weight: 900;
