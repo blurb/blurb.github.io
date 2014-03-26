@@ -1,9 +1,23 @@
+@import "compass";
+@import "settings";
+@import "foundation.scss";
 @import "fonts";
+
+// -----------------------------
+// Variables
+// -----------------------------
+$blurb-orange: #DB7123;
 
 // -----------------------------
 // Playground for fonts/styles
 // -----------------------------
 header {
+  .top-bar {
+    ul.title-area {
+      margin-right: 1em;
+    }
+  }
+
   margin: 0;
   padding: 1em 0;
   text-align: center;
@@ -15,26 +29,56 @@ header {
     @extend %black;
     text-shadow: 1px 1px #000;
   }
-  background-image: url("/images/hackathon-1.jpg");
+  background-image: url("../images/hackathon-1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  @include filter(blur(0px));
-
+  // @include filter(brightness(75%));
 
   h3 {
     margin-left: $column-gutter;
   }
   .top-bar-section {
+    margin-left: 2em;
     text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 1px 1px #000;
   }
-
 }
 
-  // #navigation-wrapper {
-  //   margin: 0;
-  //   background-color: $secondary-color;
-  // }
+#values {
+  margin-top: 5em;
+  margin-bottom: 5em;
+
+  h2 {
+    @extend %blurb-orange-light;
+  }
+}
+
+// Any .icon SVG font should live above
+// its header container text.
+h1, h2, h3, h4, h5 {
+  .icon {
+    display: block;
+    font-size: 1.5em;
+  }
+}
+
+#engineering-callouts {
+  section {
+    h5 {
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+}
+
+%blurb-orange-light {
+  letter-spacing: -0.05em;
+  @extend %light;
+  color: $blurb-orange;
+}
 
 %black {
   font-weight: 900;
