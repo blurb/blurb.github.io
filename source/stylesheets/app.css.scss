@@ -46,7 +46,8 @@ header {
   }
 }
 
-#values {
+// Callouts are going to 
+section.callout {
   margin-top: 5em;
   margin-bottom: 5em;
 
@@ -64,8 +65,8 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-#engineering-callouts {
-  section {
+section {
+  article {
     h5 {
       font-weight: bold;
       text-transform: uppercase;
