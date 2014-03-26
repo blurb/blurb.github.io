@@ -32,6 +32,7 @@ $base-line-height: 150%;
 // $include-xl-html-grid-classes: false;
 
 $row-width: rem-calc(1000);
+//$row-width: 100%;
 $column-gutter: rem-calc(30);
 $total-columns: 12;
 
@@ -1123,11 +1124,11 @@ $header-text-rendering: optimizeLegibility;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: #FFFFFF;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg-color: rgba(#FFF, 0);
+$topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: 70px;
+$topbar-height: 5em;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
@@ -1135,9 +1136,9 @@ $topbar-title-weight: 100;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: #333;
+$topbar-dropdown-bg: $topbar-bg;
 // $topbar-dropdown-link-color: #fff;
-// $topbar-dropdown-link-bg: #333;
+$topbar-dropdown-link-bg: $topbar-bg;
 // $topbar-dropdown-link-weight: normal;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;

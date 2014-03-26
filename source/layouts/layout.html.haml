@@ -10,32 +10,29 @@
     = javascript_include_tag "all"
 
   %body{:class => page_classes}
-    .row
-      .columns.large-12
-        %header
-          .contain-to-grid
-            %nav.top-bar{:"data-topbar" => true}
-              %ul.title-area
-                %li.name
-                  %h3
-                    = link_to "/" do
-                      = image_tag "logo.png"
-                      %span.blurb-text.hide Blurb
-                      %span.blurb-engineering Engineering
-              %section.top-bar-section
-                %ul
-                  %li
-                    = link_to "Jobs", "jobs"
-                  %li
-                    = link_to "Blog", "blog"
-                  %li
-                    = link_to "Us", "us"
+    %header.sticky
+      %nav.top-bar{:"data-topbar" => true}
+        %ul.title-area
+          %li.name
+            %h3
+              = link_to "/" do
+                = image_tag "logo.png", :alt => "Blurb"
+        %section.top-bar-section
+          %ul
+            %li
+              = link_to "Github", "http://www.github.com/blurb"
+            %li
+              = link_to "Blog", "blog"
+      .row
+        .columns.large-6.large-centered
+          %span.maki-cafe hello
+          %h1 Hack the book.
 
-
-        %section#main
-          = yield
-        %footer
-          %hr
+    %section#main
+      = yield
+    %footer
+      .row
+        .columns.large-12
           %ul.inline-list
             %li
               %a{:href => "http://www.blurb.com"} Blurb

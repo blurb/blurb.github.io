@@ -1,5 +1,5 @@
 /**
- * Font base styles.
+ * Font base styles: Blurb.com
  */
 $base-font-dir: "http://assets2.blurb.com/stylesheets/framework/fonts/maquette/";
 
@@ -38,3 +38,18 @@ $base-font-dir: "http://assets2.blurb.com/stylesheets/framework/fonts/maquette/"
   "#{$base-font-dir}arsmaquettepro-light-webfont.eot",
   300
   );
+
+/**
+ * Webfonts
+ */
+@import url(http://weloveiconfonts.com/api/?family=entypo|maki);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+/* maki */
+[class*="maki-"]:before {
+  font-family: 'maki', sans-serif;
+}
