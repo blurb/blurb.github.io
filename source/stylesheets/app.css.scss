@@ -1,8 +1,45 @@
 @import "fonts";
-.black {
+
+// -----------------------------
+// Playground for fonts/styles
+// -----------------------------
+header {
+  margin: 0;
+  padding: 1em 0;
+  text-align: center;
+  .row {
+    min-height: rem-calc(100);
+  }
+  h1 {
+    color: white;
+    @extend %black;
+    text-shadow: 1px 1px #000;
+  }
+  background-image: url("/images/hackathon-1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  @include filter(blur(0px));
+
+
+  h3 {
+    margin-left: $column-gutter;
+  }
+  .top-bar-section {
+    text-transform: uppercase;
+  }
+
+}
+
+  // #navigation-wrapper {
+  //   margin: 0;
+  //   background-color: $secondary-color;
+  // }
+
+%black {
   font-weight: 900;
 }
-.light {
+%light {
   font-weight: 300;
 }
 

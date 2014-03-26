@@ -2,29 +2,34 @@
 title: Blurb
 ---
 
-%h1= lorem.words(5)
-%h2= lorem.words(10)
+.row#values
+  .columns.large-6.large-centered
+    %h3 We're a group of tinkerers, makers, hackers, and language enthusiasts. We love beautiful books, and we love beautiful code.
+    %h4 We're banding together to transform the future of the book as we know it.
 
 .row
-  .columns.large-6
-    %ul{:"data-orbit" => true}
-      - 2.times do
-        %li
-          = image_tag lorem.image("600x480")
-          .orbit-caption
-            = lorem.words 10
-  .columns.large-6
-    %p
-      %strong= lorem.paragraph
-    %p
-      %strong.black= lorem.paragraph
-    %p.light= lorem.paragraph
-    %p= lorem.paragraphs(2).split("\n").join("<br />")
+  .columns.large-4
+    %h3 Technologies
+    %p Some of the technologies you may be involved with here involve:
+ 
+    %ul
+      %li Rails
+      %li Ruby
+      %li RSpec
+      %li Java
+      %li DropWizard
+      %li Backbone
+      %li EmberJS
+      %li Puppet
+      %li Jenkins
+      %li Qt
 
-- [:perks, :books, :technology].each do |thing|
-  .row
-    .columns.large-3
-      %h3= thing.capitalize
-    .columns.large-9
-      %p= lorem.paragraphs(2)
+  .columns.large-4
+    %h3 Work/life
+    %p We're all about focused, energized work, and we believe that can't happen until you get rest. So we come early and leave early from the office. We work hard, don't get us wrong, but we're not interested in burnout. Leave that for your last job.
+
+  .columns.large-4
+    %h3 Testing for passion
+    %p We believe in testing early and testing often. We pride ourselves in the fact that our teams work closely together to deliver the tightest product possible.
+
 
