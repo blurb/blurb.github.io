@@ -10,7 +10,7 @@
     = javascript_include_tag "all"
 
   %body{:class => page_classes}
-    %header.sticky
+    %header.sticky{:"data-starting-height" => 300, :"data-min-height" => 100}
       %nav.top-bar{:"data-topbar" => true}
         %ul.title-area
           %li.name
