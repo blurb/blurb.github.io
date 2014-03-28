@@ -46,9 +46,10 @@ header {
   }
 }
 
-#values {
-  margin-top: 5em;
-  margin-bottom: 5em;
+// Callouts are going to 
+section.callout {
+  margin-top: 3em;
+  margin-bottom: 3em;
 
   h2 {
     @extend %blurb-orange-light;
@@ -64,8 +65,8 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-#engineering-callouts {
-  section {
+section {
+  article {
     h5 {
       font-weight: bold;
       text-transform: uppercase;

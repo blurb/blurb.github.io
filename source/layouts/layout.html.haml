@@ -10,7 +10,7 @@
     = javascript_include_tag "all"
 
   %body{:class => page_classes}
-    %header.sticky
+    %header.sticky{:"data-starting-height" => 400, :"data-min-height" => 100}
       %nav.top-bar{:"data-topbar" => true}
         %ul.title-area
           %li.name
@@ -27,7 +27,7 @@
         .columns.large-6.large-centered
           %h1
             %span.icon.entypo-book-open
-            Hack the book.
+            Beautiful code making beautiful books.
 
     %section#main
       = yield
