@@ -31,10 +31,9 @@ a temporary server:
 
     $ middleman
 
+## Deploying to Github's blurb.github.io
 
-## Deploying to Github Pages
-
-    $ rake build
-    # Pushes to gh-pages branch on origin
-    $ rake publish 
+    $ middleman build
+    # Pushes to master branch on origin
+    $ middlman deploy
 

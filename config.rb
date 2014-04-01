@@ -78,8 +78,16 @@ end
 
 activate :deploy do |deploy|
   deploy.method = :git
-  # Optional Settings
-  #deploy.remote   = "custom-remote" # remote name or git url, default: origin
-  deploy.branch   = "master" # default: gh-pages
   deploy.strategy = :submodule      # commit strategy: can be :force_push or :submodule, default: :force_push
+  deploy.build_before = true
+
+  case ENV['TARGET'].to_s.downcase
+  when "production"
+    # Optional Settings
+    deploy.remote   = "git@github.com:blurb/blurb.github.io.git"
+    deploy.branch   = "master" # default: gh-pages
+  else
+    deploy.remote   = "git@git.blurb.com:blurb/blurb.github.io.git" # remote name or git url, default: origin
+    deploy.branch   = "gh-pages" # default: gh-pages
+  end
 end
