@@ -78,7 +78,7 @@ end
 
 activate :deploy do |deploy|
   deploy.method = :git
-  deploy.strategy = :submodule      # commit strategy: can be :force_push or :submodule, default: :force_push
+  deploy.strategy = :force_push      # commit strategy: can be :force_push or :submodule, default: :force_push
   deploy.build_before = true
 
   case ENV['TARGET'].to_s.downcase
