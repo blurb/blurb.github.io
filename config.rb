@@ -84,10 +84,10 @@ activate :deploy do |deploy|
   case ENV['TARGET'].to_s.downcase
   when "production"
     # Optional Settings
-    deploy.remote   = "git@github.com:blurb/blurb.github.io.git"
+    deploy.remote   = "origin"
     deploy.branch   = "master" # default: gh-pages
   else
-    deploy.remote   = "git@git.blurb.com:blurb/blurb.github.io.git" # remote name or git url, default: origin
+    deploy.remote   = "blurb" # remote name or git url, default: origin
     deploy.branch   = "gh-pages" # default: gh-pages
   end
 end
