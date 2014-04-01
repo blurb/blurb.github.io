@@ -84,10 +84,10 @@ activate :deploy do |deploy|
   case ENV['TARGET'].to_s.downcase
   when "production"
     # Optional Settings
-    deploy.remote   = "origin"
+    deploy.remote   = "github"
     deploy.branch   = "master" # default: gh-pages
   else
-    deploy.remote   = "blurb" # remote name or git url, default: origin
+    deploy.remote   = "origin" # remote name or git url, default: origin
     deploy.branch   = "gh-pages" # default: gh-pages
   end
 end

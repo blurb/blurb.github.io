@@ -24,6 +24,15 @@ libraries like jQuery and ZURB Foundation:
 
     $ bower install
 
+## Setting up staging and production git remotes
+
+We use git@git.blurb.com as the staging server, and git@github.com as
+the production deploy server.
+
+Add "github" as the github remote:
+
+    $ git remote add github git@github.com:blurb/blurb.github.io
+
 ## Starting in development
 
 Now you're ready to boot up the site. Middleman provides a runner to run
@@ -31,9 +40,13 @@ a temporary server:
 
     $ middleman
 
-## Deploying to Github's blurb.github.io
+## Deploying
 
-    $ middleman build
-    # Pushes to master branch on origin
-    $ middlman deploy
+### To staging (http://git.blurb.com/pages/blurb/blurb.github.io)
+
+    $ middleman deploy
+
+### To production (http://blurb.github.io)
+
+    $ TARGET=production middleman deploy
 
