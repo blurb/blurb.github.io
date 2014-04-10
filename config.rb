@@ -16,7 +16,7 @@ end
 
 # configure the blog
 activate :blog do |blog|
-  # set options on blog
+  blog.prefix = "blog"
 end
 
 ###
