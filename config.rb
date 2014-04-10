@@ -14,6 +14,11 @@ after_configuration do
   sprockets.append_path File.join "#{root}", @bower_config["directory"]
 end
 
+# configure the blog
+activate :blog do |blog|
+  # set options on blog
+end
+
 ###
 # Page options, layouts, aliases and proxies
 ###
