@@ -10,32 +10,12 @@
     = javascript_include_tag "all"
 
   %body{:class => page_classes}
-    %header.sticky{:"data-starting-height" => 100, :"data-min-height" => 100}
-      %nav.top-bar{:"data-topbar" => true}
-        %ul.title-area
-          %li.name
-            %h3
-              = link_to "/" do
-                = image_tag "logo.png", :alt => "Blurb"
-        %section.top-bar-section
-          %ul
-            %li
-              = link_to "Github", "http://www.github.com/blurb"
-            %li
-              = link_to "Blog", "/blog"
+    = partial 'header'
     %section#main
       .row
         %h1
           = current_page.data.title
       .row
         .columns.large-7.large-centered
-          = lorem.paragraphs 10
           = yield
-    %footer
-      .row
-        .columns.large-12
-          %ul.inline-list
-            %li
-              %a{:href => "http://www.blurb.com"} Blurb
-            %li
-              %a.secondary{:href => "http://www.github.com/blurb"} Github
+    = partial 'footer'
