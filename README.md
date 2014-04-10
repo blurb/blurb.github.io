@@ -41,6 +41,12 @@ a temporary server:
 
     $ middleman
 
+## Posting
+
+    $ middlemane article "Some title"
+
+Open the file just mentioned, write it up, add a tag or two, save and commit.
+
 ## Deploying
 
 ### To staging (http://git.blurb.com/pages/blurb/blurb.github.io)
