@@ -10,13 +10,12 @@ layout: boilerplate
     .columns.large-7.large-centered
       .articles
         - blog.articles[0...5].each do |article|
-          %article
-            %h3
-              %a{:href => article.url}
-                = article.title
-              %time
-                = article.date.strftime('%b %e %Y')
-            = article.summary
+          %h2
             %a{:href => article.url}
-              Read more
+              = article.title
+          %time
+            = article.date.strftime('%b %e %Y')
+          = article.summary
+          %a{:href => article.url}
+            Read more
 = partial 'footer'
