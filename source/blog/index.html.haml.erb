@@ -2,13 +2,16 @@
 title: Blog
 layout: blog
 ---
-- blog.articles[0...5].each do |article|
-  %article
-    %h1
-      %a{:href => article.url}
-        = article.title
-      %time
-        = article.date.strftime('%b %e %Y')
-    = article.summary
-    %a{:href => article.url}
-      Read more
+.articles
+  - blog.articles[0...5].each do |article|
+    .row
+      .columns.large-6.large-centered
+        %article
+          %h3
+            %a{:href => article.url}
+              = article.title
+              %time
+                = article.date.strftime('%b %e %Y')
+          = article.summary
+          %a{:href => article.url}
+            Read more

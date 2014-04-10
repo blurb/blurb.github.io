@@ -88,3 +88,7 @@ section {
   font-weight: 300;
 }
 
+// Blog-specific styles
+.articles {
+    min-height: 500px; // so the footer gets pushed down
+}
