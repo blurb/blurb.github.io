@@ -22,9 +22,15 @@
             %li
               = link_to "Github", "http://www.github.com/blurb"
             %li
-              = link_to "Blog", "blog"
+              = link_to "Blog", "/blog"
     %section#main
-      = yield
+      .row
+        %h1
+          = current_page.data.title
+      .row
+        .columns.large-7.large-centered
+          = lorem.paragraphs 10
+          = yield
     %footer
       .row
         .columns.large-12
