@@ -43,7 +43,7 @@ a temporary server:
 
 ## Posting
 
-    $ middlemane article "Some title"
+    $ middleman article "Some title"
 
 Open the file just mentioned, write it up, add a tag or two, save and commit.
 
