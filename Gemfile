@@ -7,6 +7,7 @@ gem "middleman-blog"
 gem "middleman-deploy"
 gem 'rake'
 
+# needed for erb
 gem 'nokogiri'
 
 # Live-reloading plugin
