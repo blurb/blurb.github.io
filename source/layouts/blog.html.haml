@@ -5,6 +5,7 @@
       %h1
         = current_page.data.title
     .row
-      .columns.large-10.large-centered
-        = yield
+      .columns.large-8.large-centered
+        %article
+          = yield
   = partial 'footer'
