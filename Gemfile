@@ -7,6 +7,8 @@ gem "middleman-blog"
 gem "middleman-deploy"
 gem 'rake'
 
+gem 'nokogiri'
+
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"
 
