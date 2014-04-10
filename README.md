@@ -17,7 +17,7 @@ We then need to install Node and Bower to manage our dependencies on
 third party JS and SCSS libraries:
 
     $ brew install nodejs
-    $ npm config set prefix /usr/local # so nom packages can be found
+    $ npm config set prefix /usr/local # so npm packages can be found
     $ npm install -g bower bower-cli
 
 Now initialize Bower, which will grab third party extensions and
