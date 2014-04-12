@@ -6,6 +6,7 @@ tags: ruby, rails
 ---
 
 ## Upgrade to Rails 2.3.10
+
 Rails 2.3.10 is a Rails 2.3 release with some Rails 3 deprecation warnings and Rails 3 style XSS support turned on.  It will be a good interim step in migrating to Rails 3.
 
 * move vendored plugins to gem
@@ -17,6 +18,7 @@ Rails 2.3.10 is a Rails 2.3 release with some Rails 3 deprecation warnings and R
 * verify all views - Rails 2.3.10 defaults to sanitizing all string in views.  This is the opposite behavior of 2.3.2.
 
 ## Upgrade to Rails 3
+
 * migrate to Bundler (done)
 * upgrade routes to Rails 3 syntax
 * ???
