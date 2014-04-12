@@ -1,0 +1,18 @@
+%header.sticky{:"data-starting-height" => 400, :"data-min-height" => 100}
+  %nav.top-bar{:"data-topbar" => true}
+    %ul.title-area
+      %li.name
+        %h3
+          = link_to "/" do
+            = image_tag "logo.png", :alt => "Blurb"
+    %section.top-bar-section
+      %ul
+        %li
+          = link_to "Github", "http://www.github.com/blurb"
+        %li
+          = link_to "Blog", "/blog"
+  .row
+    .columns.large-6.large-centered
+      %h1
+        %span.icon.entypo-book-open
+        Beautiful code makes beautiful books.
