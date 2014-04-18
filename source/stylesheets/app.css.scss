@@ -27,9 +27,9 @@ header {
   h1 {
     color: white;
     @extend %black;
-    text-shadow: 1px 1px #000;
+    text-shadow: 0 0 20px #000;
   }
-  background-image: url("../images/hackathon-1.jpg");
+  background-image: url("../images/fancy-header.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
