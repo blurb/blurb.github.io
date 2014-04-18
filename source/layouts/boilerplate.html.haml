@@ -7,6 +7,7 @@
       = current_page.data.title || "Blurb"
     = stylesheet_link_tag "all"
     = javascript_include_tag "all"
+    = partial :google_analytics
 
   %body{:class => page_classes}
     = yield
