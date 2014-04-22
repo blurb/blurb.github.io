@@ -15,6 +15,9 @@ header {
   .top-bar {
     ul.title-area {
       margin-right: 1em;
+      img {
+        max-width: 200px;
+      }
     }
   }
 
@@ -46,6 +49,14 @@ header {
   }
 }
 
+footer {
+  background-color: #EFEFEF;
+  img {
+    max-width: 200px;
+    margin: 1em auto;
+  }
+}
+
 // Callouts are going to 
 section.callout {
   margin-top: 3em;
@@ -74,6 +85,7 @@ section {
     }
   }
 }
+
 
 %blurb-orange-light {
   letter-spacing: -0.05em;
