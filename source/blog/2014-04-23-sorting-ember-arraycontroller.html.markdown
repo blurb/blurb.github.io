@@ -8,9 +8,9 @@ author_url: https://twitter.com/chicagoing
 
 > Last April, I presented at the [Ember NYC meetup](https://twitter.com/EmberNYC)
 > to discuss different approaches for sorting an ArrayController. This is a
-> short synopsis, but learn more in the meetup video and slides.
+> short synopsis, you can learn more in the meetup video and slides.
 
-To sort an Ember ArrayController, you may have used the included
+To sort an Ember ArrayController you may have used the included
 SortableMixin `sortProperties` and `sortAscending` properties. These
 are great and work really well for sorting on one property or sorting on
 multiple properties all in the *same direction*. But that's a huge caveat,
@@ -19,7 +19,7 @@ directions.
 
 ## Welcome `Ember.computed.sort`
 
-The Computed Property Macros has several methods for creating common types
+The Computed Property Macros have several methods for creating common types
 of computed properties. `Ember.computed.sort` allows us to:
 
 * Sort properties by different criteria
