@@ -57,7 +57,7 @@ footer {
   }
 }
 
-// Callouts are going to 
+// Callouts are going to
 section.callout {
   margin-top: 3em;
   margin-bottom: 3em;
@@ -103,4 +103,8 @@ section {
 // Blog-specific styles
 .articles {
     min-height: 500px; // so the footer gets pushed down
+}
+
+iframe {
+  margin-bottom: 1em;
 }
