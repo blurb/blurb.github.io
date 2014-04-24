@@ -24,7 +24,7 @@ property in our template or view:
 
 <a class="jsbin-embed" href="http://emberjs.jsbin.com/nibiq/latest/embed?js">Ember Starter Kit</a>
 
-While `sortProperties` lets us specify more than property, you'll notice
+While `sortProperties` lets us specify more than one property to order by, you'll notice
 `sortAscending` is a boolean value and gets applied to *all* properties.
 But what if we wanted to sort by the publish date first in descending order,
 then by title in ascending order? We're unable to sort in different directions without applying a custom
