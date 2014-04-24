@@ -108,3 +108,8 @@ section {
 iframe {
   margin-bottom: 1em;
 }
+
+.jsbin-embed {
+  // This is the only time you'll ever see Estella use !important
+  height: 500px !important;
+}
