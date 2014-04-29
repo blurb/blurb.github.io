@@ -42,7 +42,7 @@ of computed properties. `Ember.computed.sort` allows us to:
 `Ember.computed.sort`  has two parameters:
 
 1. `dependentKey`: a reference to the content we're sorting
-2. `sortDefinition`: either the a string referencing the property key containing the sort definition or a custom sort function
+2. `sortDefinition`: either a string referencing the property key containing the sort definition or a custom sort function
 
 In the example below, `sortDefinition` is the property key `propertiesToSortBy`,
 which is an array of property keys and the corresponding sort direction. By
