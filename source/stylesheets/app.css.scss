@@ -57,6 +57,20 @@ footer {
   }
 }
 
+.small-header {
+  background-image: url("../images/fancy-header.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  section.links li {
+    
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+  }
+}
+
 // Callouts are going to
 section.callout {
   margin-top: 3em;
