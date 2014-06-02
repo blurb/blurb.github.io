@@ -41,12 +41,16 @@ header {
   h3 {
     margin-left: $column-gutter;
   }
+
   .top-bar-section {
     margin-left: 2em;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-shadow: 1px 1px #000;
   }
+}
+
+.nav-links {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px #000;
 }
 
 footer {
@@ -63,8 +67,7 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
 
-  section.links li {
-    
+  section li {
     display: inline;
     list-style-type: none;
     padding-right: 20px;
