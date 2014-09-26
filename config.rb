@@ -16,7 +16,6 @@ end
 
 # configure the blog
 activate :blog do |blog|
-  blog.prefix = "blog"
   blog.layout = "blog"
 end
 
@@ -97,3 +96,7 @@ activate :deploy do |deploy|
     deploy.branch   = "gh-pages" # default: gh-pages
   end
 end
+
+# Redirect /blog/* to /*
+activate :alias
+

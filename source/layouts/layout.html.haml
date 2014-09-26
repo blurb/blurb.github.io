@@ -1,9 +1,9 @@
 !!! 5
 - wrap_layout :boilerplate do
   .show-for-medium-up
-    = partial 'fancy_header'
+    = partial 'layouts/fancy_header'
   .show-for-small-only
-    = partial 'small_header'
+    = partial 'layouts/small_header'
   %section#main
     = yield
-  = partial 'footer'
+  = partial 'layouts/footer'
