@@ -1,14 +1,14 @@
 - wrap_layout :boilerplate do
   .show-for-medium-up
-    = partial 'header'
+    = partial 'layouts/header'
   .show-for-small-only
-    = partial 'small_header'
+    = partial 'layouts/small_header'
   %section#main
     .row
       %h1
         = current_page.data.title
     .row
-      .columns.large-8.large-centered
+      .columns.large-12.large-centered
         %article
           = yield
-  = partial 'footer'
+  = partial 'layouts/footer'
