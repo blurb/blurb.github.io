@@ -24,16 +24,20 @@ header {
   margin: 0;
   padding: 1em 0;
   text-align: center;
+
   .row {
     min-height: rem-calc(100);
   }
+
   h1 {
     color: white;
     @extend %black;
     text-shadow: 0 0 20px #000;
   }
-  background-image: url("../images/fancy-header.jpg");
-  background-size: cover;
+
+  background-image: url("../images/eng_logo_grey.png");
+  background-color: $body-bg;
+  background-size: 300px;
   background-repeat: no-repeat;
   background-position: center center;
   // @include filter(brightness(75%));
@@ -46,11 +50,13 @@ header {
     margin-left: 2em;
   }
 }
+.header__logo {
+  max-width: 300px;
+}
 
 .nav-links {
   text-transform: uppercase;
   font-weight: bold;
-  text-shadow: 1px 1px #000;
 }
 
 footer {

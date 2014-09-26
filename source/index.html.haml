@@ -1,16 +1,8 @@
 ---
-layout: boilerplate
 alias: blog/
+title: Blurb Engineering Blog
 ---
-.show-for-medium-up
-  = partial 'layouts/header'
-.show-for-small-only
-  = partial 'layouts/small_header'
 %section#main
-  .row
-    .columns.large-centered
-      %h1
-        Blurb Engineering Blog
   .row
     .columns.small-12
       .articles
@@ -23,4 +15,4 @@ alias: blog/
           = article.summary
           %a{:href => article.url}
             Read more &raquo;
-= partial 'layouts/footer'
+
