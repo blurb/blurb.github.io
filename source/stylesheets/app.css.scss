@@ -7,6 +7,7 @@
 // Variables
 // -----------------------------
 $blurb-orange: #DB7123;
+$page-title-color: #6D6D6D;
 
 // -----------------------------
 // Playground for fonts/styles
@@ -30,12 +31,10 @@ header {
   }
 
   h1 {
-    color: white;
+    color: $page-title-color;
     @extend %black;
-    text-shadow: 0 0 20px #000;
   }
 
-  background-image: url("../images/eng_logo_grey.png");
   background-color: $body-bg;
   background-size: 300px;
   background-repeat: no-repeat;

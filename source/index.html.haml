@@ -11,11 +11,11 @@ title: Blurb Engineering Blog
             %h2
               %a{:href => article.url}
                 = article.title
-            %h3
+            %h5
               = "By #{article.data.author}"
             %time
               = article.date.strftime('%b %e %Y')
             = article.body
-            %h4
+            %h5
               = "Tagged: #{article.tags.join(", ")}"
 
