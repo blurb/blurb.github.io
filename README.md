@@ -40,6 +40,15 @@ Now you're ready to boot up the site. Middleman provides a runner to run
 a temporary server:
 
     $ middleman
+    
+This should output something like
+
+    == The Middleman is loading
+    == LiveReload is waiting for a browser to connect
+    == The Middleman is standing watch at http://0.0.0.0:4567
+    == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
+    
+You can go to that address to view a sitemap, then browse to the page you're editing to view it in your browser.
 
 ## Posting
 
