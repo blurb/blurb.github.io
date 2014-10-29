@@ -7,6 +7,7 @@ gem "middleman-blog"
 gem "middleman-deploy"
 gem "middleman-alias"
 gem 'rake'
+gem "pry"
 
 # needed for erb
 gem 'nokogiri'

@@ -1,26 +1,29 @@
 ---
-layout: boilerplate
 alias: blog/
+title: Blurb Engineering Blog
 ---
-.show-for-medium-up
-  = partial 'layouts/header'
-.show-for-small-only
-  = partial 'layouts/small_header'
 %section#main
-  .row
-    .columns.large-centered
-      %h1
-        Blurb Engineering Blog
   .row
     .columns.small-12
       .articles
-        - blog.articles[0...5].each do |article|
-          %h2
-            %a{:href => article.url}
-              = article.title
-          %time
-            = article.date.strftime('%b %e %Y')
-          = article.summary
-          %a{:href => article.url}
-            Read more &raquo;
-= partial 'layouts/footer'
+        - blog.articles.each do |article|
+          %article
+            %h2
+              %a{:href => article.url}
+                = article.title
+            %h6
+              By
+              - if article.data.author_url
+                = link_to article.data.author, article.data.author_url
+              - else
+                = article.data.author
+              - if article.data.twitter_username
+                (
+                = link_to "@#{article.data.twitter_username}", "http://www.twitter.com/#{article.data.twitter_username}"
+                )
+              %time
+                = article.date.strftime('%B %e, %Y')
+            = article.body
+            %h5
+              = "Tagged: #{article.tags.join(", ")}"
+

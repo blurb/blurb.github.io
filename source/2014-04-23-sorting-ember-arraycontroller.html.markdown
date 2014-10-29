@@ -4,6 +4,7 @@ date: 2014-04-23 20:01 UTC
 tags: ember.js
 author: Estella Madison
 author_url: https://twitter.com/chicagoing
+twitter_username: chicagoing
 ---
 
 > Last April, I presented at the [Ember NYC meetup](https://twitter.com/EmberNYC)

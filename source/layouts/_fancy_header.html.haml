@@ -1,14 +1,12 @@
-%header.sticky{:"data-starting-height" => 400, :"data-min-height" => 100}
+%header.header.sticky{:"data-starting-height" => 200, :"data-min-height" => 100}
   %nav.top-bar{:"data-topbar" => true}
     %ul.title-area
       %li.name
         %h3
           = link_to "/" do
-            = image_tag "logo.png", :alt => "Blurb"
+            = image_tag "logo.png", :alt => "Blurb Engineering Blog"
     %section.top-bar-section
       = partial 'layouts/nav'
   .row
-    .columns.large-6.large-centered
-      %h1
-        %span.icon.entypo-book-open
-        Creative code makes creative books.
+    .columns.large-8.large-centered
+      %h1= current_page.data.title
