@@ -1,90 +1,29 @@
 ---
-title: Blurb Engineering
+alias: blog/
+title: Blurb Engineering Blog
 ---
-
-%section#values.callout
+%section#main
   .row
-    .columns.large-8
-      %h2 Our mission is to enable anybody to publish a book.
-      %h3 We're a group of makers and creatives, empowering creatives worldwide with publishing powers.
+    .columns.small-12
+      .articles
+        - blog.articles.each do |article|
+          %article
+            %h2
+              %a{:href => article.url}
+                = article.title
+            %h6
+              By
+              - if article.data.author_url
+                = link_to article.data.author, article.data.author_url
+              - else
+                = article.data.author
+              - if article.data.twitter_username
+                (
+                = link_to "@#{article.data.twitter_username}", "http://www.twitter.com/#{article.data.twitter_username}"
+                )
+              %time
+                = article.date.strftime('%B %e, %Y')
+            = article.body
+            %h5
+              = "Tagged: #{article.tags.join(", ")}"
 
-%section#engineering-callouts
-  .row
-    .columns.large-4
-      %article
-        %h5
-          %span.icon.entypo-air
-          Work/life
-        %p We're all about focused, energized work, and we believe that can't happen without rest. Come early and leave early from the office. Have a life. We're not interested in burnout.
-
-      %article
-        %h5
-          %span.icon.entypo-star-empty
-          Diligence to the craft
-        %p If you're passionate about clean code, SOLID objects and TDD, then we want you. We practice Continuous Integration, diligent code reviews, pair programming, and a strong commitment to refactoring.
-
-      %article
-        %h5
-          %span.icon.maki-pitch
-          We'll take care of you
-        %p Whether it's free lunch Wednesdays, happy hours, a full health coverage benefits plan, or 401k benefits -- we've got you covered.
-
-    .columns.large-4
-      %article
-        %h5
-          %span.icon.entypo-heart
-          Testing for passion
-        %p We're a group of tinkerers, makers, hackers, and programming language enthusiasts. We love beautiful books as much as we love beautiful code.
-        %p We believe in testing early and testing often. We pride ourselves in the fact that our teams work closely together to deliver the tightest product possible.
-        %p You'll find us playing music, programming Arduinos, futzing with 3D printers, playing with photograhy, and writing fiction in our free time.
-
-    .columns.large-4
-      %article
-        %h5
-          %span.icon.entypo-cloud-thunder
-          Technologies
-        %p Some of the technologies you may be involved with here involve:
-     
-        %ul
-          %li Ruby on Rails
-          %li Java
-          %li DropWizard
-          %li iOS
-          %li Qt / C++
-          %li Ember
-          %li Backbone
-          %li RSpec
-          %li Puppet
-          %li Jenkins
-          %li GitHub
-
-%section#looking-for-you.callout
-  .row
-    .columns.large-8
-      %h2 Job openings
-
-%section#engineering-positions
-  .row
-    .columns.large-4
-      %article
-        %h5
-          %span.icon.maki-rail
-          Senior Rails Software Engineer - Web Team
-        %p You love pair programming and TDD. You've scaled Rails across multiple applications. You're adept at picking the right design pattern tool for the job. You're fluent in Javascript, and you love Ruby.
-        %a.button{:href => "http://www.blurb.com/job-listings/senior-software-engineer-rails"} Apply
-
-    .columns.large-4
-      %article
-        %h5
-          %span.icon.entypo-flow-tree
-          Senior Rails Software Engineer - Platform
-        %p You have a nose for lightweight REST API design. You understand the limitations of Rails and Ruby, and can squeeze out every drop of performance, using well-architected API design, caching or maybe even dropping down to Rack or Sinatra.
-        %a.button{:href => "http://www.blurb.com/job-listings/senior-platform-engineer-rails"} Apply
-
-    .columns.large-4
-      %article
-        %h5
-          %span.icon.entypo-flow-tree
-          Senior Java Software Engineer - Platform
-        %p You're passionate about building elegant, performant APIs, particularly on our Java platform APIs. You use the JVM because it lets you build reliable, secure and performant services, with a rich, powerful ecosystem of libraries and tools.
-        %a.button{:href => "http://www.blurb.com/job-listings/senior-platform-engineer-java"} Apply

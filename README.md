@@ -60,9 +60,9 @@ Open the file just mentioned, write it up, add a tag or two, save and commit.
 
 ### To staging (http://git.blurb.com/pages/blurb/blurb.github.io)
 
-    $ middleman deploy
+    $ bundle exec rake deploy:staging
 
 ### To production (http://blurb.github.io)
 
-    $ TARGET=production middleman deploy
+    $ bundle exec rake deploy:production
 

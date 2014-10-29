@@ -5,7 +5,9 @@ source 'http://rubygems.org'
 gem "middleman", "~>3.2.2"
 gem "middleman-blog"
 gem "middleman-deploy"
+gem "middleman-alias"
 gem 'rake'
+gem "pry"
 
 # needed for erb
 gem 'nokogiri'

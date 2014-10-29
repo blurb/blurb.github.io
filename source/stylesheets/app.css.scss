@@ -7,6 +7,7 @@
 // Variables
 // -----------------------------
 $blurb-orange: #DB7123;
+$page-title-color: #6D6D6D;
 
 // -----------------------------
 // Playground for fonts/styles
@@ -24,16 +25,18 @@ header {
   margin: 0;
   padding: 1em 0;
   text-align: center;
+
   .row {
     min-height: rem-calc(100);
   }
+
   h1 {
-    color: white;
+    color: $page-title-color;
     @extend %black;
-    text-shadow: 0 0 20px #000;
   }
-  background-image: url("../images/fancy-header.jpg");
-  background-size: cover;
+
+  background-color: $body-bg;
+  background-size: 300px;
   background-repeat: no-repeat;
   background-position: center center;
   // @include filter(brightness(75%));
@@ -46,11 +49,13 @@ header {
     margin-left: 2em;
   }
 }
+.header__logo {
+  max-width: 300px;
+}
 
 .nav-links {
   text-transform: uppercase;
   font-weight: bold;
-  text-shadow: 1px 1px #000;
 }
 
 footer {
@@ -93,11 +98,9 @@ h1, h2, h3, h4, h5 {
 
 section {
   article {
-    h5 {
-      font-weight: bold;
-      text-transform: uppercase;
-      text-align: center;
-    }
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #DDD;
   }
 }
 
