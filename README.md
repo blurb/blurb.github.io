@@ -1,8 +1,7 @@
 Blurb Engineering & Github
 --------------------------
 
-An experiment in using Github to be Blurb Engineering's Internet
-presence.
+Blurb Engineering blog, hosted by Github.com.
 
 ## Middleman
 
@@ -55,6 +54,13 @@ You can go to that address to view a sitemap, then browse to the page you're edi
     $ middleman article "Some title"
 
 Open the file just mentioned, write it up, add a tag or two, save and commit.
+
+Note that you can provide the following options in the YAML front matter
+in your article:
+
+* `twitter_username`: Your twitter handle, minus the `@`
+* `author_url`: A link to your personal site, should you include it.
+* `github_username`: Your github.com handle.
 
 ## Deploying
 
