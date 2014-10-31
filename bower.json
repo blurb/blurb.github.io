@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
+    "buildkit": "http://git.blurb.com/blurb/bower-buildkit.git",
     "foundation": "zurb/bower-foundation"
   }
 }
