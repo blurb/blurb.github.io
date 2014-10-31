@@ -7,23 +7,4 @@ title: Blurb Engineering Blog
     .columns.small-12
       .articles
         - blog.articles.each do |article|
-          %article
-            %h2
-              %a{:href => article.url}
-                = article.title
-            %h6
-              By
-              - if article.data.author_url
-                = link_to article.data.author, article.data.author_url
-              - else
-                = article.data.author
-              - if article.data.twitter_username
-                (
-                = link_to "@#{article.data.twitter_username}", "http://www.twitter.com/#{article.data.twitter_username}"
-                )
-              %time
-                = article.date.strftime('%B %e, %Y')
-            = article.body
-            %h5
-              = "Tagged: #{article.tags.join(", ")}"
-
+          = partial :article, :locals => { :article => article }

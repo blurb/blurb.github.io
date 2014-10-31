@@ -3,6 +3,5 @@
   %section#main
     .row
       .columns.large-12.large-centered
-        %article
-          = yield
+        = partial :article, :locals => { :article => current_article }
   = partial 'layouts/footer'

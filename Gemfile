@@ -6,8 +6,12 @@ gem "middleman", "~>3.2.2"
 gem "middleman-blog"
 gem "middleman-deploy"
 gem "middleman-alias"
+gem "middleman-minify-html"
+gem "middleman-syntax"
 gem 'rake'
 gem "pry"
+gem "kramdown"
+gem "redcarpet"
 
 # needed for erb
 gem 'nokogiri'

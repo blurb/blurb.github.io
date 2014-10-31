@@ -14,10 +14,20 @@ after_configuration do
   sprockets.append_path File.join "#{root}", @bower_config["directory"]
 end
 
+# Prevent HAML from messing with code blocks.
+set :haml, :ugly => true
+
 # configure the blog
 activate :blog do |blog|
   blog.layout = "blog"
 end
+
+# Use middleman-syntax for Github-style code blocks.
+activate :syntax, :line_numbers => true
+set :markdown_engine, :redcarpet
+set :markdown,
+  :fenced_code_blocks => true,
+  :smartypants => true
 
 ###
 # Page options, layouts, aliases and proxies
