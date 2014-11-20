@@ -270,8 +270,7 @@ What kind of web developer would I be if I didn't have Chrome
 customizations? I've only a few, and they're only useful in niches, but
 dang if this job doesn't have a ton of niches. 
 
-## [Advanced Rest
-Client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo)
+## [Advanced Rest Client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo)
 
 I often need to interact with and debug APIs, but Curl forever eludes
 me. So I got this instead. It's a pretty straightforward REST request
@@ -286,13 +285,11 @@ shared between API calls. What's that, it's only me? :(
 This is a very useful cookie inspector/editor that makes it a lot easier
 to debug those rare cookie-based bug
 
-## [Page
-Ruler](https://chrome.google.com/webstore/detail/page-ruler/jlpkojjdgbllmedoapgfodplfhcbnbpn)
+## [Page Ruler](https://chrome.google.com/webstore/detail/page-ruler/jlpkojjdgbllmedoapgfodplfhcbnbpn)
 
 Does what it says on the tin. Good for those pixel-perfect jobs
 
-##[Visual
-Event](https://chrome.google.com/webstore/detail/visual-event/pbmmieigblcbldgdokdjpioljjninaim)
+##[Visual Event](https://chrome.google.com/webstore/detail/visual-event/pbmmieigblcbldgdokdjpioljjninaim)
 
 This extension gives you a button that, once clicked, will highlight
 every html element with events bound to it, and show you the javascript
