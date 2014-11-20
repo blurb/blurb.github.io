@@ -10,7 +10,7 @@ github_username: eqdw
 
 #### Environment Customizations
 
-You're at your friends house, chillin', maybe watching something on the
+You're at your friend's house, chillin', maybe watching something on the
 TV, when suddenly you're hit with inspiration. "OH MY GOD, THAT'S THE
 PERFECT STARTUP IDEA!" you think. Visions of Sand Hill dance through
 your head as you envision the world changed by your brilliant new idea
@@ -25,17 +25,17 @@ You turn to your friend. "Uhhhh.... how do I get an editor?" A flurry of
 random letters, and you're in vim. But something's wrong. DVORAK!
 
 Has this ever happened to you? If so, you've fallen victim to someone
-else's over-customized environment! But don't dispair. I'm here to show
-you some useful ones. Soon
+else's over-customized environment! But don't despair. I'm here to show
+you some useful ones.
 
 #### Why Customize? (or, Vanilla Bash Oughtta Be Good Enough For Everyone)
 
-In a word, efficiency, comfort, and developer happiness. All three of
-these come together to let you be more productive in your. Having an
+Three reasons: efficiency, comfort, and developer happiness. All three of
+these come together to let you be more productive. Having an
 environment that you're comfortable in, that empowers you to do things
 more easily, and that removes your pain points, will help you in the
 long run. A well-configured environment will give you two kinds of
-efficiencies
+efficiencies:
 
 The first kind of efficiency is the straightforward automation
 efficiency that engineers work all day to create for businesses. It's
