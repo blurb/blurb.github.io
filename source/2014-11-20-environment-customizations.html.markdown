@@ -202,7 +202,7 @@ With this:
 ![Fun ls](images/2014/11/fun-ls.png)
 
 
-### Bundler and rails section
+##### Bundler and rails section
 
 Most of these commands are shortenings of normal usage. A few stand out
 
@@ -216,10 +216,10 @@ output of rake routes
 that indicate controllers and views respectively. Useful for tracking
 down execution in unfamiliar code
 
-### Git section
+##### Git section
 
 There's a lot of writing on the internet about how the basic interface
-to git is mega confusing. I agree. That's why I mage my own. Common
+to git is mega confusing. I agree. That's why I made my own. Common
 operations get their own three (or sometimes four) -letter shortcuts. My
 normal workflow consists of the following:
 
@@ -270,14 +270,14 @@ What kind of web developer would I be if I didn't have Chrome
 customizations? I've only a few, and they're only useful in niches, but
 dang if this job doesn't have a ton of niches. 
 
-## [Advanced Rest Client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo)
+###### [Advanced Rest Client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo)
 
 I often need to interact with and debug APIs, but Curl forever eludes
 me. So I got this instead. It's a pretty straightforward REST request
 manager. It lets you set headers with a convenient form, specify HTTP
 verbs, save requests for later. It's pretty useful
 
-## [Edit This Cookie](http://www.editthiscookie.com/)
+###### [Edit This Cookie](http://www.editthiscookie.com/)
 
 Speaking of APIs, who hasn't had to debug cross-domain cookies that get
 shared between API calls. What's that, it's only me? :(
@@ -285,24 +285,24 @@ shared between API calls. What's that, it's only me? :(
 This is a very useful cookie inspector/editor that makes it a lot easier
 to debug those rare cookie-based bug
 
-## [Page Ruler](https://chrome.google.com/webstore/detail/page-ruler/jlpkojjdgbllmedoapgfodplfhcbnbpn)
+###### [Page Ruler](https://chrome.google.com/webstore/detail/page-ruler/jlpkojjdgbllmedoapgfodplfhcbnbpn)
 
 Does what it says on the tin. Good for those pixel-perfect jobs
 
-##[Visual Event](https://chrome.google.com/webstore/detail/visual-event/pbmmieigblcbldgdokdjpioljjninaim)
+######[Visual Event](https://chrome.google.com/webstore/detail/visual-event/pbmmieigblcbldgdokdjpioljjninaim)
 
 This extension gives you a button that, once clicked, will highlight
 every html element with events bound to it, and show you the javascript
 that will run on a given event trigger when you mouse over the
 highlights. This is super useful for JS heavy applications.
 
-##[Cloud to Butt](https://github.com/panicsteve/cloud-to-butt)
+######[Cloud to Butt](https://github.com/panicsteve/cloud-to-butt)
 
 Everyone needs to laugh. And I mean, come on, TechCrunch is getting more
 and more ridiculous every day. This plugin does *exactly* what you think
 it does, and it's glorious. 
 
-##Search Shortcut Abuse
+######Search Shortcut Abuse
 
 One final technique I've come across is abusing search shortcuts.
 Nominally a search shortcut is just that: say I type "wikipedia" in the
