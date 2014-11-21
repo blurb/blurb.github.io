@@ -63,7 +63,7 @@ of you are spending clicking through Finder.
 
 However, the second kind of efficiency is the more important one. I'm
 sure that you've heard of "flow" before.
-[Flow](http://en.wikipedia.org/wiki/Flow_(psychology\)) is the state of
+[Flow](http://en.wikipedia.org/wiki/Flow_(psychology)) is the state of
 mind in which you're fully engaged on the task at hand, bringing to bear
 the full might of your impression mental faculties. Flow is the
 difference between killing an hour on
