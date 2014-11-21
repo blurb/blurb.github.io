@@ -296,12 +296,6 @@ every html element with events bound to it, and show you the javascript
 that will run on a given event trigger when you mouse over the
 highlights. This is super useful for JS heavy applications.
 
-######[Cloud to Butt](https://github.com/panicsteve/cloud-to-butt)
-
-Everyone needs to laugh. And I mean, come on, TechCrunch is getting more
-and more ridiculous every day. This plugin does *exactly* what you think
-it does, and it's glorious. 
-
 ######Search Shortcut Abuse
 
 One final technique I've come across is abusing search shortcuts.
