@@ -14,7 +14,7 @@ You're at your friend's house, chillin', maybe watching something on the
 TV, when suddenly you're hit with inspiration. "OH MY GOD, THAT'S THE
 PERFECT STARTUP IDEA!" you think. Visions of Sand Hill dance through
 your head as you envision the world changed by your brilliant new idea
-for a crow-based social network, but there is one problem. You left your
+for a social network for crows, but there is one problem. You left your
 computer at home. You ask to borrow your buddy's machine, but you find
 it unusable. You sit there, staring blankly at a command line, filled
 with gibberish.
@@ -175,25 +175,25 @@ optimizations here
 
 Near the top, I have a 'misc' section. It has some useful commands
 
-` function def ` Used as ` % def foo `, this does a full text search of the current dir and
+`function def` Used as `% def foo`, this does a full text search of the current dir and
 all subdirs for a ruby method definition of the passed in method (in
 this case, 'foo'). Useful to find where some code is defined
 
-` function pyserv` This creates a simple http server in the current
+`function pyserv` This creates a simple http server in the current
 directory, serving up the files. It has its uses, if nothing else, as an
 easy way to fileshare on a local network. 
 
-` function psag ` This runs the process list and searches it for a
+`function psag` This runs the process list and searches it for a
 given string.
 
-` the 'u' functions` "cd .." is a weird way to go *u*p one level. "cd
+`the 'u' functions` "cd .." is a weird way to go *u*p one level. "cd
 ../../../../../.." is a weird way to go *uuuuuu*p six levels
 
-` tarx and tarc ` Tar, like ln, is lost arcana, known only to the last
+`tarx` and `tarc` Tar, like ln, is lost arcana, known only to the last
 remaining Level 27 Unix Masters. Well, until I wrote down the most
 common way to *c*reate and e*x*tract tarballs
 
-` function ls ` I override ls with gnu ls and several custom flags.
+`function ls` I override ls with gnu ls and several custom flags.
 
 Without this:
 ![Boring ls](images/2014/11/boring-ls.png)
@@ -206,13 +206,13 @@ With this:
 
 Most of these commands are shortenings of normal usage. A few stand out
 
-` function bers and function berc` Rails 2 invokves commands via `script/foo`. Rails 3+
+`function bers` and `function berc` Rails 2 invokves commands via `script/foo`. Rails 3+
 use `rails foo`. This is my attempt to harmonize both. 
 
-` function rRg ` Ever wanted to search for a specific route? Grep the
+`function rRg` Ever wanted to search for a specific route? Grep the
 output of rake routes
 
-` function rlc` and `function rlv` Will grep the server output for words
+`function rlc` and `function rlv` Will grep the server output for words
 that indicate controllers and views respectively. Useful for tracking
 down execution in unfamiliar code
 
@@ -247,11 +247,11 @@ to manage most of my gui workflows. At first glance, it looks like
 nothing more than a replacement for OSX's spotlight, but it is much,
 much more. I don't even use it to the full extent; I mainly use it for
 invoking programs, switching windows, and controlling my music. A simple
-tap on command-space brings up the Alfred window, where I can type a few
+tap on ⌘-space brings up the Alfred window, where I can type a few
 characters and it will intelligently fuzzy-match it to recently used
 commands.
 
-![Alfred](images/2014/11/alfred.png) 
+![Alfred](images/2014/11/alfred-launcher.png) 
 
 I also use it to control my music. By typing 'it' I activate the itunes
 client, which lets me do a bunch of things, most with a single text
