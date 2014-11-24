@@ -1,0 +1,28 @@
+
+  <div class="accordion--bar has-border-bottom pricing clearfix" data-step="1">
+    <span class="accordion--bar__title fl"><%= I18n.t('pricing.quantity') %></span>
+  </div>
+
+  <div class="summary--options clearfix">
+
+    <div class="summary--options__pages">
+      <% if(error) { %> 
+      <div class="summary--options__page-error  pricing__error-text">
+        <%= I18n.t('pricing.errors.' + error) %>
+      </div>
+      <% } %>
+      <input class="pages__input-count  js-option-item<% if(error) { %>  has-error<% } %>" id="page-count" name="page-count" type="text" value="<%= pages %>">
+      <label class="circular--bold counter" for="page-count"><%= I18n.t('pricing.estimated_pages') %></label>
+    </div>
+
+    <div class="summary--options__border">
+      <span class="has-vert-border"></span>
+    </div>
+
+    <div class="summary--options__thumb">
+      <img  class="book--img" src="<%= _.getAssetPath(imageURL) %>" alt="">
+      <span class="book--type circular--bold"><%= bookType %></span>
+      <span class="book--size__name circular--bold"><%= format %></span>
+      <span class="book--size__dimensions"><%= size %></span>
+    </div>
+  </div>

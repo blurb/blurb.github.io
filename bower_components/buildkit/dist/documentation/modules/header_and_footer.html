@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-flex"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Blurb Buildkit - Modules</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <!--[if ! lt IE 8]><!-->
+<link href="../../assets/css/main.css" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/css/ie.css">
+<![endif]-->
+
+<!--[if IE 9]>
+<link rel="stylesheet" href="/assets/css/ie9.css">
+<![endif]-->
+
+<!-- build:js assets/js/vendor/modernizr/modernizr-custom.min.js -->
+<script src="/assets/js/vendor/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+<!--[if IE 8]>
+<!-- build:js /assets/js/vendor/nwmatcher/dist/nwmatcher.min.js -->
+<script src="/assets/js/vendor/nwmatcher/src/nwmatcher.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /assets/js/vendor/selectivizr/selectivizr.min.js -->
+<script src="/assets/js/vendor/selectivizr/selectivizr.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /assets/js/vendor/respond/dest/respond.min.js -->
+<script src="/assets/js/vendor/respond/src/respond.js"></script>
+<!-- endbuild -->
+    <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #75715e;
+  font-weight: bold;
+}
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gd {
+  color: #000000;
+}
+.highlight .gi {
+  color: #000000;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kc {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sc {
+  color: #e6db74;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .ss {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
+}
+    </style>
+  </head>
+  <body class="documentation documentation_modules documentation_modules_header_and_footer  blurb-main-site" data-controller="buildkit">
+    <div class="wrapper">
+      <div class="inner-wrapper  js-inner-wrapper">
+        <div class="outer-border__wrapper">
+          <div class="grid-construct">
+            <div class="outer-border__inner">
+              <div class="outer-border__left"></div>
+              <div class="outer-border__right"></div>
+            </div>
+          </div>
+        </div>
+        <header class="header" role="banner">
+  <div class="header--utility">
+    <div class="grid-construct  guidline__wrapper">
+  <div class="guideline--vertical--left"></div>
+  <ul class="utility__list">
+    <li class="utility__list-item  utility__list-item--show-lg"><a class="utility__cta" href="#">Join Blurb Now</a></li>
+    <li class="utility__list-item  utility__list-item--show-lg"><a class="utility__cta" href="#">Sign In</a></li>
+    <li class="utility__list-item  utility__list-item--show-lg"><a class="utility__cta" href="#">Help</a></li>
+    <li class="utility__list-item  utility__list-item--search" data-controller="search">
+      <div class="controls__search__form-wrap js-search-form">
+        <form action="" class="controls__search__form clearfix">
+          <span class="controls__search__field-icon  icon  magnify--black"></span>  <!-- to remove -->
+          <label for="nav-search-field" class="controls__search__label">Search:</label>
+          <input type="text" name="nav-search-field" class="controls__search__field" placeholder="Search for...">
+          <button class="controls__search__button  controls__search__button--submit" type="button">Submit</button>
+          <button class="controls__search__button  controls__search__button--close  js-search-close" type="button">
+            <span class="icon  controls__search__button--close__close-icon"></span>
+          </button>
+        </form>
+      </div>
+    </li>
+    <li class="utility__list-item  utility__list-item--show-md-sm"><a class="utility__cta" href="#">Home</a></li>
+    <li class="utility__list-item  utility__list-item--show-md-sm"><a class="utility__cta" href="#">Sign In</a> or <a class="utility__cta" href="#">Join Now</a></li>
+    <li class="utility__list-item  utility__list-item--social  utility__list-item--show-lg"><a class="utility__cta" href="http://www.facebook.com/BlurbBooks"><span class="icon  social--utility--facebook--blue"></span></a></li>
+    <li class="utility__list-item  utility__list-item--social  utility__list-item--show-lg"><a class="utility__cta" href="http://twitter.com/blurbbooks"><span class="icon  social--utility--twitter--blue"></span></a></li>
+    <li class="utility__list-item  utility__list-item--social utility__list-item--social--last  utility__list-item--show-lg"><a class="utility__cta" href="https://plus.google.com/104290472118001868543"><span class="icon  social--utility--googleplus--blue"></span></a></li>
+  </ul>
+  <div class="guideline--vertical--right"></div>
+</div>
+
+  </div>
+  <div class="header--main  header-nav--main">
+  <div class="grid-construct  full-height-ruler  header-ruler"></div>
+  <div class="guideline--horizontal"></div>
+  <div class="grid-construct  guidline__wrapper">
+    <div class="guideline--vertical--left"></div>
+    <a href="/" title="Blurb" class="logo  logo--main  js-logo">
+      <span class="icon  logo--icon--large  logo-main--sm"></span>
+      <span class="icon  logo--icon--small  logo-main--mobile"></span>
+    </a>
+    <div class="controls controls--main js-controls">
+      <nav class="controls__nav" data-controller="controlsNav">
+        <ul class="controls__nav__list  js-controls-nav-list">
+          <li class="controls__nav__list-item  active">
+            <div class="controls__nav__cta  cta  cta--button  js-parent-nav-link"><span class="icon  controls__nav__expand-icon"></span>Self publish <span class="icon  controls__nav__cta-icon"></span></div>
+            <ul class="controls__subnav--lvl1  js-subnav">
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Sell &amp; Distribute</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Book Makers of All Types</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">For Business</a>
+              </li>
+            </ul>
+          </li>
+          <li class="controls__nav__list-item">
+            <div class="controls__nav__cta  cta  cta--button  js-parent-nav-link"><span class="icon  controls__nav__expand-icon"></span>Books &amp; eBooks <span class="icon  controls__nav__cta-icon"></span></div>
+            <ul class="controls__subnav--lvl1  js-subnav">
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Print &amp; Photo Books</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">eBooks</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Magazines</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Pricing &amp; Shipping</a>
+              </li>
+            </ul>
+          </li>
+          <li class="controls__nav__list-item">
+            <div class="controls__nav__cta  cta  cta--button  js-parent-nav-link"><span class="icon  controls__nav__expand-icon"></span>Create <span class="icon  controls__nav__cta-icon"></span></div>
+            <ul class="controls__subnav--lvl1  js-subnav">
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Apps & Tools</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Templates</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Get Started</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">How To</a>
+              </li>
+            </ul>
+          </li>
+          <li class="controls__nav__list-item">
+            <div class="controls__nav__cta  cta  cta--button  js-parent-nav-link"><span class="icon  controls__nav__expand-icon"></span>Inspire <span class="icon  controls__nav__cta-icon"></span></div>
+            <ul class="controls__subnav--lvl1  js-subnav">
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Authors in the News</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Events &amp; Webinars</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Blog Content</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Featured Authors</a>
+              </li>
+            </ul>
+          </li>
+          <li class="controls__nav__list-item">
+            <div class="controls__nav__cta  cta  cta--button  js-parent-nav-link"><span class="icon  controls__nav__expand-icon"></span>Bookstore <span class="icon  controls__nav__cta-icon"></span></div>
+            <ul class="controls__subnav--lvl1  js-subnav">
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Bestsellers</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">New Releases</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Editor Picks</a>
+              </li>
+              <li class="controls__subnav--lvl1__item">
+                <a class="controls__subnav--lvl1__link" href="#">Top Authors</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <ul class="controls__current-subnav">
+        <li class="controls__current-subnav__item  active">
+          <a class="controls__current-subnav__link" href="#">Sell &amp; Distribute</a>
+          <span class="controls__current-subnav__arrow  icon  indicator--down--blue"></span>
+        </li>
+        <li class="controls__current-subnav__item">
+          <a class="controls__current-subnav__link" href="#">Book Makers of All Types</a>
+          <span class="controls__current-subnav__arrow  icon  indicator--down--blue"></span>
+        </li>
+        <li class="controls__current-subnav__item">
+          <a class="controls__current-subnav__link" href="#">For Business</a>
+          <span class="controls__current-subnav__arrow  icon  indicator--down--blue"></span>
+        </li>
+      </ul>
+        <div class="footer__legal">
+    <div class="grid-construct">
+      <div class="full-column">
+        <ul class="footer__legal__list">
+          <li class="footer__legal__list-item  footer__legal__list-item--copyright">&copy; 1999-2014 Blurb</li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Company</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Careers</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Engineering</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Pricing</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Privacy &amp; Legal</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Affiliate Program</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Support</a></li>
+        </ul>
+        <div class="footer__lang-select" data-controller="languageSelect">
+          <div class="footer__lang-select__btn">
+            <div class="footer__lang-select__selected  js-lang-select-btn">
+              <span class="icon  flag--united-states--sm  footer__lang-select__selected-icon"></span> 
+              <span class="footer__lang-select__selected-text">United States</span>
+              <span class="icon  indicator--down--white"></span>
+            </div>
+          </div>
+
+          <div class="footer__lang-select__select-wrap  js-lang-select-wrap">
+            <div class="footer__lang-select__list-wrap">
+              <ul class="footer__lang-select__column">
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--united-states"></span> United States</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--australia"></span> Australia</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--brazil"></span> Brazil</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--italy"></span> Italy</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--netherlands"></span> Netherlands</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--united-kingdom"></span> United Kingdom</a>
+                </li>
+              </ul>
+              <ul class="footer__lang-select__column">
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--france"></span> France</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--germany"></span> Germany</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--spain"></span> Spain</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--canada"></span> Canada</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--globe"></span> Other Countries</a>
+                </li>
+              </ul>
+              <div class="footer__lang-select__stem">
+                <span class="icon bubble-stem--gray"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+    <div class="guideline--vertical--right"></div>
+  </div>
+</div>
+
+    <a href="#" class="header--mobile-nav-toggle  js-mobile-nav-toggle"><span class="icon  btn--mobile-nav--shadow"></span></a>
+</header>
+        <main class="main" role="main">
+          <div class="grid-construct">
+  <h3>Example: Page Banner Module within Header and Footer</h3>
+</div>
+
+  <div class="module  page-banner">
+  <div class="page-banner__bg">
+    <div class="grid-construct">
+      <div class="page-banner__inner-wrap">
+        <div class="page-banner__image" style="background-image: url('/assets/img/page_banners/page-banner_01.jpg');">
+        </div>
+        <div class="page-banner__content">
+          <h1 class="page-banner__headline">Make a book<br />with blurb</h1>
+          <div class="page-banner__content-divider"></div>
+          <p class="page-banner__copy">Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          <div class="page-banner__content-divider"></div>
+          <p>
+            <a href="/bookstore" class="page-banner__cta  btn  btn--white  btn--inline">Start making</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-construct">
+    
+    <!-- Change classes so all captions share a default caption style -->
+    <div class="page-banner__caption">
+      <div class="page-banner__caption-title">PLIM</div>
+      <div class="page-banner__caption-author">by Joana Rosa Braganca</div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="grid-construct">
+    <div id="post_grid" class="bk__section  clearfix">
+
+        <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Header Source</a>
+<pre class="highlight html">      <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">"header"</span> <span class="na">role=</span><span class="s">"banner"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header--utility"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct  guidline__wrapper"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"guideline--vertical--left"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"utility__list"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--show-lg"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Join Blurb Now<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--show-lg"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Sign In<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--show-lg"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Help<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--search"</span> <span class="na">data-controller=</span><span class="s">"search"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"controls__search__form-wrap js-search-form"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"controls__search__form clearfix"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"controls__search__field-icon  icon  magnify--black"</span><span class="nt">&gt;&lt;/span&gt;</span>  <span class="c">&lt;!-- to remove --&gt;</span>
+          <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"nav-search-field"</span> <span class="na">class=</span><span class="s">"controls__search__label"</span><span class="nt">&gt;</span>Search:<span class="nt">&lt;/label&gt;</span>
+          <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"nav-search-field"</span> <span class="na">class=</span><span class="s">"controls__search__field"</span> <span class="na">placeholder=</span><span class="s">"Search for..."</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"controls__search__button  controls__search__button--submit"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"controls__search__button  controls__search__button--close  js-search-close"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__search__button--close__close-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--show-md-sm"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--show-md-sm"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Sign In<span class="nt">&lt;/a&gt;</span> or <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Join Now<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--social  utility__list-item--show-lg"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"http://www.facebook.com/BlurbBooks"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  social--utility--facebook--blue"</span><span class="nt">&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--social  utility__list-item--show-lg"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"http://twitter.com/blurbbooks"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  social--utility--twitter--blue"</span><span class="nt">&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"utility__list-item  utility__list-item--social utility__list-item--social--last  utility__list-item--show-lg"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"utility__cta"</span> <span class="na">href=</span><span class="s">"https://plus.google.com/104290472118001868543"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  social--utility--googleplus--blue"</span><span class="nt">&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"guideline--vertical--right"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header--main  header-nav--main"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct  full-height-ruler  header-ruler"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"guideline--horizontal"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct  guidline__wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"guideline--vertical--left"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span> <span class="na">title=</span><span class="s">"Blurb"</span> <span class="na">class=</span><span class="s">"logo  logo--main  js-logo"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  logo--icon--large  logo-main--sm"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  logo--icon--small  logo-main--mobile"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"controls controls--main js-controls"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"controls__nav"</span> <span class="na">data-controller=</span><span class="s">"controlsNav"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"controls__nav__list  js-controls-nav-list"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__nav__list-item  active"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"controls__nav__cta  cta  cta--button  js-parent-nav-link"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>Self publish <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__cta-icon"</span><span class="nt">&gt;&lt;/span&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1  js-subnav"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Sell <span class="ni">&amp;amp;</span> Distribute<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Book Makers of All Types<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>For Business<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__nav__list-item"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"controls__nav__cta  cta  cta--button  js-parent-nav-link"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>Books <span class="ni">&amp;amp;</span> eBooks <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__cta-icon"</span><span class="nt">&gt;&lt;/span&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1  js-subnav"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Print <span class="ni">&amp;amp;</span> Photo Books<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>eBooks<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Magazines<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Pricing <span class="ni">&amp;amp;</span> Shipping<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__nav__list-item"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"controls__nav__cta  cta  cta--button  js-parent-nav-link"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>Create <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__cta-icon"</span><span class="nt">&gt;&lt;/span&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1  js-subnav"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Apps <span class="err">&amp;</span> Tools<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Templates<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Get Started<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>How To<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__nav__list-item"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"controls__nav__cta  cta  cta--button  js-parent-nav-link"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>Inspire <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__cta-icon"</span><span class="nt">&gt;&lt;/span&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1  js-subnav"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Authors in the News<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Events <span class="ni">&amp;amp;</span> Webinars<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Blog Content<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Featured Authors<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__nav__list-item"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"controls__nav__cta  cta  cta--button  js-parent-nav-link"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>Bookstore <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  controls__nav__cta-icon"</span><span class="nt">&gt;&lt;/span&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1  js-subnav"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Bestsellers<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>New Releases<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Editor Picks<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__item"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__subnav--lvl1__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Top Authors<span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/nav&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"controls__current-subnav"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__current-subnav__item  active"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__current-subnav__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Sell <span class="ni">&amp;amp;</span> Distribute<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"controls__current-subnav__arrow  icon  indicator--down--blue"</span><span class="nt">&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__current-subnav__item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__current-subnav__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Book Makers of All Types<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"controls__current-subnav__arrow  icon  indicator--down--blue"</span><span class="nt">&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"controls__current-subnav__item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"controls__current-subnav__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>For Business<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"controls__current-subnav__arrow  icon  indicator--down--blue"</span><span class="nt">&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__legal"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"full-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__legal__list"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item  footer__legal__list-item--copyright"</span><span class="nt">&gt;</span><span class="ni">&amp;copy;</span> 1999-2014 Blurb<span class="nt">&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Company<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Careers<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Engineering<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Pricing<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Privacy <span class="ni">&amp;amp;</span> Legal<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Affiliate Program<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Support<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select"</span> <span class="na">data-controller=</span><span class="s">"languageSelect"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__btn"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__selected  js-lang-select-btn"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--united-states--sm  footer__lang-select__selected-icon"</span><span class="nt">&gt;&lt;/span&gt;</span> 
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"footer__lang-select__selected-text"</span><span class="nt">&gt;</span>United States<span class="nt">&lt;/span&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--down--white"</span><span class="nt">&gt;&lt;/span&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__select-wrap  js-lang-select-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-wrap"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__lang-select__column"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--united-states"</span><span class="nt">&gt;&lt;/span&gt;</span> United States<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--australia"</span><span class="nt">&gt;&lt;/span&gt;</span> Australia<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--brazil"</span><span class="nt">&gt;&lt;/span&gt;</span> Brazil<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--italy"</span><span class="nt">&gt;&lt;/span&gt;</span> Italy<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--netherlands"</span><span class="nt">&gt;&lt;/span&gt;</span> Netherlands<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--united-kingdom"</span><span class="nt">&gt;&lt;/span&gt;</span> United Kingdom<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;/ul&gt;</span>
+              <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__lang-select__column"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--france"</span><span class="nt">&gt;&lt;/span&gt;</span> France<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--germany"</span><span class="nt">&gt;&lt;/span&gt;</span> Germany<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--spain"</span><span class="nt">&gt;&lt;/span&gt;</span> Spain<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--canada"</span><span class="nt">&gt;&lt;/span&gt;</span> Canada<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--globe"</span><span class="nt">&gt;&lt;/span&gt;</span> Other Countries<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;/ul&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__stem"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon bubble-stem--gray"</span><span class="nt">&gt;&lt;/span&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"guideline--vertical--right"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"header--mobile-nav-toggle  js-mobile-nav-toggle"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  btn--mobile-nav--shadow"</span><span class="nt">&gt;&lt;/span&gt;&lt;/a&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre>
+
+    </div>
+
+    <div id="post_grid" class="bk__section  clearfix">
+
+        <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Footer Source</a>
+<pre class="highlight html">      <span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">"footer  footer--main"</span> <span class="na">role=</span><span class="s">"contentinfo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"grid-construct"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__mega-nav__logo"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon logo-footer"</span><span class="nt">&gt;&lt;/span&gt;&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__mega-nav"</span><span class="nt">&gt;</span>
+      
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__mega-nav__list"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h6&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Self Publish<span class="nt">&lt;/a&gt;&lt;/h6&gt;</span>
+          <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Create<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Publishing Options<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Sell, Distribute, <span class="ni">&amp;amp;</span> Promote<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>For Professionals<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h6&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Books <span class="ni">&amp;amp;</span> Materials<span class="nt">&lt;/a&gt;&lt;/h6&gt;</span>
+          <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Photo Books<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Trade <span class="ni">&amp;amp;</span> Pocket Books<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Magazines<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>eBooks<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>PDFs<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h6&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Make a Book<span class="nt">&lt;/a&gt;&lt;/h6&gt;</span>
+          <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Get Started<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Tools<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Templates<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>How-To-Guide<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h6&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Community<span class="nt">&lt;/a&gt;&lt;/h6&gt;</span>
+          <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Main Landing Page<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Events <span class="ni">&amp;amp;</span> Webinars<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Blog Content<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Other Item<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h6&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Bookstore<span class="nt">&lt;/a&gt;&lt;/h6&gt;</span>
+          <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>New <span class="ni">&amp;amp;</span> Notible<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Best Sellers<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Editor Picks<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>All Categories<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h6&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Help<span class="nt">&lt;/a&gt;&lt;/h6&gt;</span>
+          <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Contact Support<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__mega-nav__sub-list-item"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Knowledge Base<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/section&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__legal"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"full-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__legal__list"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item  footer__legal__list-item--copyright"</span><span class="nt">&gt;</span><span class="ni">&amp;copy;</span> 1999-2014 Blurb<span class="nt">&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Company<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Careers<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Engineering<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Pricing<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Privacy <span class="ni">&amp;amp;</span> Legal<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Affiliate Program<span class="nt">&lt;/a&gt;&lt;/li&gt;</span><span class="c">&lt;!--
+          --&gt;</span><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__legal__list-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"footer__legal__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Support<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select"</span> <span class="na">data-controller=</span><span class="s">"languageSelect"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__btn"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__selected  js-lang-select-btn"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--united-states--sm  footer__lang-select__selected-icon"</span><span class="nt">&gt;&lt;/span&gt;</span> 
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"footer__lang-select__selected-text"</span><span class="nt">&gt;</span>United States<span class="nt">&lt;/span&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--down--white"</span><span class="nt">&gt;&lt;/span&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__select-wrap  js-lang-select-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-wrap"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__lang-select__column"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--united-states"</span><span class="nt">&gt;&lt;/span&gt;</span> United States<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--australia"</span><span class="nt">&gt;&lt;/span&gt;</span> Australia<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--brazil"</span><span class="nt">&gt;&lt;/span&gt;</span> Brazil<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--italy"</span><span class="nt">&gt;&lt;/span&gt;</span> Italy<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--netherlands"</span><span class="nt">&gt;&lt;/span&gt;</span> Netherlands<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--united-kingdom"</span><span class="nt">&gt;&lt;/span&gt;</span> United Kingdom<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;/ul&gt;</span>
+              <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"footer__lang-select__column"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--france"</span><span class="nt">&gt;&lt;/span&gt;</span> France<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--germany"</span><span class="nt">&gt;&lt;/span&gt;</span> Germany<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--spain"</span><span class="nt">&gt;&lt;/span&gt;</span> Spain<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--canada"</span><span class="nt">&gt;&lt;/span&gt;</span> Canada<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"footer__lang-select__list-item"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"footer__lang-select__link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  flag--globe"</span><span class="nt">&gt;&lt;/span&gt;</span> Other Countries<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;/ul&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer__lang-select__stem"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon bubble-stem--gray"</span><span class="nt">&gt;&lt;/span&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+
+<span class="nt">&lt;/footer&gt;</span>
+</pre>
+
+    </div>
+  </div>
+
+
+        </main>
+        <footer class="footer  footer--main" role="contentinfo">
+  <section class="grid-construct">
+    <div class="footer__mega-nav__logo">
+      <a href="#"><span class="icon logo-footer"></span></a>
+    </div>
+    <div class="footer__mega-nav">
+      
+      <ul class="footer__mega-nav__list">
+        <li class="footer__mega-nav__list-item">
+          <h6><a href="#">Self Publish</a></h6>
+          <ul class="footer__mega-nav__sub-list">
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Create</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Publishing Options</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Sell, Distribute, &amp; Promote</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">For Professionals</a>
+            </li>
+          </ul>
+        </li>
+        <li class="footer__mega-nav__list-item">
+          <h6><a href="#">Books &amp; Materials</a></h6>
+          <ul class="footer__mega-nav__sub-list">
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Photo Books</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Trade &amp; Pocket Books</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Magazines</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">eBooks</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">PDFs</a>
+            </li>
+          </ul>
+        </li>
+        <li class="footer__mega-nav__list-item">
+          <h6><a href="#">Make a Book</a></h6>
+          <ul class="footer__mega-nav__sub-list">
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Get Started</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Tools</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Templates</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">How-To-Guide</a>
+            </li>
+          </ul>
+        </li>
+        <li class="footer__mega-nav__list-item">
+          <h6><a href="#">Community</a></h6>
+          <ul class="footer__mega-nav__sub-list">
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Main Landing Page</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Events &amp; Webinars</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Blog Content</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Other Item</a>
+            </li>
+          </ul>
+        </li>
+        <li class="footer__mega-nav__list-item">
+          <h6><a href="#">Bookstore</a></h6>
+          <ul class="footer__mega-nav__sub-list">
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">New &amp; Notible</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Best Sellers</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Editor Picks</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">All Categories</a>
+            </li>
+          </ul>
+        </li>
+        <li class="footer__mega-nav__list-item">
+          <h6><a href="#">Help</a></h6>
+          <ul class="footer__mega-nav__sub-list">
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Contact Support</a>
+            </li>
+            <li class="footer__mega-nav__sub-list-item">
+              <a href="#">Knowledge Base</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+    <div class="footer__legal">
+    <div class="grid-construct">
+      <div class="full-column">
+        <ul class="footer__legal__list">
+          <li class="footer__legal__list-item  footer__legal__list-item--copyright">&copy; 1999-2014 Blurb</li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Company</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Careers</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Engineering</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Pricing</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Privacy &amp; Legal</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Affiliate Program</a></li><!--
+          --><li class="footer__legal__list-item"><a class="footer__legal__link" href="#">Support</a></li>
+        </ul>
+        <div class="footer__lang-select" data-controller="languageSelect">
+          <div class="footer__lang-select__btn">
+            <div class="footer__lang-select__selected  js-lang-select-btn">
+              <span class="icon  flag--united-states--sm  footer__lang-select__selected-icon"></span> 
+              <span class="footer__lang-select__selected-text">United States</span>
+              <span class="icon  indicator--down--white"></span>
+            </div>
+          </div>
+
+          <div class="footer__lang-select__select-wrap  js-lang-select-wrap">
+            <div class="footer__lang-select__list-wrap">
+              <ul class="footer__lang-select__column">
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--united-states"></span> United States</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--australia"></span> Australia</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--brazil"></span> Brazil</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--italy"></span> Italy</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--netherlands"></span> Netherlands</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--united-kingdom"></span> United Kingdom</a>
+                </li>
+              </ul>
+              <ul class="footer__lang-select__column">
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--france"></span> France</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--germany"></span> Germany</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--spain"></span> Spain</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--canada"></span> Canada</a>
+                </li>
+                <li class="footer__lang-select__list-item">
+                  <a class="footer__lang-select__link" href="#"><span class="icon  flag--globe"></span> Other Countries</a>
+                </li>
+              </ul>
+              <div class="footer__lang-select__stem">
+                <span class="icon bubble-stem--gray"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</footer>
+        <!-- build:js /assets/js/main.min.js -->
+<script src="/assets/js/vendor/requirejs/require.js"></script>
+<script src="/assets/js/main.js"></script>
+<!-- endbuild -->
+
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+  function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+  e.src='//www.google-analytics.com/analytics.js';
+  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+      </div>
+      <div class="grid-construct full-height-ruler"></div>
+    </div>
+  </body>
+</html>

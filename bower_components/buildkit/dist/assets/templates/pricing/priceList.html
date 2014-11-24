@@ -1,0 +1,72 @@
+<div class="summary--table clearfix">
+
+  <table class="summary-table__table">
+      <tr class="summary-table__tr  summary-table__head-row">
+        <th class="summary-table__th"><%= I18n.t('pricing.quantity') %></th>
+        <th class="summary-table__th"><%= I18n.t('pricing.price_per_copy') %></th>
+      </tr>
+
+      <% if(errors) { %> 
+
+        <tr class="summary-table__tr">
+          <td class="summary-table__td  pricing__error-text" colspan="2">
+            <%= I18n.t('pricing.errors.selection') %>
+          </td>
+        </tr>
+
+      <% } else if(blacklisted) { %> 
+
+        <tr class="summary-table__tr">
+          <td class="summary-table__td  pricing__error-text" colspan="2">
+            <%= I18n.t('pricing.errors.blacklist') %>
+          </td>
+        </tr>
+
+      <% } else { %>
+
+         <% _.each(discountRanges, function(discountRange) { %>
+          
+          <tr class="summary-table__tr">
+            <td class="summary-table__td">
+              <span class="summary-table__row-title">
+                <% if(discountRange.max > 0) { %>
+                  <%= discountRange.min %>-<%= discountRange.max %>
+                <% } else { %>
+                  <%= discountRange.min %>+
+                <% } %>
+              </span>
+            </td>
+            <td class="summary-table__td">
+              <% if(discountRange.max > 0) { %>
+                
+               
+                  <% if(bookPrice) { %> 
+                    <span class="fl">
+                    <%= bookPrice.getPriceByQty(discountRange.max) %>
+                    </span>
+
+                    <% if(discountRange.discount > 0) { %>
+                      <span class="table--save  circular--bold fl"><%= I18n.t('pricing.save_percent', {percentage: discountRange.discount }) %></span>
+                    <% } %>
+
+                  <% } else { %>
+                    <%= I18n.t('pricing.loading') %>
+                  <% } %>
+
+              <% } else { %>
+
+                <a class="circular--bold" href="/volume-pricing"><%= I18n.t('pricing.contact_us') %></a>
+
+              <% } %>
+
+            </td>
+          </tr>
+          
+        <% }) %>
+
+      <% } %>
+
+    </table>
+
+</div>
+

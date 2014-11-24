@@ -1,0 +1,22 @@
+<!-- 
+Template: Three Column Template
+@NOTE: Rename classes to match template like "threecolumn__..." 
+-->
+<% if(collection.length) { %> 
+
+<div class="three-col--content  accordion__content">
+  <% _.each(collection, function(model, i) { %>
+      <a href="#" class="pricing__option-item  three-col__item  js-option-item<% if(optionValue && optionValue == model.id ) { %>  active<% } %>" data-id="<%= model.id %>">
+        <% if(model.getImageURL() !== undefined) { %>
+        <img class="three-col__image" src="<%= _.getAssetPath(model.getImageURL()) %>" alt="<% if(model.getHeading() !== undefined) { %><%= model.getHeading()%><% } %>">
+        <% } %>
+        <% if(model.getHeading() !== undefined) { %>
+        <div class="three-col__desc">
+          <%= model.getHeading() %>
+        </div>
+        <% } %>
+      </a>
+  <% }) %>
+</div>
+
+<% } %>

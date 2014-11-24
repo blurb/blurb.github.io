@@ -1,0 +1,315 @@
+<p><a href="http://travis-ci.org/markdalgleish/stellar.js"><img alt="Build Status" src="https://secure.travis-ci.org/markdalgleish/stellar.js.png" /></a></p>
+
+<h1 id="stellarjshttpmarkdalgleishcomprojectsstellarjs-endorsehttpapicoderwallcommarkdalgleishendorsecountpnghttpcoderwallcommarkdalgleish"><a href="http://markdalgleish.com/projects/stellar.js/">Stellar.js</a> <a href="http://coderwall.com/markdalgleish"><img alt="endorse" src="http://api.coderwall.com/markdalgleish/endorsecount.png" /></a></h1>
+
+<h3 id="parallax-scrolling-made-easy">Parallax scrolling made easy</h3>
+
+<p>Full guide and demonstrations available at the <a href="http://markdalgleish.com/projects/stellar.js/">official Stellar.js project page</a>.</p>
+
+<h2 id="download">Download</h2>
+
+<p>Get the <a href="https://raw.github.com/markdalgleish/stellar.js/master/jquery.stellar.js">development</a> or <a href="https://raw.github.com/markdalgleish/stellar.js/master/jquery.stellar.min.js">production</a> version, or use a <a href="https://github.com/markdalgleish/stellar.js#package-managers">package manager</a>.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Stellar.js is a jQuery plugin that provides parallax scrolling effects to any scrolling element. The first step is to run <code>.stellar()</code> against the element:</p>
+
+<p><code>js
+// For example:
+$(window).stellar();
+// or:
+$('#main').stellar();
+</code></p>
+
+<p>If you're running Stellar.js on 'window', you can use the shorthand:</p>
+
+<p><code>js
+$.stellar();
+</code></p>
+
+<p>This will look for any parallax backgrounds or elements within the specified element and reposition them when the element scrolls.</p>
+
+<h2 id="mobile-support">Mobile Support</h2>
+
+<p>Support in Mobile WebKit browsers requires a touch scrolling library, and a slightly tweaked configuration. For a full walkthrough on how to implement this correctly, read my blog post <a href="http://markdalgleish.com/2012/10/mobile-parallax-with-stellar-js">"Mobile Parallax with Stellar.js"</a>.</p>
+
+<p>Please note that parallax backgrounds are not recommended in Mobile WebKit due to performance constraints. Instead, use parallax elements with static backgrounds.</p>
+
+<h2 id="parallax-elements">Parallax Elements</h2>
+
+<p>If you want elements to scroll at a different speed, add the following attribute to any element with a CSS position of absolute, relative or fixed:</p>
+
+<p><code>html
+&lt;div data-stellar-ratio="2"&gt;
+</code></p>
+
+<p>The ratio is relative to the natural scroll speed, so a ratio of 0.5 would cause the element to scroll at half-speed, a ratio of 1 would have no effect, and a ratio of 2 would cause the element to scroll at twice the speed.</p>
+
+<p>If a ratio lower than 1 is causing the element to appear jittery, try setting its CSS position to fixed.</p>
+
+<h2 id="parallax-backgrounds">Parallax Backgrounds</h2>
+
+<p>If you want an element's background image to reposition on scroll, simply add the following attribute:</p>
+
+<p><code>html
+&lt;div data-stellar-background-ratio="0.5"&gt;
+</code></p>
+
+<p>As with parallax elements, the ratio is relative to the natural scroll speed. For ratios lower than 1, to avoid jittery scroll performance, set the element's CSS 'background-attachment' to fixed.</p>
+
+<h2 id="configuring-offsets">Configuring Offsets</h2>
+
+<p>Stellar.js' most powerful feature is the way it aligns elements.</p>
+
+<p>All elements will return to their original positioning when their offset parent meets the edge of the screen—plus or minus your own optional offset. This allows you to create intricate parallax patterns very easily.</p>
+
+<p>Confused? <a href="http://markdalgleish.com/projects/stellar.js/#show-offsets">See how offsets are used on the Stellar.js home page.</a></p>
+
+<p>To modify the offsets for all elements at once, pass in the options:</p>
+
+<p><code>js
+$.stellar({
+  horizontalOffset: 40,
+  verticalOffset: 150
+});
+</code></p>
+
+<p>You can also modify the offsets on a per-element basis using the following data attributes:</p>
+
+<p><code>html
+&lt;div data-stellar-ratio="2"
+     data-stellar-horizontal-offset="40"
+     data-stellar-vertical-offset="150"&gt;
+</code></p>
+
+<h2 id="configuring-offset-parents">Configuring Offset Parents</h2>
+
+<p>By default, offsets are relative to the element's offset parent. This mirrors the way an absolutely positioned element behaves when nested inside an element with a relative position.</p>
+
+<p>As with regular CSS, the closest parent element with a position of relative or absolute is the offset parent.</p>
+
+<p>To override this and force the offset parent to be another element higher up the DOM, use the following data attribute:</p>
+
+<p><code>html
+&lt;div data-stellar-offset-parent="true"&gt;
+</code></p>
+
+<p>The offset parent can also have its own offsets:</p>
+
+<p><code>html
+&lt;div data-stellar-offset-parent="true"
+     data-stellar-horizontal-offset="40"
+     data-stellar-vertical-offset="150"&gt;
+</code></p>
+
+<p>Similar to CSS, the rules take precedence from element, to offset parent, to JavaScript options.</p>
+
+<p>Confused? <a href="http://markdalgleish.com/projects/stellar.js/#show-offset-parents">See how offset parents are used on the Stellar.js home page.</a></p>
+
+<p>Still confused? <a href="http://markdalgleish.com/projects/stellar.js/#show-offset-parents-default">See what it looks like with its default offset parents.</a> Notice how the alignment happens on a per-letter basis? That's because each letter's containing div is its default offset parent.</p>
+
+<p>By specifying the h2 element as the offset parent, we can ensure that the alignment of all the stars in a heading is based on the h2 and not the div further down the DOM tree.</p>
+
+<h2 id="configuring-scroll-positioning">Configuring Scroll Positioning</h2>
+
+<p>You can define what it means for an element to 'scroll'. Whether it's the element's scroll position that's changing, its margins or its CSS3 'transform' position, you can define it using the 'scrollProperty' option:</p>
+
+<p><code>js
+$('#gallery').stellar({
+  scrollProperty: 'transform'
+});
+</code></p>
+
+<p>This option is what allows you to run <a href="http://markdalgleish.com/projects/stellar.js/demos/ios.html">Stellar.js on iOS</a>.</p>
+
+<p>You can even define how the elements are repositioned, whether it's through standard top and left properties or using CSS3 transforms:</p>
+
+<p><code>js
+$('#gallery').stellar({
+  positionProperty: 'transform'
+});
+</code></p>
+
+<p>Don't have the level of control you need? Write a plugin!</p>
+
+<p>Otherwise, you're ready to get started!</p>
+
+<h2 id="configuring-everything">Configuring Everything</h2>
+
+<p>Below you will find a complete list of options and matching default values:</p>
+
+<p>``` js
+$.stellar({
+  // Set scrolling to be in either one or both directions
+  horizontalScrolling: true,
+  verticalScrolling: true,</p>
+
+<p>// Set the global alignment offsets
+  horizontalOffset: 0,
+  verticalOffset: 0,</p>
+
+<p>// Refreshes parallax content on window load and resize
+  responsive: false,</p>
+
+<p>// Select which property is used to calculate scroll.
+  // Choose 'scroll', 'position', 'margin' or 'transform',
+  // or write your own 'scrollProperty' plugin.
+  scrollProperty: 'scroll',</p>
+
+<p>// Select which property is used to position elements.
+  // Choose between 'position' or 'transform',
+  // or write your own 'positionProperty' plugin.
+  positionProperty: 'position',</p>
+
+<p>// Enable or disable the two types of parallax
+  parallaxBackgrounds: true,
+  parallaxElements: true,</p>
+
+<p>// Hide parallax elements that move outside the viewport
+  hideDistantElements: true,</p>
+
+<p>// Customise how elements are shown and hidden
+  hideElement: function($elem) { $elem.hide(); },
+  showElement: function($elem) { $elem.show(); }
+});
+```</p>
+
+<h2 id="writing-a-scroll-property-plugin">Writing a Scroll Property Plugin</h2>
+
+<p>Out of the box, Stellar.js supports the following scroll properties:
+'scroll', 'position', 'margin' and 'transform'.</p>
+
+<p>If your method for creating a scrolling interface isn't covered by one of these, you can write your own. For example, if 'margin' didn't exist yet you could write it like so:</p>
+
+<p><code>js
+$.stellar.scrollProperty.margin = {
+  getLeft: function($element) {
+    return parseInt($element.css('margin-left'), 10) * -1;
+  },
+  getTop: function($element) {
+    return parseInt($element.css('margin-top'), 10) * -1;
+  }
+}
+</code></p>
+
+<p>Now, you can specify this scroll property in Stellar.js' configuration.</p>
+
+<p><code>js
+$.stellar({
+  scrollProperty: 'margin'
+});
+</code></p>
+
+<h2 id="writing-a-position-property-plugin">Writing a Position Property Plugin</h2>
+
+<p>Stellar.js has two methods for positioning elements built in: 'position' for modifying its top and left properties, and 'transform' for using CSS3 transforms.</p>
+
+<p>If you need more control over how elements are positioned, you can write your own setter functions. For example, if 'position' didn't exist yet, it could be written as a plugin like this:</p>
+
+<p><code>js
+$.stellar.positionProperty.position = {
+  setTop: function($element, newTop, originalTop) {
+    $element.css('top', newTop);
+  },
+  setLeft: function($element, newLeft, originalLeft) {
+    $element.css('left', newLeft);
+  }
+}
+</code></p>
+
+<p>Now, you can specify this position property in Stellar.js' configuration.</p>
+
+<p><code>js
+$.stellar({
+  positionProperty: 'position'
+});
+</code></p>
+
+<p>If, for technical reasons, you need to set both properties at once, you can define a single 'setPosition' function:</p>
+
+<p>``` js
+$.stellar.positionProperty.foobar = {
+  setPosition: function($element, newLeft, originalLeft, newTop, originalTop) {
+    $element.css('transform', 'translate3d(' +
+      (newLeft - originalLeft) + 'px, ' +
+      (newTop - originalTop) + 'px, ' +
+      '0)');
+  }
+}</p>
+
+<p>$.stellar({
+  positionProperty: 'foobar'
+});
+```</p>
+
+<h2 id="package-managers">Package Managers</h2>
+
+<p>Stellar.js can be installed with the following tools.</p>
+
+<h3 id="yeomanhttpyeomanio"><a href="http://yeoman.io/">Yeoman</a></h3>
+
+<p><code>bash
+$ yeoman install jquery.stellar
+</code></p>
+
+<h3 id="bowerhttptwittergithubcombower"><a href="http://twitter.github.com/bower/">Bower</a></h3>
+
+<p><code>bash
+$ bower install jquery.stellar
+</code></p>
+
+<h2 id="sites-using-stellarjs">Sites Using Stellar.js</h2>
+
+<ul>
+  <li><a href="http://mc.starz.com">Magic City</a></li>
+  <li><a href="http://channel.nationalgeographic.com/channel/alien-deep/interactives/alien-deep-interactive">National Geographic - Alien Deep Interactive</a></li>
+  <li><a href="http://www.parti-socialiste.fr/latimelineduchangement">François Hollande</a></li>
+  <li><a href="http://www.brabus-aviation.com/">Brabus Private Aviation</a></li>
+  <li><a href="http://www.itsupportlondon.com">IT Support London</a></li>
+  <li><a href="http://bright.ashford.edu">Ashford University</a></li>
+  <li><a href="http://www.ws-interactive.fr/methode">WS Interactive</a></li>
+  <li><a href="http://www.moiremag.net/untitled">Moire Mag - Untitled</a></li>
+  <li><a href="http://www.carnivalofcourage.com.au">Carnival of Courage</a></li>
+  <li><a href="http://www.ianpoulter.com">Ian Poulter</a></li>
+  <li><a href="http://360strategygroup.com">360 Strategy Group</a></li>
+</ul>
+
+<p>I'm sure there are heaps more. <a href="http://twitter.com/markdalgleish">Let me know if you'd like me to feature your site here.</a></p>
+
+<h2 id="how-to-build">How to Build</h2>
+
+<p>Stellar.js uses <a href="nodejs.org">Node.js</a>, <a href="http://gruntjs.com">Grunt</a> and <a href="http://phantomjs.org/">PhantomJS</a>.</p>
+
+<p>Once you've got Node and PhantomJS set up, install the dependencies:</p>
+
+<p><code>$ npm install</code></p>
+
+<p>To lint, test and minify the project, simply run the following command:</p>
+
+<p><code>$ grunt</code></p>
+
+<p>Each of the build steps are also available individually.</p>
+
+<p><code>$ grunt test</code> to test the code using QUnit and PhantomJS: </p>
+
+<p><code>$ grunt lint</code> to validate the code using JSHint.</p>
+
+<p><code>$ grunt watch</code> to continuously lint and test the code while developing.</p>
+
+<h2 id="contributing-to-stellarjs">Contributing to Stellar.js</h2>
+
+<p>Ensure that you successfully test and build the project with <code>$ grunt</code> before committing.</p>
+
+<p>Make sure that all plugin changes are made in <code>src/jquery.stellar.js</code> (<code>/jquery.stellar.js</code> and <code>/jquery.stellar.min.js</code> are generated by Grunt).</p>
+
+<p>If you want to contribute in a way that changes the API, please file an issue before submitting a pull request so we can discuss how to appropriately integrate your ideas.</p>
+
+<h2 id="questions">Questions?</h2>
+
+<p>Contact me on GitHub or Twitter: <a href="http://twitter.com/markdalgleish">@markdalgleish</a></p>
+
+<h2 id="license">License</h2>
+
+<p>Copyright 2013, Mark Dalgleish<br />
+This content is released under the MIT license<br />
+http://markdalgleish.mit-license.org</p>

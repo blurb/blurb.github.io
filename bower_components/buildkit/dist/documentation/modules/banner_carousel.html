@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-flex"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Blurb Buildkit - Modules</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <!--[if ! lt IE 8]><!-->
+<link href="../../assets/css/main.css" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/css/ie.css">
+<![endif]-->
+
+<!--[if IE 9]>
+<link rel="stylesheet" href="/assets/css/ie9.css">
+<![endif]-->
+
+<!-- build:js assets/js/vendor/modernizr/modernizr-custom.min.js -->
+<script src="/assets/js/vendor/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+<!--[if IE 8]>
+<!-- build:js /assets/js/vendor/nwmatcher/dist/nwmatcher.min.js -->
+<script src="/assets/js/vendor/nwmatcher/src/nwmatcher.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /assets/js/vendor/selectivizr/selectivizr.min.js -->
+<script src="/assets/js/vendor/selectivizr/selectivizr.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /assets/js/vendor/respond/dest/respond.min.js -->
+<script src="/assets/js/vendor/respond/src/respond.js"></script>
+<!-- endbuild -->
+    <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #75715e;
+  font-weight: bold;
+}
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gd {
+  color: #000000;
+}
+.highlight .gi {
+  color: #000000;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kc {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sc {
+  color: #e6db74;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .ss {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
+}
+    </style>
+  </head>
+  <body class="documentation documentation_modules documentation_modules_banner_carousel  blurb-buildkit" data-controller="buildkit">
+    <nav class="bk__nav">
+      <div class="grid-construct">
+        <ul class="bk__nav-list">
+          <!-- <li class="bk__nav-list-item"><a href="/documentation/defaults.html">Defaults</a></li> --><!--
+       --><li class="bk__nav-list-item">
+            <a href="/documentation/modules">Modules</a>
+            <ul class="bk__module-list  bk__nav__sub-list">
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/page_banner.html">Page Banner</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/three_column_ctas.html">Three Column CTAs</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/center_aligned_content.html">Center Aligned Content</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two_half_columns.html">Two Half Columns</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/tooltip_icons.html">Tooltip Icons</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two-thirds-video.html">Two Thirds Video</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/promotional.html">Promotional Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/compare_table.html">Compare Table</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/header_and_footer.html">Header and Footer</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/multi_image_row.html">Multi-Image Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_visualizer.html">Product Visualizer</a>
+  </li>  
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/half_bento_row.html">Half Bento Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/bento_grid.html">Bento Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/hero_bento_slides.html">Hero Bento w/Slides</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_highlight.html">Product Highlight</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/banner_carousel.html">Banner Carousel</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pricing_module.html">Pricing Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/template_selector.html">Template Selector</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pop_up_carousel.html">Pop Up Carousel (Book Sizer)</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/book_animation.html">Book Animation</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/one_column_form.html">One Column Form</a>
+  </li>
+  <!-- <li class="bk__module-list-item">
+    <a href="/documentation/modules/post_grid.html">Post Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/browser_size_image.html">Browser Size Image</a>
+  </li> -->
+</ul>
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="inner-wrapper  js-inner-wrapper">
+        <main class="main" role="main">
+          <div id="hero_bento_slides" class="bk__section">
+  <div class="grid-construct">
+    <h3 class="bk__section__heading">Banner Carousel</h3>
+    <p class="bk__section__description">
+      A responsive slider with an infinite loop. Designed to be used as a header on a subpage. 
+    </p>
+  </div>
+
+    <div class="module  banner-carousel" data-controller="bannerCarousel">
+    <div class="banner-carousel__grid-wrap  grid-construct">
+  
+      <div class="banner-carousel__inner  js-carousel-viewport">
+        <div class="banner-carousel__media  js-carousel-wrap">
+          <div class="banner-carousel__item  banner-carousel__item--tree  js-carousel-item" data-id="1">
+            <h1>1</h1>
+          </div><!--/horiz_carousel__item-->
+
+          <div class="banner-carousel__item  banner-carousel__item--bear  js-carousel-item" data-id="2">
+            <h1>2</h1>
+          </div><!--/horiz_carousel__item-->
+
+          <div class="banner-carousel__item  banner-carousel__item--man  js-carousel-item" data-id="3">
+            <h1>3</h1>
+          </div><!--/horiz_carousel__item-->
+
+          <div class="banner-carousel__item  banner-carousel__item--tree  js-carousel-item" data-id="4">
+            <h1>4</h1>
+          </div><!--/horiz_carousel__item-->
+
+          <div class="banner-carousel__item  banner-carousel__item--bear  js-carousel-item" data-id="5">
+            <h1>5</h1>
+          </div><!--/horiz_carousel__item-->
+
+          <div class="banner-carousel__item  banner-carousel__item--man  js-carousel-item" data-id="6">
+            <h1>6</h1>
+          </div><!--/horiz_carousel__item-->
+
+        </div><!--/horiz_carousel__media-->
+
+        <div class="banner-carousel__controller  js-controller">
+          <div class="banner-carousel__controller-inner">
+            <div class="banner-carousel__controller-copy">
+              <h3 class="banner-carousel__controller-head">Printbooks</h3>
+              <p>Turn great photographs into even greater photo books. If you can see it through your lens, you can build it on Blurb.</p>
+              <!-- <div class="banner-carousel__cta">
+                <div class="page-banner__content-divider"></div>
+
+                <p><a href="/bookstore" class="page-banner__cta  btn  btn--white  btn--inline">Start Creating</a></p>
+              </div> --><!--/banner-carousel__cta-->
+            </div>
+
+            <div class="banner-carousel__controller-nav">
+              <ul>
+                <li class="prev  js-prev"><a href="#"><span class="icon chevron-left-white"></span></a></li>
+                <li class="next  js-next"><a href="#"><span class="icon chevron-right-white"></span></a></li>
+              </ul>
+            </div><!--/banner-carousel__controller-nav-->
+          </div>
+        </div><!--/banner-carousel__controller-->
+      </div>
+
+
+    </div>
+  </div><!--/banner-carousel-->  
+
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html">  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  banner-carousel"</span> <span class="na">data-controller=</span><span class="s">"bannerCarousel"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__grid-wrap  grid-construct"</span><span class="nt">&gt;</span>
+  
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__inner  js-carousel-viewport"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__media  js-carousel-wrap"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__item  banner-carousel__item--tree  js-carousel-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h1&gt;</span>1<span class="nt">&lt;/h1&gt;</span>
+          <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/horiz_carousel__item--&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__item  banner-carousel__item--bear  js-carousel-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h1&gt;</span>2<span class="nt">&lt;/h1&gt;</span>
+          <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/horiz_carousel__item--&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__item  banner-carousel__item--man  js-carousel-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h1&gt;</span>3<span class="nt">&lt;/h1&gt;</span>
+          <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/horiz_carousel__item--&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__item  banner-carousel__item--tree  js-carousel-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h1&gt;</span>4<span class="nt">&lt;/h1&gt;</span>
+          <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/horiz_carousel__item--&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__item  banner-carousel__item--bear  js-carousel-item"</span> <span class="na">data-id=</span><span class="s">"5"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h1&gt;</span>5<span class="nt">&lt;/h1&gt;</span>
+          <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/horiz_carousel__item--&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__item  banner-carousel__item--man  js-carousel-item"</span> <span class="na">data-id=</span><span class="s">"6"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h1&gt;</span>6<span class="nt">&lt;/h1&gt;</span>
+          <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/horiz_carousel__item--&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/horiz_carousel__media--&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__controller  js-controller"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__controller-inner"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__controller-copy"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"banner-carousel__controller-head"</span><span class="nt">&gt;</span>Printbooks<span class="nt">&lt;/h3&gt;</span>
+              <span class="nt">&lt;p&gt;</span>Turn great photographs into even greater photo books. If you can see it through your lens, you can build it on Blurb.<span class="nt">&lt;/p&gt;</span>
+              <span class="c">&lt;!-- &lt;div class="banner-carousel__cta"&gt;
+                &lt;div class="page-banner__content-divider"&gt;&lt;/div&gt;
+
+                &lt;p&gt;&lt;a href="/bookstore" class="page-banner__cta  btn  btn--white  btn--inline"&gt;Start Creating&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt; --&gt;&lt;!--/banner-carousel__cta--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"banner-carousel__controller-nav"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;ul&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"prev  js-prev"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon chevron-left-white"</span><span class="nt">&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"next  js-next"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon chevron-right-white"</span><span class="nt">&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span>
+              <span class="nt">&lt;/ul&gt;</span>
+            <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/banner-carousel__controller-nav--&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/banner-carousel__controller--&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/banner-carousel--&gt;</span>
+</pre>
+  </div>
+</div>
+
+        </main>
+        <!-- build:js /assets/js/main.min.js -->
+<script src="/assets/js/vendor/requirejs/require.js"></script>
+<script src="/assets/js/main.js"></script>
+<!-- endbuild -->
+
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+  function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+  e.src='//www.google-analytics.com/analytics.js';
+  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

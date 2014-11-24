@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-flex"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Blurb Buildkit - Modules</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <!--[if ! lt IE 8]><!-->
+<link href="../../assets/css/main.css" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/css/ie.css">
+<![endif]-->
+
+<!--[if IE 9]>
+<link rel="stylesheet" href="/assets/css/ie9.css">
+<![endif]-->
+
+<!-- build:js assets/js/vendor/modernizr/modernizr-custom.min.js -->
+<script src="/assets/js/vendor/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+<!--[if IE 8]>
+<!-- build:js /assets/js/vendor/nwmatcher/dist/nwmatcher.min.js -->
+<script src="/assets/js/vendor/nwmatcher/src/nwmatcher.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /assets/js/vendor/selectivizr/selectivizr.min.js -->
+<script src="/assets/js/vendor/selectivizr/selectivizr.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /assets/js/vendor/respond/dest/respond.min.js -->
+<script src="/assets/js/vendor/respond/src/respond.js"></script>
+<!-- endbuild -->
+    <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #75715e;
+  font-weight: bold;
+}
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gd {
+  color: #000000;
+}
+.highlight .gi {
+  color: #000000;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kc {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sc {
+  color: #e6db74;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .ss {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
+}
+    </style>
+  </head>
+  <body class="documentation documentation_modules documentation_modules_two_half_columns  blurb-buildkit" data-controller="buildkit">
+    <nav class="bk__nav">
+      <div class="grid-construct">
+        <ul class="bk__nav-list">
+          <!-- <li class="bk__nav-list-item"><a href="/documentation/defaults.html">Defaults</a></li> --><!--
+       --><li class="bk__nav-list-item">
+            <a href="/documentation/modules">Modules</a>
+            <ul class="bk__module-list  bk__nav__sub-list">
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/page_banner.html">Page Banner</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/three_column_ctas.html">Three Column CTAs</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/center_aligned_content.html">Center Aligned Content</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two_half_columns.html">Two Half Columns</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/tooltip_icons.html">Tooltip Icons</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two-thirds-video.html">Two Thirds Video</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/promotional.html">Promotional Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/compare_table.html">Compare Table</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/header_and_footer.html">Header and Footer</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/multi_image_row.html">Multi-Image Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_visualizer.html">Product Visualizer</a>
+  </li>  
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/half_bento_row.html">Half Bento Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/bento_grid.html">Bento Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/hero_bento_slides.html">Hero Bento w/Slides</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_highlight.html">Product Highlight</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/banner_carousel.html">Banner Carousel</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pricing_module.html">Pricing Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/template_selector.html">Template Selector</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pop_up_carousel.html">Pop Up Carousel (Book Sizer)</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/book_animation.html">Book Animation</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/one_column_form.html">One Column Form</a>
+  </li>
+  <!-- <li class="bk__module-list-item">
+    <a href="/documentation/modules/post_grid.html">Post Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/browser_size_image.html">Browser Size Image</a>
+  </li> -->
+</ul>
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="inner-wrapper  js-inner-wrapper">
+        <main class="main" role="main">
+          <!-- Left Column Only -->
+<div id="page_banner" class="bk__section">
+  <div class="grid-construct">
+    <h3 class="bk__section__heading">Two Half Columns</h3>
+    <p class="bk__section__description">
+      This module is a flexible row which is divided into two even 
+      columns and can accomodate content and other modules fit for this layout. 
+    </p>
+    <h4>Left column content</h4>
+  </div>
+  <div class="module  two-half-columns">
+  <div class="grid-construct two-half-columns__wrapper">
+    <div class="two-half-columns__col  two-half-columns__col--left">
+      <p>Our full service self-publishing platform is built with you, the author, in mind. Our free creation tools help you take your source content and turn it into a beautifully designed book. </p>
+    </div>
+    <div class="two-half-columns__col  two-half-columns__col--right">
+      
+    </div>
+  </div>
+</div>
+  
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  two-half-columns"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct two-half-columns__wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--left"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Our full service self-publishing platform is built with you, the author, in mind. Our free creation tools help you take your source content and turn it into a beautifully designed book. <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--right"</span><span class="nt">&gt;</span>
+      
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Right Column Only -->
+<div class="bk__section">
+  <div class="grid-construct">
+    <h4>Right Column Content</h4>
+  </div>
+  <div class="module  two-half-columns">
+  <div class="grid-construct two-half-columns__wrapper">
+    <div class="two-half-columns__col  two-half-columns__col--left">
+      
+    </div>
+    <div class="two-half-columns__col  two-half-columns__col--right">
+      <p>Our publishing options let you choose the format, be it print book, ebook, or both—with enough paper choices, trim sizes, and customization options to design a book that’s as unique as you are.</p>
+    </div>
+  </div>
+</div>
+
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  two-half-columns"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct two-half-columns__wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--left"</span><span class="nt">&gt;</span>
+      
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--right"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Our publishing options let you choose the format, be it print book, ebook, or both—with enough paper choices, trim sizes, and customization options to design a book that’s as unique as you are.<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+
+</div>
+
+
+
+
+
+<!-- Both Columns plus header-->
+<div class="bk__section">
+  <div class="grid-construct">
+    <h4>2 Columns w/content and header</h4>
+  </div>
+  <div class="module  two-half-columns">
+  <div class="grid-construct two-half-columns__wrapper">
+    <header class="two-half-columns__header">
+      <h5>We&rsquo;re behind you every step of the way</h5>
+    </header>
+    <div class="two-half-columns__col  two-half-columns__col--left">
+      <p>Our publishing options let you choose the format, be it print book, ebook, or both—with enough paper choices, trim sizes, and customization options to design a book that’s as unique as you are.</p>
+    </div>
+    <div class="two-half-columns__col  two-half-columns__col--right">
+      <p>Our full service self-publishing platform is built with you, the author, in mind. Our free creation tools help you take your source content and turn it into a beautifully designed book. </p>
+    </div>
+  </div>
+</div>
+
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  two-half-columns"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct two-half-columns__wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">"two-half-columns__header"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>We<span class="ni">&amp;rsquo;</span>re behind you every step of the way<span class="nt">&lt;/h5&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--left"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Our publishing options let you choose the format, be it print book, ebook, or both—with enough paper choices, trim sizes, and customization options to design a book that’s as unique as you are.<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--right"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Our full service self-publishing platform is built with you, the author, in mind. Our free creation tools help you take your source content and turn it into a beautifully designed book. <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Product Hero Columns -->
+<div class="bk__section">
+  <div class="grid-construct">
+    <h4>Module variation: Product Hero Columns</h4>
+    <p class="bk__section__description">
+      To create the Product Hero Columns, use the two half column module
+      but add the class "product-hero-columns" to the outer div container
+      that has the class "module". Then follow the mark-up as showed below.
+    </p>
+  </div>
+  <div class="module  two-half-columns  product-hero-columns">
+  <div class="grid-construct two-half-columns__wrapper">
+    <div class="two-half-columns__col  two-half-columns__col--left">
+        <div class="module  product-hero-column">
+    <div class="product-hero-column__bg">
+      <div class="product-hero-column__inner-wrap">
+        <div class="product-hero-column__image-wrap">
+          <img class="product-hero-column__image" src="/assets/img/misc_books/book-you_only_launch_once.png" />
+        </div>
+        <div class="product-hero-column__image-title"><h5>Print</h5></div>
+        <div class="product-hero-column__content-wrap">
+          <h5>Photo books</h5>
+          <p>There&rsquo;s nothing quite like a gorgeous, color-drenched, graphically rich book printed on photo-quality paper. And whether that&rsquo;s a baby book, graphic novel, or architecture portfolio, a Blurb photo book will make you and your work look great.</p>
+          <a href="#" class="cta  btn  btn--inline  btn--border-black">Find Your Path</a>
+          <h5>Trade and pocket books</h5>
+          <p>There&rsquo;s nothing quite like a gorgeous, color-drenched, graphically rich book printed on photo-quality paper. And whether that&rsquo;s a baby book, graphic novel, or architecture portfolio, a Blurb photo book will make you and your work look great.</p>
+          <a href="#" class="cta  btn  btn--inline  btn--border-black">Find Your Path</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="two-half-columns__col  two-half-columns__col--right">
+        <div class="module  product-hero-column right-col">
+    <div class="product-hero-column__bg">
+      <div class="product-hero-column__inner-wrap">
+        <div class="product-hero-column__image-wrap">
+          <img class="product-hero-column__image" src="/assets/img/misc_books/ebook-you_only_launch_once.png" />
+        </div>
+        <div class="product-hero-column__image-title"><h5>Ebook</h5></div>
+        <div class="product-hero-column__content-wrap">
+          <h5>Fixed Format Ebooks</h5>
+          <p>Our fixed format ebooks maintain the integrity of your design so that the digital experience is as close to the print book as possible. (Our conversion process delivers 99.9% fidelity between your print and ebooks.) You can even add audio and video to take full advantage of the medium. And we make it easy for you to sell in Apple’s iBookstore. That’s putting the &lsquo;e&rsquo; in easy.</p>
+          <a href="#" class="cta  btn  btn--inline  btn--border-black">Find Your Path</a>
+          <h5>Reflowable ebooks</h5>
+          <p>Our fixed format ebooks maintain the integrity of your design so that the digital experience is as close to the print book as possible. (Our conversion process delivers 99.9% fidelity between your print and ebooks.) You can even add audio and video to take full advantage of the medium. And we make it easy for you to sell in Apple’s iBookstore. That’s putting the &lsquo;e&rsquo; in easy.</p>
+          <a href="#" class="cta  btn  btn--inline  btn--border-black">Find Your Path</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  two-half-columns  product-hero-columns"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct two-half-columns__wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  product-hero-column"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__bg"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__inner-wrap"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__image-wrap"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"product-hero-column__image"</span> <span class="na">src=</span><span class="s">"/assets/img/misc_books/book-you_only_launch_once.png"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__image-title"</span><span class="nt">&gt;&lt;h5&gt;</span>Print<span class="nt">&lt;/h5&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__content-wrap"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Photo books<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>There<span class="ni">&amp;rsquo;</span>s nothing quite like a gorgeous, color-drenched, graphically rich book printed on photo-quality paper. And whether that<span class="ni">&amp;rsquo;</span>s a baby book, graphic novel, or architecture portfolio, a Blurb photo book will make you and your work look great.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Find Your Path<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Trade and pocket books<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>There<span class="ni">&amp;rsquo;</span>s nothing quite like a gorgeous, color-drenched, graphically rich book printed on photo-quality paper. And whether that<span class="ni">&amp;rsquo;</span>s a baby book, graphic novel, or architecture portfolio, a Blurb photo book will make you and your work look great.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Find Your Path<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  product-hero-column right-col"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__bg"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__inner-wrap"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__image-wrap"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"product-hero-column__image"</span> <span class="na">src=</span><span class="s">"/assets/img/misc_books/ebook-you_only_launch_once.png"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__image-title"</span><span class="nt">&gt;&lt;h5&gt;</span>Ebook<span class="nt">&lt;/h5&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-hero-column__content-wrap"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Fixed Format Ebooks<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Our fixed format ebooks maintain the integrity of your design so that the digital experience is as close to the print book as possible. (Our conversion process delivers 99.9% fidelity between your print and ebooks.) You can even add audio and video to take full advantage of the medium. And we make it easy for you to sell in Apple’s iBookstore. That’s putting the <span class="ni">&amp;lsquo;</span>e<span class="ni">&amp;rsquo;</span> in easy.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Find Your Path<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Reflowable ebooks<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Our fixed format ebooks maintain the integrity of your design so that the digital experience is as close to the print book as possible. (Our conversion process delivers 99.9% fidelity between your print and ebooks.) You can even add audio and video to take full advantage of the medium. And we make it easy for you to sell in Apple’s iBookstore. That’s putting the <span class="ni">&amp;lsquo;</span>e<span class="ni">&amp;rsquo;</span> in easy.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Find Your Path<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Colored Header Columns -->
+<div class="bk__section">
+  <div class="grid-construct">
+    <h4>Module variation: Colored Header Columns</h4>
+    <p class="bk__section__description">
+      To create the Product Hero Columns, use the two half column module
+      but add the class "colored-header-columns" to the outer div container
+      that has the class "module". Then follow the mark-up as showed below.
+    </p>
+  </div>
+  <div class="module  two-half-columns  colored-header-columns">
+  <div class="grid-construct two-half-columns__wrapper">
+    <div class="two-half-columns__col  two-half-columns__col--left">
+        <div class="module  colored-header-column" data-controller="coloredHeaderColumn">
+    <div class="colored-header-column__bg  js-expand-wrap  open">
+      <div class="colored-header-column__header  colored-header-column__header--lightblue  js-expand-trigger">
+        <div class="colored-header-column__header-text">
+          Sell On <img src="/assets/img/colored_header_columns/logo-outlined.png" class="colored-header-column__vendor-logo" />
+        </div>
+        <span class="icon  colored-header-column__expand-icon  js-expand-icon"></span>
+      </div>
+      <div class="colored-header-column__content  js-expand-content">
+        <div class="colored-header-column__row">
+          <h5>Keep 100% of the earnings</h5>
+          <p>With Blurb Direct Sell, you keep 100% of the earnings. Shelf space in our online bookstore is waiting for your book.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>Sell from your personal storefront</h5>
+          <p>Our personal storefront widget lets you sell your book wherever you are on the web. Have code, will travel. And sell.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>Leave the rest to us</h5>
+          <p>Blurb handles the printing, shipping, and billing. And for large offset orders, we can even provide warehousing as needed.</p>
+          <p class="colored-header-column__cta">
+            <a href="#" class="cta  btn  btn--inline  btn--border-black">Sell on Blurb</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="two-half-columns__col  two-half-columns__col--right">
+        <div class="module  colored-header-column right-col" data-controller="coloredHeaderColumn">
+    <div class="colored-header-column__bg  js-expand-wrap">
+      <div class="colored-header-column__header  colored-header-column__header--orange  js-expand-trigger">
+        <div class="colored-header-column__header-text">
+          Sell On <span class="colored-header-column__vendor-text">Amazon</span>
+        </div>
+        <span class="icon  colored-header-column__expand-icon  js-expand-icon"></span>
+      </div>
+      <div class="colored-header-column__content  js-expand-content">
+        <div class="colored-header-column__row">
+          <h5>Reach more readers</h5>
+          <p>Amazon.com is the world’s largest bookstore. And Blurb makes it easy to put your book where people around the worldcan find it.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>Get discovered</h5>
+          <p>Use Amazon’s powerful SEO reach to your advantage to find a wider audience and sell more books.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>Let Blurb deliver</h5>
+          <p>Blurb handles your back end fulfillment: on demand printing, shipping, and billing. Just list your book and focus on promotion.</p>
+          <p class="colored-header-column__cta">
+            <a href="#" class="cta  btn  btn--inline  btn--border-black">Sell on Amazon</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+<div class="module  two-half-columns  colored-header-columns">
+  <div class="grid-construct two-half-columns__wrapper">
+    <div class="two-half-columns__col  two-half-columns__col--left">
+        <div class="module  colored-header-column" data-controller="coloredHeaderColumn">
+    <div class="colored-header-column__bg  js-expand-wrap">
+      <div class="colored-header-column__header  colored-header-column__header--darkblue  js-expand-trigger">
+        <div class="colored-header-column__header-text">
+          Sell on <img src="/assets/img/colored_header_columns/ingram-logo.png" class="colored-header-column__vendor-logo" />
+        </div>
+        <span class="icon  colored-header-column__expand-icon  js-expand-icon"></span>
+      </div>
+      <div class="colored-header-column__content  js-expand-content">
+        <div class="colored-header-column__row">
+          <h5>Worldwide distribution</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec condimentum dolor. Praesent dignissim orci lacus, nec tempus.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>Trade and pocket sizes</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec condimentum dolor. Praesent dignissim orci lacus, nec tempus.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>your book in bookstores</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec condimentum dolor. Praesent dignissim orci lacus, nec tempus.</p>
+          <p class="colored-header-column__cta">
+            <a href="#" class="cta  btn  btn--inline  btn--border-black">Sell on Ingram</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="two-half-columns__col  two-half-columns__col--right">
+        <div class="module  colored-header-column right-col" data-controller="coloredHeaderColumn">
+    <div class="colored-header-column__bg  js-expand-wrap">
+      <div class="colored-header-column__header  colored-header-column__header--gray  js-expand-trigger">
+        <div class="colored-header-column__header-text">
+          Sell <span class="colored-header-column__vendor-text">Online</span>
+        </div>
+        <span class="icon  colored-header-column__expand-icon  js-expand-icon"></span>
+      </div>
+      <div class="colored-header-column__content  js-expand-content">
+        <div class="colored-header-column__row">
+          <h5>Make an ebook too</h5>
+          <p>Ebooks are here to stay. Even if your main edition is in print, there’s no reason not to have an ebook version. We make it easy to publish both.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>iPad-ready and able</h5>
+          <p>Our fixed format ebooks maintain the integrity of your print book design. Add audio and video and create a special edition for the iPad.</p>
+        </div>
+        <div class="colored-header-column__row">
+          <h5>Kindle-ready too</h5>
+          <p>Need a reflowable text version for Kindle and other e-readers? No problem. You can publish your book in that format too.</p>
+          <p class="colored-header-column__cta">
+            <a href="#" class="cta  btn  btn--inline  btn--border-black">Sell Online</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  two-half-columns  colored-header-columns"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct two-half-columns__wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  colored-header-column"</span> <span class="na">data-controller=</span><span class="s">"coloredHeaderColumn"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__bg  js-expand-wrap  open"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header  colored-header-column__header--lightblue  js-expand-trigger"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header-text"</span><span class="nt">&gt;</span>
+          Sell On <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/colored_header_columns/logo-outlined.png"</span> <span class="na">class=</span><span class="s">"colored-header-column__vendor-logo"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  colored-header-column__expand-icon  js-expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__content  js-expand-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Keep 100% of the earnings<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>With Blurb Direct Sell, you keep 100% of the earnings. Shelf space in our online bookstore is waiting for your book.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Sell from your personal storefront<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Our personal storefront widget lets you sell your book wherever you are on the web. Have code, will travel. And sell.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Leave the rest to us<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Blurb handles the printing, shipping, and billing. And for large offset orders, we can even provide warehousing as needed.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"colored-header-column__cta"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Sell on Blurb<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  colored-header-column right-col"</span> <span class="na">data-controller=</span><span class="s">"coloredHeaderColumn"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__bg  js-expand-wrap"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header  colored-header-column__header--orange  js-expand-trigger"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header-text"</span><span class="nt">&gt;</span>
+          Sell On <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"colored-header-column__vendor-text"</span><span class="nt">&gt;</span>Amazon<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  colored-header-column__expand-icon  js-expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__content  js-expand-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Reach more readers<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Amazon.com is the world’s largest bookstore. And Blurb makes it easy to put your book where people around the worldcan find it.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Get discovered<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Use Amazon’s powerful SEO reach to your advantage to find a wider audience and sell more books.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Let Blurb deliver<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Blurb handles your back end fulfillment: on demand printing, shipping, and billing. Just list your book and focus on promotion.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"colored-header-column__cta"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Sell on Amazon<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  two-half-columns  colored-header-columns"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct two-half-columns__wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  colored-header-column"</span> <span class="na">data-controller=</span><span class="s">"coloredHeaderColumn"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__bg  js-expand-wrap"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header  colored-header-column__header--darkblue  js-expand-trigger"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header-text"</span><span class="nt">&gt;</span>
+          Sell on <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/colored_header_columns/ingram-logo.png"</span> <span class="na">class=</span><span class="s">"colored-header-column__vendor-logo"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  colored-header-column__expand-icon  js-expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__content  js-expand-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Worldwide distribution<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec condimentum dolor. Praesent dignissim orci lacus, nec tempus.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Trade and pocket sizes<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec condimentum dolor. Praesent dignissim orci lacus, nec tempus.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>your book in bookstores<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec condimentum dolor. Praesent dignissim orci lacus, nec tempus.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"colored-header-column__cta"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Sell on Ingram<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two-half-columns__col  two-half-columns__col--right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  colored-header-column right-col"</span> <span class="na">data-controller=</span><span class="s">"coloredHeaderColumn"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__bg  js-expand-wrap"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header  colored-header-column__header--gray  js-expand-trigger"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__header-text"</span><span class="nt">&gt;</span>
+          Sell <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"colored-header-column__vendor-text"</span><span class="nt">&gt;</span>Online<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  colored-header-column__expand-icon  js-expand-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__content  js-expand-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Make an ebook too<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Ebooks are here to stay. Even if your main edition is in print, there’s no reason not to have an ebook version. We make it easy to publish both.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>iPad-ready and able<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Our fixed format ebooks maintain the integrity of your print book design. Add audio and video and create a special edition for the iPad.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"colored-header-column__row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h5&gt;</span>Kindle-ready too<span class="nt">&lt;/h5&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Need a reflowable text version for Kindle and other e-readers? No problem. You can publish your book in that format too.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"colored-header-column__cta"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"cta  btn  btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Sell Online<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+
+</div>
+
+        </main>
+        <!-- build:js /assets/js/main.min.js -->
+<script src="/assets/js/vendor/requirejs/require.js"></script>
+<script src="/assets/js/main.js"></script>
+<!-- endbuild -->
+
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+  function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+  e.src='//www.google-analytics.com/analytics.js';
+  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

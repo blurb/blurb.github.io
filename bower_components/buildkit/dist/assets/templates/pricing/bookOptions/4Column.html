@@ -1,0 +1,26 @@
+
+<% if(collection.length) { %> 
+
+<div class="four-col--content  accordion__content">
+  <!-- BOOK SIZE RADIO BUTTONS -->
+
+  <% _.each(collection, function(model, i) { %>
+    <a href="#" class="pricing__option-item  four-col__item  js-option-item<% if(optionValue && optionValue == model.id ) { %>  active<% } %>" data-id="<%= model.id %>">
+      <% if(model.getImageURL() !== undefined) { %>
+      <img class="four-col__image" src="<%= _.getAssetPath(model.getImageURL()) %>" alt="<% if(model.getHeading() !== undefined) { %><%= model.getHeading()%><% } %>">
+      <% } %>
+      <div class="four-col__desc">
+      <% if(model.getHeading() !== undefined) { %>
+        <div class="four-col__desc__heading"><%= model.getHeading() %></div>
+      <% } %>
+      <% if(model.getSubHeading() !== undefined) { %>
+        <div class="four-col__desc__sub-heading"><%= model.getSubHeading() %></div>
+      <% } %>
+      </div>
+    </a>
+  <% }) %>
+
+</div>
+
+
+<% } %>

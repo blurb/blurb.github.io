@@ -1,0 +1,145 @@
+<form id="pricing-form">
+
+pages: 
+<input type="text" value="<%= queryAttributes.pages %>" name="pages" size="3" placeholder="pages" /><br />
+
+book type:<br />
+<select name="book_type">
+    <option value="">-- book type --</option>
+    <% bookTypesCollection.each(function(bookType) { %>
+    <option  value="<%= bookType.id %>" <% if(queryAttributes.book_type === bookType.id) { %> selected="selected"<% } %>>
+        <%= bookType.id %>
+    </option>    
+    <% }) %>
+</select>
+<br /><br />
+
+cover type:<br />
+<select name="cover_type">
+    <option value="">-- cover type --</option>
+    <% coverTypesCollection.each(function(coverType) { %>
+    <option  value="<%= coverType.id %>" <% if(queryAttributes.cover_type === coverType.id) { %> selected="selected"<% } %>>
+        <%= coverType.id %>
+    </option>    
+    <% }) %>
+</select>
+<br /><br />
+
+paper type:<br />
+<select name="paper_type">
+    <option value="">-- paper type --</option>
+    <% paperTypesCollection.each(function(paperType) { %>
+    <option  value="<%= paperType.id %>" <% if(queryAttributes.paper_type === paperType.id) { %> selected="selected"<% } %>>
+        <%= paperType.id %>
+    </option>    
+    <% }) %>
+</select>
+<br /><br />
+
+linen type:<br />
+<select name="linen_type">
+    <option value="">-- linen type --</option>
+    <% linenTypesCollection.each(function(linenType) { %>
+    <option  value="<%= linenType.id %>" <% if(queryAttributes.linen_type === linenType.id) { %> selected="selected"<% } %>>
+        <%= linenType.id %>
+    </option>    
+    <% }) %>
+</select>
+<br /><br />
+
+endsheet type:<br />
+<select name="endsheet_type">
+    <option value="">-- endsheet type --</option>
+    <% endsheetTypesCollection.each(function(endsheetType) { %>
+    <option  value="<%= endsheetType.id %>" <% if(queryAttributes.endsheet_type === endsheetType.id) { %> selected="selected"<% } %>>
+        <%= endsheetType.id %>
+    </option>    
+    <% }) %>
+</select>
+<br /><br />
+
+custom logo:<br />
+<select name="clu">
+    <option <%= queryAttributes.clu === "true" ? "selected='selected'" : "" %>>true</option>
+    <option <%= queryAttributes.clu === "false" ? "selected='selected'" : "" %>>false</option>
+</select>
+<br /><br />
+
+<input type="submit" />
+
+</form>
+
+<br /><br /><br />
+
+
+<div id="results">
+
+<% if(!errors.length) { %>
+
+<h2>Results!!1! (<%= bookPrices.length %>)</h2>
+<% bookPrices.each(function(bookPrice) { %>
+
+
+
+<div style="background-color: #efefef; padding: 10px;">
+
+<table width="100%">
+    <% _.each(['bookType', 'coverType', 'linenType', 'endsheetType', 'customLogoUpgrade'], function(attribute) { %>
+    <tr>
+        <td width="20%"><strong><%= attribute %></strong></td>
+        <td><%= bookPrice.get(attribute) %></td>
+    </tr>
+    <% }) %>
+    <tr>
+        <td valign="top"><strong>pageBlock</strong></td>
+        <td>
+            <table width="100%">
+            <% _.each(['start', 'end'], function(attribute) { %>
+            <tr>
+                <td width="20%" valign="top"><strong><%= attribute %></strong></td>
+                <td><%= bookPrice.get('pageBlock')[attribute] %></td>
+            </tr>
+            <% }) %>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top"><strong>prices</strong></td>
+        <td>    
+            <table width="100%">
+                <tr>    
+                <% _.each(['currency', 'symbol', 'taxIncluded', 'value'], function(attribute) { %>
+                    <td><strong><%= attribute %></strong></td>
+                <% }) %>
+                </tr>
+                <% _.each(bookPrice.get('prices'), function(price) { %>
+                <tr>
+                    <% _.each(['currency', 'symbol', 'taxIncluded', 'value'], function(attribute) { %>
+                        <td><%= price[attribute] %></td>
+                    <% }) %>
+                </tr>
+                <% }) %>
+            </table>
+        </td>
+    </tr>
+</table>
+</div>
+<br /><br />
+
+<% }) %>
+
+<% } else { %> 
+    
+    <h2>Errors!! :{ </h2>
+    <pre>
+    <% _.each(errors, function(error) { %>
+    parameter: <%= error.parameter %>
+    message: <%= error.message %>
+    <% }) %>
+    </pre>
+
+
+
+<% } %>
+
+</div>

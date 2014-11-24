@@ -1,0 +1,231 @@
+<h1 id="almond">almond</h1>
+
+<p>A replacement <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a> loader for
+<a href="http://requirejs.org">RequireJS</a>. It is a smaller "shim" loader, providing the
+minimal AMD API footprint that includes <a href="http://requirejs.org/docs/plugins.html">loader plugin</a> support.</p>
+
+<h2 id="why">Why</h2>
+
+<p>Some developers like to use the AMD API to code modular JavaScript, but after doing an optimized build,
+they do not want to include a full AMD loader like RequireJS, since they do not need all that functionality.
+Some use cases, like mobile, are very sensitive to file sizes.</p>
+
+<p>By including almond in the built file, there is no need for RequireJS.
+almond is around <strong>1 kilobyte</strong> when minified with Closure Compiler and gzipped.</p>
+
+<p>Since it can support certain types of loader plugin-optimized resources, it is a great
+fit for a library that wants to use <a href="http://requirejs.org/docs/api.html#text">text templates</a>
+or <a href="https://github.com/jrburke/require-cs">CoffeeScript</a> as part of
+their project, but get a tiny download in one file after using the
+<a href="http://requirejs.org/docs/optimization.html">RequireJS Optimizer</a>.</p>
+
+<p>If you are building a library, the wrap=true support in the RequireJS optimizer
+will wrap the optimized file in a closure, so the define/require AMD API does not
+escape the file. Users of your optimized file will only see the global API you decide
+to export, not the AMD API. See the usage section below for more details.</p>
+
+<p>So, you get great code cleanliness with AMD and the use of powerful loader plugins
+in a tiny wrapper that makes it easy for others to use your code even if they do not use AMD.</p>
+
+<h2 id="restrictions">Restrictions</h2>
+
+<p>It is best used for libraries or apps that use AMD and:</p>
+
+<ul>
+  <li>optimize all the modules into one file – no dynamic code loading.</li>
+  <li>all modules have IDs and dependency arrays in their define() calls – the RequireJS optimizer will take care of this for you.</li>
+  <li>only have <strong>one</strong> requirejs.config() or require.config() call.</li>
+  <li>do not use the <code>var require = {};</code> style of <a href="http://requirejs.org/docs/api.html#config">passing config</a>.</li>
+  <li>do not use <a href="http://requirejs.org/docs/api.html#multiversion">RequireJS multiversion support/contexts</a>.</li>
+  <li>do not use require.toUrl() or require.nameToUrl().</li>
+  <li>do not use <a href="http://requirejs.org/docs/api.html#packages">packages/packagePaths config</a>. If you need to use packages that have a main property, <a href="https://github.com/volojs/volo">volo</a> can create an adapter module so that it can work without this config. Use the <code>amdify add</code> command to add the dependency to your project.</li>
+</ul>
+
+<p>What is supported:</p>
+
+<ul>
+  <li>dependencies with relative IDs.</li>
+  <li>define('id', {}) definitions.</li>
+  <li>define(), require() and requirejs() calls.</li>
+  <li>loader plugins that can inline their resources into optimized files, and
+can access those inlined resources synchronously after the optimization pass.
+The <a href="http://requirejs.org/docs/api.html#text">text</a> and
+<a href="https://github.com/jrburke/require-cs">CoffeeScript</a> plugins are two such plugins.</li>
+</ul>
+
+<h2 id="download">Download</h2>
+
+<p><a href="https://github.com/jrburke/almond/raw/latest/almond.js">Latest release</a></p>
+
+<h2 id="usage">Usage</h2>
+
+<p><a href="http://requirejs.org/docs/download.html#rjs">Download the RequireJS optimizer</a>.</p>
+
+<p><a href="https://github.com/jrburke/almond/raw/latest/almond.js">Download the current release of almond.js</a>.</p>
+
+<p>Run the optimizer using <a href="http://nodejs.org">Node</a> (also <a href="https://github.com/jrburke/r.js/blob/master/README.md">works in Java</a>):</p>
+
+<pre class="highlight plaintext">node r.js -o baseUrl=. name=path/to/almond include=main out=main-built.js wrap=true
+</pre>
+
+<p>This assumes your project's top-level script file is called main.js and the command
+above is run from the directory containing main.js. If you prefer to use a build.js build profile instead of command line arguments, <a href="http://requirejs.org/docs/optimization.html#pitfalls">this RequireJS optimization section</a> has info on how to do that.</p>
+
+<p>wrap=true will add this wrapper around the main-built.js contents (which will be minified by UglifyJS:</p>
+
+<pre class="highlight plaintext">(function () {
+    //almond will be here
+    //main and its nested dependencies will be here
+}());
+</pre>
+
+<p>If you do not want that wrapper, leave off the wrap=true argument.</p>
+
+<p>These optimizer arguments can also be used in a build config object, so it can be used
+in <a href="https://github.com/jrburke/r.js/blob/master/build/tests/http/httpBuild.js">runtime-generated server builds</a>.</p>
+
+<h2 id="triggering-module-execution-a-nameexecutiona">Triggering module execution <a name="execution"></a></h2>
+
+<p>As of RequireJS 2.0 and almond 0.1, modules are only executed if they are
+called by a top level require call. The data-main attribute on a script tag
+for require.js counts as a top level require call.</p>
+
+<p>However with almond, it does not look for a data-main attribute, and if your
+main JS module does not use a top level require() or requirejs() call to
+trigger module loading/execution, after a build, it may appear that the code
+broke – no modules execute.</p>
+
+<p>The 2.0 RequireJS optimizer has a build config, option <strong>insertRequire</strong> that you
+can use to specify that a require([]) call is inserted at the end of the built
+file to trigger module loading. Example:</p>
+
+<pre class="highlight plaintext">node r.js -o baseUrl=. name=path/to/almond.js include=main insertRequire=main out=main-built.js wrap=true
+</pre>
+
+<p>or, if using a build config file:</p>
+
+<p><code>javascript
+{
+    baseUrl: '.',
+    name: 'path/to/almond',
+    include: ['main'],
+    insertRequire: ['main'],
+    out: 'main-built.js',
+    wrap: true
+}
+</code></p>
+
+<p>This will result with <code>require(["main"]);</code> at the bottom of main-built.js.</p>
+
+<h2 id="exporting-a-public-api">Exporting a public API</h2>
+
+<p>If you are making a library that is made up of AMD modules in source form, but will be built with almond into one file, and you want to export a small public
+API for that library, you can use the <code>wrap</code> build config to do so. Build
+config:</p>
+
+<p><code>javascript
+{
+    baseUrl: '.',
+    name: 'path/to/almond',
+    include: ['main'],
+    out: 'lib-built.js',
+    wrap: {
+        startFile: 'path/to/start.frag',
+        endFile: 'path/to/end.frag'
+    }
+}
+</code></p>
+
+<p>Where start.frag could look like this:</p>
+
+<p><code>javascript
+(function (root, factory) {
+    if (typeof define === 'function' &amp;&amp; define.amd) {
+        //Allow using this built library as an AMD module
+        //in another project. That other project will only
+        //see this AMD call, not the internal modules in
+        //the closure below.
+        define(factory);
+    } else {
+        //Browser globals case. Just assign the
+        //result to a property on the global.
+        root.libGlobalName = factory();
+    }
+}(this, function () {
+    //almond, and your modules will be inlined here
+</code></p>
+
+<p>and end.frag is like this:
+<code>javascript
+    //The modules for your project will be inlined above
+    //this snippet. Ask almond to synchronously require the
+    //module value for 'main' here and return it as the
+    //value to use for the public API for the built file.
+    return require('main');
+}));
+</code></p>
+
+<p>After the build, then the built file should be structured like so:</p>
+
+<ul>
+  <li>start.frag</li>
+  <li>almond.js</li>
+  <li>modules for your lib, including 'main'</li>
+  <li>end.frag</li>
+</ul>
+
+<h2 id="common-errors">Common errors</h2>
+
+<p>Explanations of common errors:</p>
+
+<h3 id="deps-is-undefined">deps is undefined</h3>
+
+<p>Where this line is mentioned:</p>
+
+<pre class="highlight plaintext">if (!deps.splice) {
+</pre>
+
+<p>It usually means that there is a define()'d module, but it is missing a name,
+something that looks like this:</p>
+
+<pre class="highlight plaintext">define(function () {});
+</pre>
+
+<p>when it should look like:</p>
+
+<pre class="highlight plaintext">define('someName', function () {});
+</pre>
+
+<p>This is usually a sign that the tool you used to combine all the modules
+together did not properly name an anonymous AMD module.</p>
+
+<h3 id="x-missing-y">x missing y</h3>
+
+<p>It means that module 'x' asked for module 'y', but module 'y' was not available.</p>
+
+<p>This usually means that 'y' was not included in the built file that includes almond.</p>
+
+<p>almond can only handle modules built in with it, it cannot dynamically load
+modules from the network.</p>
+
+<h3 id="no-y">No y</h3>
+
+<p>It means that a <code>require('y')</code> call was done but y was not available.</p>
+
+<p>This usually means that 'y' was not included in the built file that includes almond.</p>
+
+<p>almond can only handle modules built in with it, it cannot dynamically load
+modules from the network.</p>
+
+<h2 id="how-to-get-help">How to get help</h2>
+
+<ul>
+  <li>Contact the <a href="https://groups.google.com/group/requirejs">requirejs list</a>.</li>
+  <li>Open issues in the <a href="https://github.com/jrburke/almond/issues">issue tracker</a>.</li>
+</ul>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>Almond follows the
+<a href="http://requirejs.org/docs/contributing.html">same contribution model as requirejs</a>
+and is considered a sub-project of requirejs.</p>

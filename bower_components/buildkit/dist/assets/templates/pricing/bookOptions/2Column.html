@@ -1,0 +1,46 @@
+<% if(collection.length) { %> 
+
+    <% if(header) { %> 
+    <span class="accordion--bar__title  fl"><%= header %></span>
+    <% } %>
+    <div class="accordion__content">
+
+    <% _.each(collection, function(model, i) { %>
+
+      <a href="#" class="two-col__item  pricing__option-item  js-option-item<% if(optionValue == model.id ) { %>  active<% } %>" data-id="<%= model.id %>">
+
+
+        <% if(typeof model.getImageURL !== "undefined") { %>
+        <div class="two-col__icon-wrap">
+        <% } %>
+
+          <% if(typeof model.getImageURL !== "undefined") { %>
+            <img class="two-col__image" src="<%= _.getAssetPath(model.getImageURL()) %>" alt="<% if(model.getHeading() !== undefined) { %><%= model.getHeading()%><% } %>">
+          <% } %>
+
+          <div class="two-col__desc">
+            <% if(model.getHeading() !== undefined) { %>
+              <div class="two-col__desc__heading"><%= model.getHeading() %></div>
+            <% } %>
+
+            <% if(model.getSubHeading() !== undefined) { %>
+              <div class="two-col__desc__subheading"><%= model.getSubHeading() %></div>
+            <% } %>
+          </div>
+
+        <% if(typeof model.getImageURL !== "undefined") { %>
+        </div>
+        <% } %>
+
+        <div class="two-col__sample-wrap">
+          <% if(typeof model.getTextureImgURL !== "undefined") { %>
+            <img class="two-col__sample-image" src="<%= _.getAssetPath(model.getTextureImgURL()) %>" alt="<% if(model.getHeading() !== undefined) { %><%= model.getHeading()%><% } %>">
+          <% } %>
+        </div>
+
+      </a>
+
+    <% }) %>
+    </div>
+
+<% } %>

@@ -1,0 +1,88 @@
+<h1 id="eventemitter">EventEmitter</h1>
+
+<h2 id="event-based-javascript-for-the-browser">Event based JavaScript for the browser</h2>
+
+<p>As the subtitle suggests, this script brings the power of events from platforms such as <a href="http://nodejs.org/">node.js</a> to your browser. Although it can be used on any other platform, I just built it with browsers in mind.</p>
+
+<p>This is actually the fourth full rewrite of EventEmitter, my aim is for it to be faster and lighter than ever before. It also has a remapped API which just makes a lot more sense. Because the methods now have more descriptive names it is friendlier to extension into other classes. You will be able to distinguish event method from your own methods.</p>
+
+<p>I have been working on it for over ~~a year~~ two years so far and in that time my skills in JavaScript have come a long way. This script is a culmination of my learnings which you can hopefully find very useful.</p>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>There are no hard dependencies. The only reason you will want to run <code>npm install</code> to grab the development dependencies is to build the documentation or minify the source code. No other scripts are required to actually use EventEmitter.</p>
+
+<h2 id="documentation">Documentation</h2>
+
+<ul>
+  <li><a href="https://github.com/Wolfy87/EventEmitter/blob/master/docs/guide.md">Guide</a></li>
+  <li><a href="https://github.com/Wolfy87/EventEmitter/blob/master/docs/api.md">API</a></li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><a href="http://jsfiddle.net/Wolfy87/qXQu9/">Simple</a></li>
+  <li><a href="http://jsfiddle.net/Wolfy87/JqRvS/">RegExp DOM caster</a></li>
+</ul>
+
+<h3 id="building-the-documentation">Building the documentation</h3>
+
+<p>You can run <code>tools/doc.sh</code> to build from the JSDoc comments found within the source code. The built documentation will be placed in <code>docs/api.md</code>. I actually keep this inside the repository so each version will have it's documentation stored with it.</p>
+
+<h2 id="minifying">Minifying</h2>
+
+<p>You can grab minified versions of EventEmitter from inside this repository, every version is tagged. If you need to build a custom version then you can run <code>tools/dist.sh</code>.</p>
+
+<h2 id="cloning">Cloning</h2>
+
+<p>You can clone the repository with your generic clone commands as a standalone repository or submodule.</p>
+
+<p>```bash
+# Full repository
+git clone git://github.com/Wolfy87/EventEmitter.git</p>
+
+<h1 id="or-submodule">Or submodule</h1>
+<p>git submodule add git://github.com/Wolfy87/EventEmitter.git assets/js/EventEmitter
+```</p>
+
+<h3 id="package-managers">Package managers</h3>
+
+<p>You can also get a copy of EventEmitter through the following package managers:
+ * <a href="https://npmjs.org/">NPM</a> (wolfy87-eventemitter)
+ * <a href="http://bower.io/">Bower</a> (eventEmitter)
+ * <a href="http://github.com/component/component">Component</a> (Wolfy87/EventEmitter)</p>
+
+<h2 id="testing">Testing</h2>
+
+<p>Tests are performed using <a href="http://visionmedia.github.io/mocha/">Mocha</a> and <a href="http://chaijs.com/">Chai</a> in the following browsers.</p>
+
+<ul>
+  <li>Firefox</li>
+  <li>Chrome</li>
+  <li>Opera</li>
+  <li>Safari</li>
+  <li>IE9+</li>
+</ul>
+
+<p>When testing in the more modern browsers, I run it through the very early versions, some midrange versions and the very latest ones too. I don't just do the latest version.</p>
+
+<p>EventEmitter will always be tested and working perfectly in all of them before a release. I will not release anything I think is riddled with bugs. However, if you do spot one, please <a href="https://github.com/Wolfy87/EventEmitter/issues">submit it as an issue</a> and I will get right on it.</p>
+
+<p>I had to stop testing in IE&lt;9. This is because Jasmine no longer seems to work in old IE. I converted all of my tests to Mocha/Chai and then realised Chai doesn't work in IE&lt;9 either. I know it works, I just can't run the tests anymore, I still recommend using it in older IE versions. However, if you do encounter problems, all you have to do is roll back before v4.1.0, the first IE9+ only tested version.</p>
+
+<p>As consolation for the lack of legacy browser testing, I have made sure the examples listed above run perfectly in IE6+. So the unit tests might not be able to run, but I am <strong>very</strong> confident that it works absolutely perfectly.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>If you wish to contribute to the project then please commit your changes into the <code>develop</code> branch. All pull requests should contain a failing test which is then resolved by your additions. <a href="https://github.com/Wolfy87/EventEmitter/pull/46">A perfect example</a> was submitted by <a href="https://github.com/nathggns">nathggns</a>.</p>
+
+<h2 id="license-mit">License (MIT)</h2>
+
+<p>Copyright (c) 2011-2013 Oliver Caldwell</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>

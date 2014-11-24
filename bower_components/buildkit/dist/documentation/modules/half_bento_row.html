@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-flex"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Blurb Buildkit - Modules</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <!--[if ! lt IE 8]><!-->
+<link href="../../assets/css/main.css" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/css/ie.css">
+<![endif]-->
+
+<!--[if IE 9]>
+<link rel="stylesheet" href="/assets/css/ie9.css">
+<![endif]-->
+
+<!-- build:js assets/js/vendor/modernizr/modernizr-custom.min.js -->
+<script src="/assets/js/vendor/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+<!--[if IE 8]>
+<!-- build:js /assets/js/vendor/nwmatcher/dist/nwmatcher.min.js -->
+<script src="/assets/js/vendor/nwmatcher/src/nwmatcher.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /assets/js/vendor/selectivizr/selectivizr.min.js -->
+<script src="/assets/js/vendor/selectivizr/selectivizr.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /assets/js/vendor/respond/dest/respond.min.js -->
+<script src="/assets/js/vendor/respond/src/respond.js"></script>
+<!-- endbuild -->
+    <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #75715e;
+  font-weight: bold;
+}
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gd {
+  color: #000000;
+}
+.highlight .gi {
+  color: #000000;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kc {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sc {
+  color: #e6db74;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .ss {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
+}
+    </style>
+  </head>
+  <body class="documentation documentation_modules documentation_modules_half_bento_row  blurb-buildkit" data-controller="buildkit">
+    <nav class="bk__nav">
+      <div class="grid-construct">
+        <ul class="bk__nav-list">
+          <!-- <li class="bk__nav-list-item"><a href="/documentation/defaults.html">Defaults</a></li> --><!--
+       --><li class="bk__nav-list-item">
+            <a href="/documentation/modules">Modules</a>
+            <ul class="bk__module-list  bk__nav__sub-list">
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/page_banner.html">Page Banner</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/three_column_ctas.html">Three Column CTAs</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/center_aligned_content.html">Center Aligned Content</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two_half_columns.html">Two Half Columns</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/tooltip_icons.html">Tooltip Icons</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two-thirds-video.html">Two Thirds Video</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/promotional.html">Promotional Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/compare_table.html">Compare Table</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/header_and_footer.html">Header and Footer</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/multi_image_row.html">Multi-Image Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_visualizer.html">Product Visualizer</a>
+  </li>  
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/half_bento_row.html">Half Bento Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/bento_grid.html">Bento Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/hero_bento_slides.html">Hero Bento w/Slides</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_highlight.html">Product Highlight</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/banner_carousel.html">Banner Carousel</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pricing_module.html">Pricing Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/template_selector.html">Template Selector</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pop_up_carousel.html">Pop Up Carousel (Book Sizer)</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/book_animation.html">Book Animation</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/one_column_form.html">One Column Form</a>
+  </li>
+  <!-- <li class="bk__module-list-item">
+    <a href="/documentation/modules/post_grid.html">Post Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/browser_size_image.html">Browser Size Image</a>
+  </li> -->
+</ul>
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="inner-wrapper  js-inner-wrapper">
+        <main class="main" role="main">
+          <div id="page_banner" class="bk__section">
+  <div class="grid-construct">
+    <h3 class="bk__section__heading">Half Bento Row</h3>
+    <p class="bk__section__description">
+      This is a module which has a image bento in one half column and copy in the other half. The halves can be reversed with the classes "half-bento-row--left-bento" and "half-bento-row--right-bento" added to the outermost module container. Example is in the source.  
+    </p>
+  </div>
+
+  <div class="module  half-bento-row  half-bento-row--left-bento" data-controller="bentoGrid">
+  
+  <div class="half-bento-row__col  half-bento-row__col--left">
+    <div class="half-bento-row__bento-wrap">
+      <div class="half-bento-row__main-stage" style="background-image:url('/assets/img/bento_images/bento-01.jpg');">
+      </div>
+      <div class="half-bento-row__thumb-row">
+          <a href="/assets/img/bento_images/bento-02.jpg" style="background-image:url('/assets/img/bento_images/bento-02.jpg');" rel="gallery1" class="half-bento-row__thumb-wrap js-fancybox">
+          </a>
+          <a href="/assets/img/bento_images/bento-03.jpg" style="background-image:url('/assets/img/bento_images/bento-03.jpg');" rel="gallery1" class="half-bento-row__thumb-wrap  js-fancybox">
+          </a>
+          <a href="/assets/img/bento_images/bento-04.jpg" style="background-image:url('/assets/img/bento_images/bento-04.jpg');" rel="gallery1" class="half-bento-row__thumb-wrap  js-fancybox">
+          </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="half-bento-row__col  half-bento-row__col--right">
+    <div class="half-bento-row__copy-wrap">
+      <div class="half-bento-row__quote">
+        <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</blockquote>
+        <div class="blockquote-byline">– Austin Horowitz</div>
+      </div>
+      <div class="half-bento-row__main-content">
+        <h5>Creative freedom<br />(and free creation tools)</h5>
+        <p>If you’re just getting started on your book project, you’re in the right place. We have free book creation tools, a wide range of publishing formats and sizes (for both print and ebooks), free ISBNs—and more distribution, selling, and promotion options than anybody in the business. </p>
+      </div>
+      <a href="#" class="btn--inline  btn--border-black">Find Your Path</a>
+      
+      <div class="half-bento-row__caption">
+        <div class="half-bento-row__caption-title">I&rsquo;ll Wait Here</div>
+        <div class="half-bento-row__caption-author">by Lori Andrews</div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+  <div class="module  half-bento-row  half-bento-row--right-bento">
+  <div class="half-bento-row__col  half-bento-row__col--left">
+    <div class="half-bento-row__bento-wrap">
+      <div class="half-bento-row__main-stage" style="background-image:url('/assets/img/bento_images/bento-01.jpg');">
+      </div>
+      <div class="half-bento-row__thumb-row">
+          <a href="/assets/img/bento_images/bento-02.jpg" style="background-image:url('/assets/img/bento_images/bento-02.jpg');" rel="gallery2" class="half-bento-row__thumb-wrap js-fancybox">
+          </a>
+          <a href="/assets/img/bento_images/bento-03.jpg" style="background-image:url('/assets/img/bento_images/bento-03.jpg');" rel="gallery2" class="half-bento-row__thumb-wrap  js-fancybox">
+          </a>
+          <a href="/assets/img/bento_images/bento-04.jpg" style="background-image:url('/assets/img/bento_images/bento-04.jpg');" rel="gallery2" class="half-bento-row__thumb-wrap  js-fancybox">
+          </a>
+      </div>
+    </div>
+  </div>
+  <div class="half-bento-row__col  half-bento-row__col--right">
+    <div class="half-bento-row__copy-wrap">
+      <div class="half-bento-row__quote">
+        <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</blockquote>
+        <div class="blockquote-byline">– Austin Horowitz</div>
+      </div>
+      <div class="half-bento-row__main-content">
+        <h5>Creative freedom<br />(and free creation tools)</h5>
+        <p>If you’re just getting started on your book project, you’re in the right place. We have free book creation tools, a wide range of publishing formats and sizes (for both print and ebooks), free ISBNs—and more distribution, selling, and promotion options than anybody in the business. </p>
+      </div>
+      <a href="#" class="btn--inline  btn--border-black">Find Your Path</a>
+      
+      <div class="half-bento-row__caption">
+        <div class="half-bento-row__caption-title">I&rsquo;ll Wait Here</div>
+        <div class="half-bento-row__caption-author">by Lori Andrews</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="grid-construct">
+      <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html">    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  half-bento-row  half-bento-row--left-bento"</span> <span class="na">data-controller=</span><span class="s">"bentoGrid"</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__col  half-bento-row__col--left"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__bento-wrap"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__main-stage"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-01.jpg');"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/assets/img/bento_images/bento-02.jpg"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-02.jpg');"</span> <span class="na">rel=</span><span class="s">"gallery1"</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-wrap js-fancybox"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/assets/img/bento_images/bento-03.jpg"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-03.jpg');"</span> <span class="na">rel=</span><span class="s">"gallery1"</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-wrap  js-fancybox"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/assets/img/bento_images/bento-04.jpg"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-04.jpg');"</span> <span class="na">rel=</span><span class="s">"gallery1"</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-wrap  js-fancybox"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__col  half-bento-row__col--right"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__copy-wrap"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__quote"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;blockquote&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<span class="nt">&lt;/blockquote&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"blockquote-byline"</span><span class="nt">&gt;</span>– Austin Horowitz<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__main-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h5&gt;</span>Creative freedom<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>(and free creation tools)<span class="nt">&lt;/h5&gt;</span>
+        <span class="nt">&lt;p&gt;</span>If you’re just getting started on your book project, you’re in the right place. We have free book creation tools, a wide range of publishing formats and sizes (for both print and ebooks), free ISBNs—and more distribution, selling, and promotion options than anybody in the business. <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Find Your Path<span class="nt">&lt;/a&gt;</span>
+      
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__caption"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__caption-title"</span><span class="nt">&gt;</span>I<span class="ni">&amp;rsquo;</span>ll Wait Here<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__caption-author"</span><span class="nt">&gt;</span>by Lori Andrews<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  
+<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  half-bento-row  half-bento-row--right-bento"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__col  half-bento-row__col--left"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__bento-wrap"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__main-stage"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-01.jpg');"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-row"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/assets/img/bento_images/bento-02.jpg"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-02.jpg');"</span> <span class="na">rel=</span><span class="s">"gallery2"</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-wrap js-fancybox"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/assets/img/bento_images/bento-03.jpg"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-03.jpg');"</span> <span class="na">rel=</span><span class="s">"gallery2"</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-wrap  js-fancybox"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/assets/img/bento_images/bento-04.jpg"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/bento_images/bento-04.jpg');"</span> <span class="na">rel=</span><span class="s">"gallery2"</span> <span class="na">class=</span><span class="s">"half-bento-row__thumb-wrap  js-fancybox"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__col  half-bento-row__col--right"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__copy-wrap"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__quote"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;blockquote&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<span class="nt">&lt;/blockquote&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"blockquote-byline"</span><span class="nt">&gt;</span>– Austin Horowitz<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__main-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h5&gt;</span>Creative freedom<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>(and free creation tools)<span class="nt">&lt;/h5&gt;</span>
+        <span class="nt">&lt;p&gt;</span>If you’re just getting started on your book project, you’re in the right place. We have free book creation tools, a wide range of publishing formats and sizes (for both print and ebooks), free ISBNs—and more distribution, selling, and promotion options than anybody in the business. <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn--inline  btn--border-black"</span><span class="nt">&gt;</span>Find Your Path<span class="nt">&lt;/a&gt;</span>
+      
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__caption"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__caption-title"</span><span class="nt">&gt;</span>I<span class="ni">&amp;rsquo;</span>ll Wait Here<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"half-bento-row__caption-author"</span><span class="nt">&gt;</span>by Lori Andrews<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+</div>
+        </main>
+        <!-- build:js /assets/js/main.min.js -->
+<script src="/assets/js/vendor/requirejs/require.js"></script>
+<script src="/assets/js/main.js"></script>
+<!-- endbuild -->
+
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+  function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+  e.src='//www.google-analytics.com/analytics.js';
+  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

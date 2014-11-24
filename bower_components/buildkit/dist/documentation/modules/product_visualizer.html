@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-flex"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Blurb Buildkit - Modules</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <!--[if ! lt IE 8]><!-->
+<link href="../../assets/css/main.css" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/css/ie.css">
+<![endif]-->
+
+<!--[if IE 9]>
+<link rel="stylesheet" href="/assets/css/ie9.css">
+<![endif]-->
+
+<!-- build:js assets/js/vendor/modernizr/modernizr-custom.min.js -->
+<script src="/assets/js/vendor/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+<!--[if IE 8]>
+<!-- build:js /assets/js/vendor/nwmatcher/dist/nwmatcher.min.js -->
+<script src="/assets/js/vendor/nwmatcher/src/nwmatcher.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /assets/js/vendor/selectivizr/selectivizr.min.js -->
+<script src="/assets/js/vendor/selectivizr/selectivizr.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /assets/js/vendor/respond/dest/respond.min.js -->
+<script src="/assets/js/vendor/respond/src/respond.js"></script>
+<!-- endbuild -->
+    <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #75715e;
+  font-weight: bold;
+}
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gd {
+  color: #000000;
+}
+.highlight .gi {
+  color: #000000;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kc {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sc {
+  color: #e6db74;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .ss {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
+}
+    </style>
+  </head>
+  <body class="documentation documentation_modules documentation_modules_product_visualizer  blurb-buildkit" data-controller="buildkit">
+    <nav class="bk__nav">
+      <div class="grid-construct">
+        <ul class="bk__nav-list">
+          <!-- <li class="bk__nav-list-item"><a href="/documentation/defaults.html">Defaults</a></li> --><!--
+       --><li class="bk__nav-list-item">
+            <a href="/documentation/modules">Modules</a>
+            <ul class="bk__module-list  bk__nav__sub-list">
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/page_banner.html">Page Banner</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/three_column_ctas.html">Three Column CTAs</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/center_aligned_content.html">Center Aligned Content</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two_half_columns.html">Two Half Columns</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/tooltip_icons.html">Tooltip Icons</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two-thirds-video.html">Two Thirds Video</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/promotional.html">Promotional Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/compare_table.html">Compare Table</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/header_and_footer.html">Header and Footer</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/multi_image_row.html">Multi-Image Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_visualizer.html">Product Visualizer</a>
+  </li>  
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/half_bento_row.html">Half Bento Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/bento_grid.html">Bento Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/hero_bento_slides.html">Hero Bento w/Slides</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_highlight.html">Product Highlight</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/banner_carousel.html">Banner Carousel</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pricing_module.html">Pricing Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/template_selector.html">Template Selector</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pop_up_carousel.html">Pop Up Carousel (Book Sizer)</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/book_animation.html">Book Animation</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/one_column_form.html">One Column Form</a>
+  </li>
+  <!-- <li class="bk__module-list-item">
+    <a href="/documentation/modules/post_grid.html">Post Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/browser_size_image.html">Browser Size Image</a>
+  </li> -->
+</ul>
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="inner-wrapper  js-inner-wrapper">
+        <main class="main" role="main">
+          <div id="page_banner" class="bk__section">
+  <div class="grid-construct">
+    <h3 class="bk__section__heading">Product Visualizer</h3>
+    <p class="bk__section__description">
+      This modules is for creating a tabbed carousel (desktop/tablet) /accordian (mobile) for book product images and details. 
+    </p>
+  </div>
+  <div class="module  product-visualizer" data-controller="productVisualizer" data-event-namespace="book-demo">
+  <div class="grid-construct">
+    
+    <div class="product-visualizer__carousel">
+
+      
+<div class="product-visualizer__item  js-pv-item  active"  data-id="1">
+
+  <div class="hidden-md hidden-lg mobile-accordion-trigger active">BOOKWRIGHT</div>
+  <div class="product-visualizer__sub-item  js-pv-sub-item  active" data-id="1">
+    <div class="product-visualizer__stage">
+      <img class="product-visualizer__image" src="/assets/img/book_hero_images/maker-overview.jpg" alt="">
+    </div>
+    <div class="product-visualizer__copy">
+      <h5>Impressions are made.</h5>
+      <p>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      </p>
+      <p>
+        <a href="/bookmaking-tools" class="btn  btn--border-black  btn--inline">Start Now</a>
+      </p>
+    </div>
+  </div> <!-- end product-visualizer__sub-item -->
+
+  <div class="hidden-md hidden-lg mobile-accordion-trigger">BOOKSMART</div>
+  <div class="product-visualizer__sub-item  js-pv-sub-item" data-id="2">
+    <div class="product-visualizer__stage">
+      <img class="product-visualizer__image" src="/assets/img/book_hero_images/maker-print.jpg" alt="">
+    </div>
+    <div class="product-visualizer__copy">
+      <h5>Impressions are made.</h5>
+      <p>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      </p>
+      <p>
+        <a href="/bookmaking-tools" class="btn  btn--border-black  btn--inline">Start Now</a>
+      </p>
+      <ul class="bullets--squares">
+        <li>Full page bleeds along with beautiful <br />offset printing and quality binding.</li>
+        <li>Evey book created on the blurb platform <br />is easily viewable as an ebook.</li>
+      </ul>
+      <div class="product-visualizer__product-meta">
+        <div class="product-visualizer__product-title">— Peter Muller</div>
+        <div class="product-visualizer__product-author">by Jacqueline C Urford</div>
+      </div>
+    </div>
+  </div> <!-- end product-visualizer__sub-item -->
+
+  <div class="hidden-md hidden-lg mobile-accordion-trigger">INDESIGN PLUGIN</div>
+  <div class="product-visualizer__sub-item  js-pv-sub-item" data-id="3">
+    <div class="product-visualizer__stage">
+      <img class="product-visualizer__image" src="/assets/img/book_hero_images/maker-ebook.jpg" alt="">
+    </div>
+    <div class="product-visualizer__copy">
+      <h5>Impressions are made.</h5>
+      <p>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      </p>
+      <p>
+        <a href="/bookmaking-tools" class="btn  btn--border-black  btn--inline">Start Now</a>
+      </p>
+      <ul class="bullets--squares">
+        <li>Full page bleeds along with beautiful <br />offset printing and quality binding.</li>
+        <li>Evey book created on the blurb platform <br />is easily viewable as an ebook.</li>
+      </ul>
+      <div class="product-visualizer__product-meta">
+        <div class="product-visualizer__product-title">— Peter Muller</div>
+        <div class="product-visualizer__product-author">by Jacqueline C Urford</div>
+      </div>
+    </div>
+  </div> <!-- end product-visualizer__sub-item -->
+
+  <div class="hidden-md hidden-lg mobile-accordion-trigger">LIGHTROOM</div>
+  <div class="product-visualizer__sub-item  js-pv-sub-item" data-id="4">
+    <div class="product-visualizer__stage">
+      <img class="product-visualizer__image" src="/assets/img/book_hero_images/maker-magazine.jpg" alt="">
+    </div>
+    <div class="product-visualizer__copy">
+      <h5>Impressions are made.</h5>
+      <p>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      </p>
+      <p>
+        <a href="/bookmaking-tools" class="btn  btn--border-black  btn--inline">Start Now</a>
+      </p>
+      <ul class="bullets--squares">
+        <li>Full page bleeds along with beautiful <br />offset printing and quality binding.</li>
+        <li>Evey book created on the blurb platform <br />is easily viewable as an ebook.</li>
+      </ul>
+      <div class="product-visualizer__product-meta">
+        <div class="product-visualizer__product-title">— Peter Muller</div>
+        <div class="product-visualizer__product-author">by Jacqueline C Urford</div>
+      </div>
+    </div>
+  </div> <!-- end product-visualizer__sub-item -->
+
+
+  <div class="hidden-md hidden-lg mobile-accordion-trigger last">BOOKIFY</div>  
+  <div class="product-visualizer__sub-item  js-pv-sub-item" data-id="5">
+    <div class="product-visualizer__stage">
+      <img class="product-visualizer__image" src="/assets/img/book_hero_images/maker-magazine.jpg" alt="">
+    </div>
+    <div class="product-visualizer__copy">
+      <h5>Impressions are made.</h5>
+      <p>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      </p>
+      <p>
+        <a href="/bookmaking-tools" class="btn  btn--border-black  btn--inline">Start Now</a>
+      </p>
+      <ul class="bullets--squares">
+        <li>Full page bleeds along with beautiful <br />offset printing and quality binding.</li>
+        <li>Evey book created on the blurb platform <br />is easily viewable as an ebook.</li>
+      </ul>
+      <div class="product-visualizer__product-meta">
+        <div class="product-visualizer__product-title">— Peter Muller</div>
+        <div class="product-visualizer__product-author">by Jacqueline C Urford</div>
+      </div>
+    </div>
+  </div> <!-- end product-visualizer__sub-item -->
+
+  <div class="hidden-sm product-visualizer__sub-nav">
+  <ul class="product-visualizer__sub-nav__list clearfix">
+    <li class="product-visualizer__sub-nav__item  product-visualizer__sub-nav__item--first">
+      <a class="product-visualizer__sub-nav__link  js-pv-sub-link  active" data-id="1"><span class="icon  indicator--up--black"></span>BOOKWRIGHT</a>
+    </li>
+    <li class="product-visualizer__sub-nav__item">
+      <a class="product-visualizer__sub-nav__link  js-pv-sub-link" data-id="2"><span class="icon  indicator--up--black"></span>BOOKSMART</a>
+    </li>
+    <li class="product-visualizer__sub-nav__item">
+      <a class="product-visualizer__sub-nav__link  js-pv-sub-link" data-id="3"><span class="icon  indicator--up--black"></span>INDESIGN PLUGIN</a>
+    </li>
+    <li class="product-visualizer__sub-nav__item  product-visualizer__sub-nav__item">
+      <a class="product-visualizer__sub-nav__link  js-pv-sub-link" data-id="4"><span class="icon  indicator--up--black  indicator-icon"></span>LIGHTROOM</a>
+    </li>
+    <li class="product-visualizer__sub-nav__item  product-visualizer__sub-nav__item--last">
+      <a class="product-visualizer__sub-nav__link  js-pv-sub-link" data-id="5"><span class="icon  indicator--up--black  indicator-icon"></span>BOOKIFY</a>
+    </li>
+  </ul>
+</div>
+
+  </div> <!-- end product-visualizer__item -->
+
+
+      
+    </div> <!-- end product-visualizer__carousel -->
+
+  </div>
+</div>
+  
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html">  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  product-visualizer"</span> <span class="na">data-controller=</span><span class="s">"productVisualizer"</span> <span class="na">data-event-namespace=</span><span class="s">"book-demo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct"</span><span class="nt">&gt;</span>
+    
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__carousel"</span><span class="nt">&gt;</span>
+
+      
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__item  js-pv-item  active"</span>  <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hidden-md hidden-lg mobile-accordion-trigger active"</span><span class="nt">&gt;</span>BOOKWRIGHT<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-item  js-pv-sub-item  active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__stage"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"product-visualizer__image"</span> <span class="na">src=</span><span class="s">"/assets/img/book_hero_images/maker-overview.jpg"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__copy"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>Impressions are made.<span class="nt">&lt;/h5&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/bookmaking-tools"</span> <span class="na">class=</span><span class="s">"btn  btn--border-black  btn--inline"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end product-visualizer__sub-item --&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hidden-md hidden-lg mobile-accordion-trigger"</span><span class="nt">&gt;</span>BOOKSMART<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-item  js-pv-sub-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__stage"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"product-visualizer__image"</span> <span class="na">src=</span><span class="s">"/assets/img/book_hero_images/maker-print.jpg"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__copy"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>Impressions are made.<span class="nt">&lt;/h5&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/bookmaking-tools"</span> <span class="na">class=</span><span class="s">"btn  btn--border-black  btn--inline"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"bullets--squares"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Full page bleeds along with beautiful <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>offset printing and quality binding.<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Evey book created on the blurb platform <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>is easily viewable as an ebook.<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-meta"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-title"</span><span class="nt">&gt;</span>— Peter Muller<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-author"</span><span class="nt">&gt;</span>by Jacqueline C Urford<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end product-visualizer__sub-item --&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hidden-md hidden-lg mobile-accordion-trigger"</span><span class="nt">&gt;</span>INDESIGN PLUGIN<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-item  js-pv-sub-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__stage"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"product-visualizer__image"</span> <span class="na">src=</span><span class="s">"/assets/img/book_hero_images/maker-ebook.jpg"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__copy"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>Impressions are made.<span class="nt">&lt;/h5&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/bookmaking-tools"</span> <span class="na">class=</span><span class="s">"btn  btn--border-black  btn--inline"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"bullets--squares"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Full page bleeds along with beautiful <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>offset printing and quality binding.<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Evey book created on the blurb platform <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>is easily viewable as an ebook.<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-meta"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-title"</span><span class="nt">&gt;</span>— Peter Muller<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-author"</span><span class="nt">&gt;</span>by Jacqueline C Urford<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end product-visualizer__sub-item --&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hidden-md hidden-lg mobile-accordion-trigger"</span><span class="nt">&gt;</span>LIGHTROOM<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-item  js-pv-sub-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__stage"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"product-visualizer__image"</span> <span class="na">src=</span><span class="s">"/assets/img/book_hero_images/maker-magazine.jpg"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__copy"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>Impressions are made.<span class="nt">&lt;/h5&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/bookmaking-tools"</span> <span class="na">class=</span><span class="s">"btn  btn--border-black  btn--inline"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"bullets--squares"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Full page bleeds along with beautiful <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>offset printing and quality binding.<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Evey book created on the blurb platform <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>is easily viewable as an ebook.<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-meta"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-title"</span><span class="nt">&gt;</span>— Peter Muller<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-author"</span><span class="nt">&gt;</span>by Jacqueline C Urford<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end product-visualizer__sub-item --&gt;</span>
+
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hidden-md hidden-lg mobile-accordion-trigger last"</span><span class="nt">&gt;</span>BOOKIFY<span class="nt">&lt;/div&gt;</span>  
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-item  js-pv-sub-item"</span> <span class="na">data-id=</span><span class="s">"5"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__stage"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"product-visualizer__image"</span> <span class="na">src=</span><span class="s">"/assets/img/book_hero_images/maker-magazine.jpg"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__copy"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>Impressions are made.<span class="nt">&lt;/h5&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        Want to reach customers on their connected devices? Tell your story simply and beautifully with a Blurb eBook.
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/bookmaking-tools"</span> <span class="na">class=</span><span class="s">"btn  btn--border-black  btn--inline"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"bullets--squares"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Full page bleeds along with beautiful <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>offset printing and quality binding.<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Evey book created on the blurb platform <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>is easily viewable as an ebook.<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-meta"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-title"</span><span class="nt">&gt;</span>— Peter Muller<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-visualizer__product-author"</span><span class="nt">&gt;</span>by Jacqueline C Urford<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end product-visualizer__sub-item --&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hidden-sm product-visualizer__sub-nav"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__list clearfix"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__item  product-visualizer__sub-nav__item--first"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__link  js-pv-sub-link  active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black"</span><span class="nt">&gt;&lt;/span&gt;</span>BOOKWRIGHT<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__link  js-pv-sub-link"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black"</span><span class="nt">&gt;&lt;/span&gt;</span>BOOKSMART<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__link  js-pv-sub-link"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black"</span><span class="nt">&gt;&lt;/span&gt;</span>INDESIGN PLUGIN<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__item  product-visualizer__sub-nav__item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__link  js-pv-sub-link"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black  indicator-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>LIGHTROOM<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__item  product-visualizer__sub-nav__item--last"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"product-visualizer__sub-nav__link  js-pv-sub-link"</span> <span class="na">data-id=</span><span class="s">"5"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black  indicator-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>BOOKIFY<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end product-visualizer__item --&gt;</span>
+
+
+      
+    <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end product-visualizer__carousel --&gt;</span>
+
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+
+</div>
+
+        </main>
+        <!-- build:js /assets/js/main.min.js -->
+<script src="/assets/js/vendor/requirejs/require.js"></script>
+<script src="/assets/js/main.js"></script>
+<!-- endbuild -->
+
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+  function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+  e.src='//www.google-analytics.com/analytics.js';
+  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

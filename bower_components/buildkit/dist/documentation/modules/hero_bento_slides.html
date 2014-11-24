@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-flex"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Blurb Buildkit - Modules</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <!--[if ! lt IE 8]><!-->
+<link href="../../assets/css/main.css" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/css/ie.css">
+<![endif]-->
+
+<!--[if IE 9]>
+<link rel="stylesheet" href="/assets/css/ie9.css">
+<![endif]-->
+
+<!-- build:js assets/js/vendor/modernizr/modernizr-custom.min.js -->
+<script src="/assets/js/vendor/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+<!--[if IE 8]>
+<!-- build:js /assets/js/vendor/nwmatcher/dist/nwmatcher.min.js -->
+<script src="/assets/js/vendor/nwmatcher/src/nwmatcher.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /assets/js/vendor/selectivizr/selectivizr.min.js -->
+<script src="/assets/js/vendor/selectivizr/selectivizr.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /assets/js/vendor/respond/dest/respond.min.js -->
+<script src="/assets/js/vendor/respond/src/respond.js"></script>
+<!-- endbuild -->
+    <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #75715e;
+  font-weight: bold;
+}
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gd {
+  color: #000000;
+}
+.highlight .gi {
+  color: #000000;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kc {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sc {
+  color: #e6db74;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .ss {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
+}
+    </style>
+  </head>
+  <body class="documentation documentation_modules documentation_modules_hero_bento_slides  blurb-buildkit" data-controller="buildkit">
+    <nav class="bk__nav">
+      <div class="grid-construct">
+        <ul class="bk__nav-list">
+          <!-- <li class="bk__nav-list-item"><a href="/documentation/defaults.html">Defaults</a></li> --><!--
+       --><li class="bk__nav-list-item">
+            <a href="/documentation/modules">Modules</a>
+            <ul class="bk__module-list  bk__nav__sub-list">
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/page_banner.html">Page Banner</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/three_column_ctas.html">Three Column CTAs</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/center_aligned_content.html">Center Aligned Content</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two_half_columns.html">Two Half Columns</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/tooltip_icons.html">Tooltip Icons</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two-thirds-video.html">Two Thirds Video</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/promotional.html">Promotional Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/compare_table.html">Compare Table</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/header_and_footer.html">Header and Footer</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/multi_image_row.html">Multi-Image Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_visualizer.html">Product Visualizer</a>
+  </li>  
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/half_bento_row.html">Half Bento Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/bento_grid.html">Bento Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/hero_bento_slides.html">Hero Bento w/Slides</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_highlight.html">Product Highlight</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/banner_carousel.html">Banner Carousel</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pricing_module.html">Pricing Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/template_selector.html">Template Selector</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pop_up_carousel.html">Pop Up Carousel (Book Sizer)</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/book_animation.html">Book Animation</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/one_column_form.html">One Column Form</a>
+  </li>
+  <!-- <li class="bk__module-list-item">
+    <a href="/documentation/modules/post_grid.html">Post Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/browser_size_image.html">Browser Size Image</a>
+  </li> -->
+</ul>
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="inner-wrapper  js-inner-wrapper">
+        <main class="main" role="main">
+          <div id="hero_bento_slides" class="bk__section">
+  <div class="grid-construct">
+    <h3 class="bk__section__heading">Hero Bento w/Slides</h3>
+    <p class="bk__section__description">
+      This is the hero bento module which is two modules, the hero bento and hero slides modules. 
+    </p>
+  </div>
+
+  <div class="module  hero-bento" data-controller="heroBento" data-event-namespace="hero">
+  <div class="hero-bento__wrap  js-hero-bento-wrap">
+    <div class="hero-bento__arrow  hero-bento__arrow--left  js-arrow-left">
+      <span class="icon chevron-left-xl-white"></span>
+    </div>
+    <div class="hero-bento__arrow  hero-bento__arrow--right  js-arrow-right">
+      <span class="icon chevron-right-xl-white"></span>
+    </div>
+    <div class="hero-bento__stage  js-hero-bento-stage">
+      <div class="hero-bento__column-wrap  js-hero-bento-images">
+        
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">voluptatibus cum</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">eos sit</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--large  js-hero-bento-item" data-id="3">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">eligendi vero</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">quisquam sed</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">laboriosam aut</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">beatae molestiae</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">vero consectetur</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--large  js-hero-bento-item" data-id="3">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">nihil ipsam</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  hero-bento__column--xlarge  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--xlarge  js-hero-bento-item" data-id="4">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-4.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">a eum qui non consectetur</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+        
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">animi sunt</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">occaecati voluptatibus</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--large  js-hero-bento-item" data-id="3">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">cumque dolore</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">quod suscipit</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">quo ut</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">reiciendis modi</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">nobis et</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--large  js-hero-bento-item" data-id="3">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">magni ea</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  hero-bento__column--xlarge  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--xlarge  js-hero-bento-item" data-id="4">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-4.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">pariatur eos velit aliquid dolore</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+        
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">dolorum dignissimos</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">magni cumque</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--large  js-hero-bento-item" data-id="3">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">fugiat vel</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">odit dolorem</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">distinctio nesciunt</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--medium  js-hero-bento-item" data-id="2">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">provident mollitia</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+        <div class="hero-bento__block  hero-bento__block--small  js-hero-bento-item" data-id="1">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">repellendus cupiditate</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--large  js-hero-bento-item" data-id="3">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">ut illo</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bento__column  hero-bento__column--xlarge  js-hero-bento-column">
+        <div class="hero-bento__block  hero-bento__block--xlarge  js-hero-bento-item" data-id="4">
+          <div class="hero-bento__img" style="background-image:url('/assets/img/hero_bento_fpo/hero-bento-4.png');"></div>
+          <div class="hero-bento__state">
+            <div class="hero-bento__block-text">labore qui rerum inventore repudiandae</div>
+            <span class="hero-bento__icon  icon"></span>
+          </div>
+        </div>
+      </div>
+
+      </div> <!-- end column-wrap -->
+    </div>
+  </div>
+</div>
+
+  <div class="module  hero-slides" data-controller="heroSlides" data-event-namespace="hero">
+  
+  <div class="hero-slides__bg-wrap">
+    <div class="grid-construct">
+
+      <div class="hero-slides__intro  js-slides-intro">
+        <h4 class="hero-slides__intro-heading">There are millions of stories waiting to be told. <br />Tell yours with Blurb.</h4>
+        <p class="hero-slides__intro-p">The world’s leading full service self-publishing platform. <br />Built for authors and book-makers of all types—including you.</p>
+        <p>
+          <a href="#" class="btn  cta  btn--white">Get Started</a>
+        </p>
+      </div>
+
+      <div class="hero-slides__carousel  js-hero-slides-carousel">
+        <div class="hero-slides__item  js-hero-slide-item " data-id="1" data-controller="heroSlides/slideSet">
+  <div class="hero-slides__stage-wrap">
+    <div class="hero-slides__stage  js-hero-slide-stage">
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item active" data-id="1">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-1a.png" alt="1a">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="2">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-1b.png" alt="1b">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="3">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-1c.png" alt="1c">
+        </div>
+
+
+    </div>
+    <div class="hero-slides__sub-nav">
+      <ul class="hero-slides__sub-nav__list  js-hero-slides-sub-nav">
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link active" data-id="1"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="2"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="3"></a>
+        </li>
+      </ul>
+    </div>   
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 1</div>
+  </div>
+ 
+  <div class="hero-slides__copy-wrap  js-hero-slide-copy-wrap">
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 1</div>
+    <div class="hero-slides__author-image  js-hero-slide-author-image">
+      <img src="/assets/img/hero_bento_fpo/avatar-1.jpg" alt="Giorgio Giussani">
+    </div>
+    <div class="hero-slides__title  js-hero-slide-title">quas aut nesciunt consequatur</div>
+    <div class="hero-slides__author  js-hero-slide-author"><span>by</span> eos et</div>
+    <div class="hero-slides__copy  js-hero-slide-copy">Alias sint doloremque est quam odit. Distinctio amet voluptatem dolorem</div>
+    
+    <ul class="hero-slides__details">
+      <li>Standard Landscape / 10x8 in 25x20 cm</li>
+      <li>Premium Lustre Paper</li>
+      <li>Hardcover Dustjacket</li>
+      <li>Intent: Photography</li>
+    </ul>
+    
+    <a href="http://google.com/" class="hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta">Start Now</a>
+  </div>
+
+</div>
+
+
+
+
+
+        <div class="hero-slides__item  js-hero-slide-item " data-id="2" data-controller="heroSlides/slideSet">
+  <div class="hero-slides__stage-wrap">
+    <div class="hero-slides__stage  js-hero-slide-stage">
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item active" data-id="1">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-2a.png" alt="2a">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="2">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-2b.png" alt="2b">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="3">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-2c.png" alt="2c">
+        </div>
+
+
+    </div>
+    <div class="hero-slides__sub-nav">
+      <ul class="hero-slides__sub-nav__list  js-hero-slides-sub-nav">
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link active" data-id="1"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="2"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="3"></a>
+        </li>
+      </ul>
+    </div>   
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 2</div>
+  </div>
+ 
+  <div class="hero-slides__copy-wrap  js-hero-slide-copy-wrap">
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 2</div>
+    <div class="hero-slides__author-image  js-hero-slide-author-image">
+      <img src="/assets/img/hero_bento_fpo/avatar-2.jpg" alt="Giorgio Giussani">
+    </div>
+    <div class="hero-slides__title  js-hero-slide-title">porro illo quasi incidunt</div>
+    <div class="hero-slides__author  js-hero-slide-author"><span>by</span> et illo</div>
+    <div class="hero-slides__copy  js-hero-slide-copy">Nostrum voluptas quos unde placeat cumque qui distinctio eos incidunt excepturi. At enim perferendis voluptatem amet voluptatem quaerat velit nesciunt enim necessitatibus dolorum quasi</div>
+    
+    <ul class="hero-slides__details">
+      <li>Standard Landscape / 10x8 in 25x20 cm</li>
+      <li>Premium Lustre Paper</li>
+      <li>Hardcover Dustjacket</li>
+      <li>Intent: Photography</li>
+    </ul>
+    
+    <a href="http://google.com/" class="hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta">Start Now</a>
+  </div>
+
+</div>
+
+
+
+
+
+        <div class="hero-slides__item  js-hero-slide-item " data-id="3" data-controller="heroSlides/slideSet">
+  <div class="hero-slides__stage-wrap">
+    <div class="hero-slides__stage  js-hero-slide-stage">
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item active" data-id="1">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-3a.png" alt="3a">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="2">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-3b.png" alt="3b">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="3">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-3c.png" alt="3c">
+        </div>
+
+
+    </div>
+    <div class="hero-slides__sub-nav">
+      <ul class="hero-slides__sub-nav__list  js-hero-slides-sub-nav">
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link active" data-id="1"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="2"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="3"></a>
+        </li>
+      </ul>
+    </div>   
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 3</div>
+  </div>
+ 
+  <div class="hero-slides__copy-wrap  js-hero-slide-copy-wrap">
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 3</div>
+    <div class="hero-slides__author-image  js-hero-slide-author-image">
+      <img src="/assets/img/hero_bento_fpo/avatar-3.jpg" alt="Giorgio Giussani">
+    </div>
+    <div class="hero-slides__title  js-hero-slide-title">et harum officia quisquam</div>
+    <div class="hero-slides__author  js-hero-slide-author"><span>by</span> est officia</div>
+    <div class="hero-slides__copy  js-hero-slide-copy">Ut voluptatem qui iste sunt praesentium non dolores est. Velit labore omnis dolor</div>
+    
+    <ul class="hero-slides__details">
+      <li>Standard Landscape / 10x8 in 25x20 cm</li>
+      <li>Premium Lustre Paper</li>
+      <li>Hardcover Dustjacket</li>
+      <li>Intent: Photography</li>
+    </ul>
+    
+    <a href="http://google.com/" class="hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta">Start Now</a>
+  </div>
+
+</div>
+
+
+
+
+
+        <div class="hero-slides__item  js-hero-slide-item " data-id="4" data-controller="heroSlides/slideSet">
+  <div class="hero-slides__stage-wrap">
+    <div class="hero-slides__stage  js-hero-slide-stage">
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item active" data-id="1">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-4a.png" alt="4a">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="2">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-4b.png" alt="4b">
+        </div>
+
+
+        <div class="hero-slides__sub-item  js-hero-slide-sub-item " data-id="3">
+          <img class="hero-slides__image" data-src="/assets/img/hero_bento_fpo/hero-bento-4c.png" alt="4c">
+        </div>
+
+
+    </div>
+    <div class="hero-slides__sub-nav">
+      <ul class="hero-slides__sub-nav__list  js-hero-slides-sub-nav">
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link active" data-id="1"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="2"></a>
+        </li>
+        <li class="hero-slides__sub-nav__item  hero-slides__sub-nav__item--first">
+          <a class="hero-slides__sub-nav__link  js-hero-slide-sub-link " data-id="3"></a>
+        </li>
+      </ul>
+    </div>   
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 4</div>
+  </div>
+ 
+  <div class="hero-slides__copy-wrap  js-hero-slide-copy-wrap">
+    <div class="hero-slides__heading  js-hero-slide-heading">Item 4</div>
+    <div class="hero-slides__author-image  js-hero-slide-author-image">
+      <img src="/assets/img/hero_bento_fpo/avatar-4.jpg" alt="Giorgio Giussani">
+    </div>
+    <div class="hero-slides__title  js-hero-slide-title">vel in laborum sed</div>
+    <div class="hero-slides__author  js-hero-slide-author"><span>by</span> quasi maiores</div>
+    <div class="hero-slides__copy  js-hero-slide-copy">Ut sit consectetur minima corporis maiores iure ut numquam. Accusantium quam ratione deserunt dolores sit soluta cum autem sit est blanditiis ut sint</div>
+    
+    <ul class="hero-slides__details">
+      <li>Standard Landscape / 10x8 in 25x20 cm</li>
+      <li>Premium Lustre Paper</li>
+      <li>Hardcover Dustjacket</li>
+      <li>Intent: Photography</li>
+    </ul>
+    
+    <a href="http://google.com/" class="hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta">Start Now</a>
+  </div>
+
+</div>
+
+
+
+
+
+      </div> 
+
+    </div>
+  </div>
+</div>
+
+  <!-- FORMATS AND PRICING EXPAND/COLLAPSE -->
+<div class="module  formats-drawer" data-controller="formats">
+  <div class="grid-construct">
+    <div class="formats-drawer__title  js-formats-toggle">
+      <h5><span class="icon  formats-drawer__toggle"></span> View All Formats &amp; Pricing</h5>
+    </div>
+    <div class="formats-drawer__inner  js-formats-inner">
+      <div class="formats-drawer__table">
+        
+        <!-- 1 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/01_small_square.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Small Square</div>
+            <div class="formats-drawer__dimensions">7×7 in 18×18 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        
+        <!-- 2 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/02_standard_portrait.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Standard Portrait</div>
+            <div class="formats-drawer__dimensions">7.75×9.75 in 20×25 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 3 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/03_standard_landscape.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Standard Landscape</div>
+            <div class="formats-drawer__dimensions">10×8 in 25×20 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 4 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/04_large_landscape.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Large Landscape</div>
+            <div class="formats-drawer__dimensions">13×11 in 33×28 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 5 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/05_large_square.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Large Square</div>
+            <div class="formats-drawer__dimensions">12×12 in 30×30 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 6 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/06_ebook.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">ebook</div>
+            <div class="formats-drawer__dimensions">Formatted for iPad&reg;</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 7 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/07_color_pocket.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Color Pocket</div>
+            <div class="formats-drawer__dimensions">5x8 in 13x20 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 8 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/08_b_n_w_pocket.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Black &amp; White Pocket</div>
+            <div class="formats-drawer__dimensions">5x8 in 13x20 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 9 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/09_color_trade.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Color Trade</div>
+            <div class="formats-drawer__dimensions">6x9 in 15x23 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 10 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/09_color_trade.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Color Trade</div>
+            <div class="formats-drawer__dimensions">6x9 in 15x23 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 11 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/11_magazine.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">Magazine</div>
+            <div class="formats-drawer__dimensions">8.5x11 in 22x28 cm</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+        
+        <!-- 12 -->
+        <div class="formats-drawer__cell">
+          <img class="formats-drawer__icon  js-tooltip-target" src="/assets/img/book_formats/12_pdf.jpg">
+          <div class="formats-drawer__label-wrap">
+            <div class="formats-drawer__name">PDF</div>
+            <div class="formats-drawer__dimensions">Viewable on most devices</div>
+          </div>
+          <div class="formats-drawer__tip  js-tooltip-text">
+  <div class="formats-drawer__tip-heading"><strong class="formats-drawer__format-name">Small Square</strong> 7x7 in, 18x18 cm</div>
+  <div class="formats-drawer__tip-formats">
+    <div class="formats-drawer__tip-title">Format Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Hardcover, Dust Jacket</li>
+      <li>Hardcover, ImageWrap</li>
+      <li>Ebook</li>
+      <li>PDF</li>
+    </ul>
+  </div>
+  <div class="formats-drawer__tip-paper">
+    <div class="formats-drawer__tip-title">Paper Types:</div>
+    <ul class="formats-drawer__tip-list">
+      <li>Standard (80# text semi-matte, 20-440 pages)</li>
+      <li>Premium Lustre (100# text, 20-240 pages)</li>
+      <li>Premium Matte (100# text, 20-240 pages)</li>
+      <li>ProLine Pearl Photo (140# text, 20-240 pages)</li>
+      <li>ProLine Uncoated (100# text eggshell texture, 20-240 pages)</li>
+    </ul>
+  </div>
+  <a href="#" class="formats-drawer__tip-cta  btn  btn--inline  btn--white  cta">Get Pricing</a>
+</div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="formats-drawer__foot">
+      <span class="icon  indicator--down--blue  indicator-icon"></span>
+      <span class="icon  indicator--up--blue  indicator-icon"></span>
+      <div class="formats-drawer__btn-close  js-formats-toggle">close</div>
+    </div>
+  </div>
+</div>
+
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html">      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  hero-bento"</span> <span class="na">data-controller=</span><span class="s">"heroBento"</span> <span class="na">data-event-namespace=</span><span class="s">"hero"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__wrap  js-hero-bento-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__arrow  hero-bento__arrow--left  js-arrow-left"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon chevron-left-xl-white"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__arrow  hero-bento__arrow--right  js-arrow-right"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon chevron-right-xl-white"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__stage  js-hero-bento-stage"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column-wrap  js-hero-bento-images"</span><span class="nt">&gt;</span>
+        
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>perspiciatis rerum<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>dolorum aut<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--large  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>molestias eveniet<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>a doloribus<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>ut qui<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>blanditiis facere<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>sed minima<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--large  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>aut distinctio<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  hero-bento__column--xlarge  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--xlarge  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-4.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>possimus repellendus sit modi omnis<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+        
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>blanditiis dignissimos<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>nobis voluptas<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--large  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>facilis excepturi<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>aut eaque<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>et quis<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>amet sunt<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>dolor temporibus<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--large  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>voluptatem ipsa<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  hero-bento__column--xlarge  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--xlarge  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-4.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>fugit dolore quam adipisci id<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+        
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>voluptatem consectetur<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>facilis voluptatem<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--large  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>est eos<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>quo voluptatem<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>ut ut<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--medium  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-2.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>enim qui<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--small  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-1.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>et vel<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--large  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-3.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>minima et<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__column  hero-bento__column--xlarge  js-hero-bento-column"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block  hero-bento__block--xlarge  js-hero-bento-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__img"</span> <span class="na">style=</span><span class="s">"background-image:url('/assets/img/hero_bento_fpo/hero-bento-4.png');"</span><span class="nt">&gt;&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__state"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-bento__block-text"</span><span class="nt">&gt;</span>omnis ex inventore ab quo<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"hero-bento__icon  icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- end column-wrap --&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  hero-slides"</span> <span class="na">data-controller=</span><span class="s">"heroSlides"</span> <span class="na">data-event-namespace=</span><span class="s">"hero"</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__bg-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct"</span><span class="nt">&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__intro  js-slides-intro"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h4</span> <span class="na">class=</span><span class="s">"hero-slides__intro-heading"</span><span class="nt">&gt;</span>There are millions of stories waiting to be told. <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>Tell yours with Blurb.<span class="nt">&lt;/h4&gt;</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"hero-slides__intro-p"</span><span class="nt">&gt;</span>The world’s leading full service self-publishing platform. <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>Built for authors and book-makers of all types—including you.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn  cta  btn--white"</span><span class="nt">&gt;</span>Get Started<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__carousel  js-hero-slides-carousel"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__item  js-hero-slide-item "</span> <span class="na">data-id=</span><span class="s">"1"</span> <span class="na">data-controller=</span><span class="s">"heroSlides/slideSet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage  js-hero-slide-stage"</span><span class="nt">&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-1a.png"</span> <span class="na">alt=</span><span class="s">"1a"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-1b.png"</span> <span class="na">alt=</span><span class="s">"1b"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-1c.png"</span> <span class="na">alt=</span><span class="s">"1c"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__list  js-hero-slides-sub-nav"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>   
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+ 
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy-wrap  js-hero-slide-copy-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 1<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author-image  js-hero-slide-author-image"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/hero_bento_fpo/avatar-1.jpg"</span> <span class="na">alt=</span><span class="s">"Giorgio Giussani"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__title  js-hero-slide-title"</span><span class="nt">&gt;</span>ipsum sed vel est<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author  js-hero-slide-author"</span><span class="nt">&gt;&lt;span&gt;</span>by<span class="nt">&lt;/span&gt;</span> velit impedit<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy  js-hero-slide-copy"</span><span class="nt">&gt;</span>Id error assumenda corporis ut ut iure aut odio. Non cumque sint eum deleniti qui fugit unde molestiae consequatur aut quae<span class="nt">&lt;/div&gt;</span>
+    
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__details"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard Landscape / 10x8 in 25x20 cm<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre Paper<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover Dustjacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Intent: Photography<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://google.com/"</span> <span class="na">class=</span><span class="s">"hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+
+
+
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__item  js-hero-slide-item "</span> <span class="na">data-id=</span><span class="s">"2"</span> <span class="na">data-controller=</span><span class="s">"heroSlides/slideSet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage  js-hero-slide-stage"</span><span class="nt">&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-2a.png"</span> <span class="na">alt=</span><span class="s">"2a"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-2b.png"</span> <span class="na">alt=</span><span class="s">"2b"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-2c.png"</span> <span class="na">alt=</span><span class="s">"2c"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__list  js-hero-slides-sub-nav"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>   
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+ 
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy-wrap  js-hero-slide-copy-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 2<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author-image  js-hero-slide-author-image"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/hero_bento_fpo/avatar-2.jpg"</span> <span class="na">alt=</span><span class="s">"Giorgio Giussani"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__title  js-hero-slide-title"</span><span class="nt">&gt;</span>et et assumenda sit<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author  js-hero-slide-author"</span><span class="nt">&gt;&lt;span&gt;</span>by<span class="nt">&lt;/span&gt;</span> qui impedit<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy  js-hero-slide-copy"</span><span class="nt">&gt;</span>Eos accusamus laboriosam repellendus alias nisi. Dolor fugit non quam dignissimos<span class="nt">&lt;/div&gt;</span>
+    
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__details"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard Landscape / 10x8 in 25x20 cm<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre Paper<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover Dustjacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Intent: Photography<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://google.com/"</span> <span class="na">class=</span><span class="s">"hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+
+
+
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__item  js-hero-slide-item "</span> <span class="na">data-id=</span><span class="s">"3"</span> <span class="na">data-controller=</span><span class="s">"heroSlides/slideSet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage  js-hero-slide-stage"</span><span class="nt">&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-3a.png"</span> <span class="na">alt=</span><span class="s">"3a"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-3b.png"</span> <span class="na">alt=</span><span class="s">"3b"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-3c.png"</span> <span class="na">alt=</span><span class="s">"3c"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__list  js-hero-slides-sub-nav"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>   
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+ 
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy-wrap  js-hero-slide-copy-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 3<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author-image  js-hero-slide-author-image"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/hero_bento_fpo/avatar-3.jpg"</span> <span class="na">alt=</span><span class="s">"Giorgio Giussani"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__title  js-hero-slide-title"</span><span class="nt">&gt;</span>ut quos eligendi dicta<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author  js-hero-slide-author"</span><span class="nt">&gt;&lt;span&gt;</span>by<span class="nt">&lt;/span&gt;</span> quo earum<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy  js-hero-slide-copy"</span><span class="nt">&gt;</span>Enim eum perspiciatis qui vel. Totam omnis debitis est et et modi qui eligendi natus<span class="nt">&lt;/div&gt;</span>
+    
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__details"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard Landscape / 10x8 in 25x20 cm<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre Paper<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover Dustjacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Intent: Photography<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://google.com/"</span> <span class="na">class=</span><span class="s">"hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+
+
+
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__item  js-hero-slide-item "</span> <span class="na">data-id=</span><span class="s">"4"</span> <span class="na">data-controller=</span><span class="s">"heroSlides/slideSet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__stage  js-hero-slide-stage"</span><span class="nt">&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-4a.png"</span> <span class="na">alt=</span><span class="s">"4a"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-4b.png"</span> <span class="na">alt=</span><span class="s">"4b"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-item  js-hero-slide-sub-item "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero-slides__image"</span> <span class="na">data-src=</span><span class="s">"/assets/img/hero_bento_fpo/hero-bento-4c.png"</span> <span class="na">alt=</span><span class="s">"4c"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__list  js-hero-slides-sub-nav"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link active"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__item  hero-slides__sub-nav__item--first"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"hero-slides__sub-nav__link  js-hero-slide-sub-link "</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>   
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+ 
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy-wrap  js-hero-slide-copy-wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__heading  js-hero-slide-heading"</span><span class="nt">&gt;</span>Item 4<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author-image  js-hero-slide-author-image"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/hero_bento_fpo/avatar-4.jpg"</span> <span class="na">alt=</span><span class="s">"Giorgio Giussani"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__title  js-hero-slide-title"</span><span class="nt">&gt;</span>rerum soluta facere explicabo<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__author  js-hero-slide-author"</span><span class="nt">&gt;&lt;span&gt;</span>by<span class="nt">&lt;/span&gt;</span> vel animi<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-slides__copy  js-hero-slide-copy"</span><span class="nt">&gt;</span>Voluptatem provident in tempora ullam et pariatur magnam veritatis est laborum ea voluptatem. Expedita et exercitationem alias suscipit molestiae a consectetur deleniti aut aut<span class="nt">&lt;/div&gt;</span>
+    
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"hero-slides__details"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard Landscape / 10x8 in 25x20 cm<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre Paper<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover Dustjacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Intent: Photography<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://google.com/"</span> <span class="na">class=</span><span class="s">"hero-slides__cta  btn  btn--white  btn--inline  js-hero-slide-cta"</span><span class="nt">&gt;</span>Start Now<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+
+
+
+
+
+      <span class="nt">&lt;/div&gt;</span> 
+
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+      <span class="c">&lt;!-- FORMATS AND PRICING EXPAND/COLLAPSE --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  formats-drawer"</span> <span class="na">data-controller=</span><span class="s">"formats"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__title  js-formats-toggle"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h5&gt;&lt;span</span> <span class="na">class=</span><span class="s">"icon  formats-drawer__toggle"</span><span class="nt">&gt;&lt;/span&gt;</span> View All Formats <span class="ni">&amp;amp;</span> Pricing<span class="nt">&lt;/h5&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__inner  js-formats-inner"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__table"</span><span class="nt">&gt;</span>
+        
+        <span class="c">&lt;!-- 1 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/01_small_square.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>7×7 in 18×18 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        
+        <span class="c">&lt;!-- 2 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/02_standard_portrait.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Standard Portrait<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>7.75×9.75 in 20×25 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 3 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/03_standard_landscape.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Standard Landscape<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>10×8 in 25×20 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 4 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/04_large_landscape.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Large Landscape<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>13×11 in 33×28 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 5 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/05_large_square.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Large Square<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>12×12 in 30×30 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 6 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/06_ebook.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>ebook<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>Formatted for iPad<span class="ni">&amp;reg;</span><span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 7 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/07_color_pocket.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Color Pocket<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>5x8 in 13x20 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 8 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/08_b_n_w_pocket.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Black <span class="ni">&amp;amp;</span> White Pocket<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>5x8 in 13x20 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 9 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/09_color_trade.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Color Trade<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>6x9 in 15x23 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 10 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/09_color_trade.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Color Trade<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>6x9 in 15x23 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 11 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/11_magazine.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>Magazine<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>8.5x11 in 22x28 cm<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        
+        <span class="c">&lt;!-- 12 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__cell"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"formats-drawer__icon  js-tooltip-target"</span> <span class="na">src=</span><span class="s">"/assets/img/book_formats/12_pdf.jpg"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__label-wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__name"</span><span class="nt">&gt;</span>PDF<span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__dimensions"</span><span class="nt">&gt;</span>Viewable on most devices<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip  js-tooltip-text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-heading"</span><span class="nt">&gt;&lt;strong</span> <span class="na">class=</span><span class="s">"formats-drawer__format-name"</span><span class="nt">&gt;</span>Small Square<span class="nt">&lt;/strong&gt;</span> 7x7 in, 18x18 cm<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-formats"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Format Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, Dust Jacket<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Hardcover, ImageWrap<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Ebook<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>PDF<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-paper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-title"</span><span class="nt">&gt;</span>Paper Types:<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Standard (80# text semi-matte, 20-440 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Lustre (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Premium Matte (100# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Pearl Photo (140# text, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>ProLine Uncoated (100# text eggshell texture, 20-240 pages)<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"formats-drawer__tip-cta  btn  btn--inline  btn--white  cta"</span><span class="nt">&gt;</span>Get Pricing<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__foot"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--down--blue  indicator-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--blue  indicator-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"formats-drawer__btn-close  js-formats-toggle"</span><span class="nt">&gt;</span>close<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+  </div>
+</div>
+
+        </main>
+        <!-- build:js /assets/js/main.min.js -->
+<script src="/assets/js/vendor/requirejs/require.js"></script>
+<script src="/assets/js/main.js"></script>
+<!-- endbuild -->
+
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+  function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+  e.src='//www.google-analytics.com/analytics.js';
+  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

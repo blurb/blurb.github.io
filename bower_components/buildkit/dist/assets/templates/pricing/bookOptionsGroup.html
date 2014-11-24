@@ -1,0 +1,11 @@
+<div class="pricing__options-group">
+  <a class="accordion--bar">
+    <span class="fl  accordion--bar__title">0<%= index %></span>
+    <span class="fl  accordion--bar__slash">/</span>
+    <span class="accordion--bar__title  fl"><%= header %></span>
+    <button class="btn--accordion js-choose fr"><%= I18n.t('pricing.choose') %></button>
+  </a>
+  <div class="accordion__options-container  js-options-container" <% if(!visible) { %> style="display: none;" <% } %>>
+  
+  </div>
+</div>

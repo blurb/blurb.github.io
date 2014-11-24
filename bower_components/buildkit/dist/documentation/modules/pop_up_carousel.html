@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-flex"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Blurb Buildkit - Modules</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <!--[if ! lt IE 8]><!-->
+<link href="../../assets/css/main.css" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/css/ie.css">
+<![endif]-->
+
+<!--[if IE 9]>
+<link rel="stylesheet" href="/assets/css/ie9.css">
+<![endif]-->
+
+<!-- build:js assets/js/vendor/modernizr/modernizr-custom.min.js -->
+<script src="/assets/js/vendor/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+<!--[if IE 8]>
+<!-- build:js /assets/js/vendor/nwmatcher/dist/nwmatcher.min.js -->
+<script src="/assets/js/vendor/nwmatcher/src/nwmatcher.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /assets/js/vendor/selectivizr/selectivizr.min.js -->
+<script src="/assets/js/vendor/selectivizr/selectivizr.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /assets/js/vendor/respond/dest/respond.min.js -->
+<script src="/assets/js/vendor/respond/src/respond.js"></script>
+<!-- endbuild -->
+    <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .c, .highlight .cd {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cm {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .c1 {
+  color: #75715e;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #75715e;
+  font-weight: bold;
+}
+.highlight .cs {
+  color: #75715e;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+}
+.highlight .gd {
+  color: #000000;
+}
+.highlight .gi {
+  color: #000000;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .k, .highlight .kv {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kc {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #66d9ef;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .ow {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #f92672;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sc {
+  color: #e6db74;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .sr {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .ss {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #a6e22e;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #f8f8f2;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight {
+  color: #f8f8f2;
+  background-color: #49483e;
+}
+    </style>
+  </head>
+  <body class="documentation documentation_modules documentation_modules_pop_up_carousel  blurb-buildkit" data-controller="buildkit">
+    <nav class="bk__nav">
+      <div class="grid-construct">
+        <ul class="bk__nav-list">
+          <!-- <li class="bk__nav-list-item"><a href="/documentation/defaults.html">Defaults</a></li> --><!--
+       --><li class="bk__nav-list-item">
+            <a href="/documentation/modules">Modules</a>
+            <ul class="bk__module-list  bk__nav__sub-list">
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/page_banner.html">Page Banner</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/three_column_ctas.html">Three Column CTAs</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/center_aligned_content.html">Center Aligned Content</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two_half_columns.html">Two Half Columns</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/tooltip_icons.html">Tooltip Icons</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/two-thirds-video.html">Two Thirds Video</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/promotional.html">Promotional Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/compare_table.html">Compare Table</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/header_and_footer.html">Header and Footer</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/multi_image_row.html">Multi-Image Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_visualizer.html">Product Visualizer</a>
+  </li>  
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/half_bento_row.html">Half Bento Row</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/bento_grid.html">Bento Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/hero_bento_slides.html">Hero Bento w/Slides</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/product_highlight.html">Product Highlight</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/banner_carousel.html">Banner Carousel</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pricing_module.html">Pricing Module</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/template_selector.html">Template Selector</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/pop_up_carousel.html">Pop Up Carousel (Book Sizer)</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/book_animation.html">Book Animation</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/one_column_form.html">One Column Form</a>
+  </li>
+  <!-- <li class="bk__module-list-item">
+    <a href="/documentation/modules/post_grid.html">Post Grid</a>
+  </li>
+  <li class="bk__module-list-item">
+    <a href="/documentation/modules/browser_size_image.html">Browser Size Image</a>
+  </li> -->
+</ul>
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="inner-wrapper  js-inner-wrapper">
+        <main class="main" role="main">
+          <div id="page_banner" class="bk__section">
+  <div class="grid-construct">
+    <h3 class="bk__section__heading">Pop Up Carousel (Book Sizer)</h3>
+    <p class="bk__section__description">
+      <!-- Pricing module -->
+    </p>
+  </div>
+    <div class="module  pop-up-carousel" data-controller="popUpCarousel">
+    <div class="grid-construct">
+      <div class="pop-up-carousel__content  clearfix">
+        
+
+        <div class="pop-up-carousel__lead">
+          
+          <div class="pop-up-carousel__lead-content-group  js-lead-content-group" data-groupID="1">
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="1">
+              <h5>Sizes 1</h5>
+              <p>SIZES COPY 1 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 1</dt>
+                  <dd class="showcase-author">Author 1</dd>
+                  <dd class="showcase-size">Size 1</dd>
+                  <dd class="showcase-paper">Paper Type 1</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="2">
+              <h5>Sizes 2</h5>
+              <p>SIZES COPY 2 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 2</dt>
+                  <dd class="showcase-author">Author 2</dd>
+                  <dd class="showcase-size">Size 2</dd>
+                  <dd class="showcase-paper">Paper Type 2</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="3">
+              <h5>Sizes 3</h5>
+              <p>SIZES COPY 3 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 3</dt>
+                  <dd class="showcase-author">Author 3</dd>
+                  <dd class="showcase-size">Size 3</dd>
+                  <dd class="showcase-paper">Paper Type 3</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="4">
+              <h5>Sizes 4</h5>
+              <p>SIZES COPY 4 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 4</dt>
+                  <dd class="showcase-author">Author 4</dd>
+                  <dd class="showcase-size">Size 4</dd>
+                  <dd class="showcase-paper">Paper Type 4</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+          </div>
+
+
+          <div class="pop-up-carousel__lead-content-group  js-lead-content-group" data-groupID="2">
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="1">
+              <h5>Papers 1</h5>
+              <p>PAPERS COPY 1 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 1</dt>
+                  <dd class="showcase-author">Author 1</dd>
+                  <dd class="showcase-size">Size 1</dd>
+                  <dd class="showcase-paper">Paper Type 1</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="2">
+              <h5>Papers 2</h5>
+              <p>PAPERS COPY 2 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 2</dt>
+                  <dd class="showcase-author">Author 2</dd>
+                  <dd class="showcase-size">Size 2</dd>
+                  <dd class="showcase-paper">Paper Type 2</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="3">
+              <h5>Papers 3</h5>
+              <p>PAPERS COPY 3 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 3</dt>
+                  <dd class="showcase-author">Author 3</dd>
+                  <dd class="showcase-size">Size 3</dd>
+                  <dd class="showcase-paper">Paper Type 3</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="4">
+              <h5>Papers 4</h5>
+              <p>PAPERS COPY 4 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 4</dt>
+                  <dd class="showcase-author">Author 4</dd>
+                  <dd class="showcase-size">Size 4</dd>
+                  <dd class="showcase-paper">Paper Type 4</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+          </div>
+
+
+          <div class="pop-up-carousel__lead-content-group  js-lead-content-group" data-groupID="3">
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="1">
+              <h5>Covers 1</h5>
+              <p>COVERS COPY 1 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 1</dt>
+                  <dd class="showcase-author">Author 1</dd>
+                  <dd class="showcase-size">Size 1</dd>
+                  <dd class="showcase-paper">Paper Type 1</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="2">
+              <h5>Covers 2</h5>
+              <p>COVERS COPY 2 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 2</dt>
+                  <dd class="showcase-author">Author 2</dd>
+                  <dd class="showcase-size">Size 2</dd>
+                  <dd class="showcase-paper">Paper Type 2</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="3">
+              <h5>Covers 3</h5>
+              <p>COVERS COPY 3 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 3</dt>
+                  <dd class="showcase-author">Author 3</dd>
+                  <dd class="showcase-size">Size 3</dd>
+                  <dd class="showcase-paper">Paper Type 3</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+
+            <div class="pop-up-carousel__lead-content  js-lead-content" data-id="4">
+              <h5>Covers 4</h5>
+              <p>COVERS COPY 4 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              <div class="pop-up-carousel__showcase">
+                <img src="/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg" alt="" class="showcase-profile-photo">
+                <dl class="pop-up-carousel__showcase-list">
+                  <dt class="showcase-title">Book Title 4</dt>
+                  <dd class="showcase-author">Author 4</dd>
+                  <dd class="showcase-size">Size 4</dd>
+                  <dd class="showcase-paper">Paper Type 4</dd>
+                </dl>
+              </div><!--/pop-up-carousel__showcase-->
+            </div>
+          </div>
+
+
+
+        </div><!--/pop-up-carousel__lead-->
+
+        <div class="pop-up-carousel__media">
+          <div class="pop-up-carousel__media-group  js-media-group" data-id="1">
+            <h5 class="pop-up-carousel__media-title  js-mobile-toggle">Sizes</h5>
+            <div class="pop-up-carousel__image-wrap  js-mobile-drawer">
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/a1.png" alt="" data-id="1">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Small Square</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/a2.png" alt="" data-id="2">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">02. Standard Portrait</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/a3.png" alt="" data-id="3">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">03. Small Square</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/a4.png" alt="" data-id="4">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">04. Standard Landscape</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pop-up-carousel__media-group  js-media-group" data-id="2">
+            <h5 class="pop-up-carousel__media-title  js-mobile-toggle">Papers</h5>
+            <div class="pop-up-carousel__image-wrap  js-mobile-drawer">
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/b1.png" alt="" data-id="1">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/b2.png" alt="" data-id="2">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/b3.png" alt="" data-id="3">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/b4.png" alt="" data-id="4">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pop-up-carousel__media-group  js-media-group" data-id="3">
+            <h5 class="pop-up-carousel__media-title  js-mobile-toggle">Covers</h5>
+            <div class="pop-up-carousel__image-wrap  js-mobile-drawer">
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/c1.png" alt="" data-id="1">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/c2.png" alt="" data-id="2">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/c3.png" alt="" data-id="3">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+              <img class="pop-up-carousel__image  js-slide-image" src="/assets/img/carousel/pop-up/publish-sizes/c4.png" alt="" data-id="4">
+              <div class="pop-up-carousel__image-dt">
+                <div class="pop-up-carousel__image-dt--type">01. Lorem Ipsum</div>
+                <p class="pop-up-carousel__image-dt--size">7x7 in 18x18 cm</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!--/pop-up-carousel__media-->
+        
+        <div class="pop-up-carousel__list-wrap">
+
+          <div class="pop-up-carousel__list  js-slide-nav" data-id="1">
+
+            <div class="pop-up-carousel__drag">
+              <div class="pop-up-carousel__drag-handle  js-drag-handle">
+                <img src="/assets/img/carousel/pop-up/drag_handle.png" alt="">
+              </div>
+              <svg class="pop-up-carousel__drag-bar js-drag-bar">
+              </svg>
+            </div>
+
+            <ul>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="1">
+                  01. Small Square
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="2">
+                  02. Standard Portrait
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="3">
+                  03. Small Square
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="4">
+                  04. Standard Landscape
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="pop-up-carousel__list  js-slide-nav" data-id="2">
+
+            <div class="pop-up-carousel__drag">
+              <div class="pop-up-carousel__drag-handle  js-drag-handle">
+                <img src="/assets/img/carousel/pop-up/drag_handle.png" alt="">
+              </div>
+              <svg class="pop-up-carousel__drag-bar js-drag-bar">
+              </svg>
+            </div>
+
+            <ul>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="1">
+                  01. Lorem Ipsum
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="2">
+                  02. Lorem Ipsum
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="3">
+                  03. Lorem Ipsum
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="4">
+                  04. Lorem Ipsum
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="pop-up-carousel__list  js-slide-nav" data-id="3">
+
+            <div class="pop-up-carousel__drag">
+              <div class="pop-up-carousel__drag-handle  js-drag-handle">
+                <img src="/assets/img/carousel/pop-up/drag_handle.png" alt="">
+              </div>
+              <svg class="pop-up-carousel__drag-bar js-drag-bar">
+              </svg>
+            </div>
+
+            <ul>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="1">
+                  01. Lorem Ipsum Dolet
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="2">
+                  02. Lorem Ipsum Dolet
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="3">
+                  03. Lorem Ipsum Dolet
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="pop-up-carousel__list-type  js-slide-nav-item" data-id="4">
+                  04. Lorem Ipsum Dolet
+                  <div class="pop-up-carousel__drag-bullet  js-drag-bullet"></div>
+                  <p class="pop-up-carousel__list-size">7x7 in 18x18 cm</p>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+
+        </div><!--pop-up-carousel__list-->
+      </div><!--/pop-up-carousel__content-->
+
+      <div class="pop-up-carousel__nav  js-media-nav  clearfix">
+        <ul>
+          <li>
+            <a class="pop-up-carousel__nav-item  js-media-nav-item" href="#" data-id="1">
+              <span class="icon  indicator--up--black"></span>
+              Sizes
+            </a>
+          </li>
+          <li>
+            <a class="pop-up-carousel__nav-item  js-media-nav-item" href="#" data-id="2">
+              <span class="icon  indicator--up--black"></span>
+              Papers
+            </a>
+          </li>
+          <li>
+            <a class="pop-up-carousel__nav-item  js-media-nav-item" href="#" data-id="3">
+              <span class="icon  indicator--up--black"></span>
+              Covers
+            </a>
+          </li>
+        </ul>
+      </div><!--/pop-up-carousel__nav-->
+    </div><!--/grid-construct-->
+  </div><!--/pop-up-carousel-->
+  
+  <div class="grid-construct">
+    <a href="#" class="bk__section__source-toggle  js-source-toggle">Show Source</a>
+<pre class="highlight html">    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"module  pop-up-carousel"</span> <span class="na">data-controller=</span><span class="s">"popUpCarousel"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-construct"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__content  clearfix"</span><span class="nt">&gt;</span>
+        
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead"</span><span class="nt">&gt;</span>
+          
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content-group  js-lead-content-group"</span> <span class="na">data-groupID=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Sizes 1<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>SIZES COPY 1 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 1<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 1<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 1<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 1<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Sizes 2<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>SIZES COPY 2 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 2<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 2<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 2<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 2<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Sizes 3<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>SIZES COPY 3 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 3<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 3<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 3<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 3<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Sizes 4<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>SIZES COPY 4 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 4<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 4<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 4<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 4<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content-group  js-lead-content-group"</span> <span class="na">data-groupID=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Papers 1<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>PAPERS COPY 1 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 1<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 1<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 1<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 1<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Papers 2<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>PAPERS COPY 2 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 2<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 2<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 2<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 2<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Papers 3<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>PAPERS COPY 3 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 3<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 3<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 3<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 3<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Papers 4<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>PAPERS COPY 4 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 4<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 4<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 4<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 4<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content-group  js-lead-content-group"</span> <span class="na">data-groupID=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Covers 1<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>COVERS COPY 1 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 1<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 1<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 1<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 1<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Covers 2<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>COVERS COPY 2 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 2<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 2<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 2<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 2<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Covers 3<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>COVERS COPY 3 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 3<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 3<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 3<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 3<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__lead-content  js-lead-content"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h5&gt;</span>Covers 4<span class="nt">&lt;/h5&gt;</span>
+              <span class="nt">&lt;p&gt;</span>COVERS COPY 4 - Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/author-placeholder.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"showcase-profile-photo"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;dl</span> <span class="na">class=</span><span class="s">"pop-up-carousel__showcase-list"</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;dt</span> <span class="na">class=</span><span class="s">"showcase-title"</span><span class="nt">&gt;</span>Book Title 4<span class="nt">&lt;/dt&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-author"</span><span class="nt">&gt;</span>Author 4<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-size"</span><span class="nt">&gt;</span>Size 4<span class="nt">&lt;/dd&gt;</span>
+                  <span class="nt">&lt;dd</span> <span class="na">class=</span><span class="s">"showcase-paper"</span><span class="nt">&gt;</span>Paper Type 4<span class="nt">&lt;/dd&gt;</span>
+                <span class="nt">&lt;/dl&gt;</span>
+              <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__showcase--&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+
+
+
+        <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__lead--&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__media"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__media-group  js-media-group"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"pop-up-carousel__media-title  js-mobile-toggle"</span><span class="nt">&gt;</span>Sizes<span class="nt">&lt;/h5&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-wrap  js-mobile-drawer"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/a1.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Small Square<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/a2.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>02. Standard Portrait<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/a3.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>03. Small Square<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/a4.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>04. Standard Landscape<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__media-group  js-media-group"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"pop-up-carousel__media-title  js-mobile-toggle"</span><span class="nt">&gt;</span>Papers<span class="nt">&lt;/h5&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-wrap  js-mobile-drawer"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/b1.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/b2.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/b3.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/b4.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__media-group  js-media-group"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"pop-up-carousel__media-title  js-mobile-toggle"</span><span class="nt">&gt;</span>Covers<span class="nt">&lt;/h5&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-wrap  js-mobile-drawer"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/c1.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/c2.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/c3.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image  js-slide-image"</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/publish-sizes/c4.png"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--type"</span><span class="nt">&gt;</span>01. Lorem Ipsum<span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__image-dt--size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__media--&gt;</span>
+        
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-wrap"</span><span class="nt">&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list  js-slide-nav"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-handle  js-drag-handle"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/drag_handle.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bar js-drag-bar"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/svg&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;ul&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+                  01. Small Square
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+                  02. Standard Portrait
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+                  03. Small Square
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+                  04. Standard Landscape
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+
+          <span class="nt">&lt;/div&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list  js-slide-nav"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-handle  js-drag-handle"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/drag_handle.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bar js-drag-bar"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/svg&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;ul&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+                  01. Lorem Ipsum
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+                  02. Lorem Ipsum
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+                  03. Lorem Ipsum
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+                  04. Lorem Ipsum
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+
+          <span class="nt">&lt;/div&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list  js-slide-nav"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-handle  js-drag-handle"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/carousel/pop-up/drag_handle.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;svg</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bar js-drag-bar"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/svg&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;ul&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+                  01. Lorem Ipsum Dolet
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+                  02. Lorem Ipsum Dolet
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+                  03. Lorem Ipsum Dolet
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-type  js-slide-nav-item"</span> <span class="na">data-id=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+                  04. Lorem Ipsum Dolet
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__drag-bullet  js-drag-bullet"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"pop-up-carousel__list-size"</span><span class="nt">&gt;</span>7x7 in 18x18 cm<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/a&gt;</span>
+              <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+
+          <span class="nt">&lt;/div&gt;</span>
+
+        <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--pop-up-carousel__list--&gt;</span>
+      <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__content--&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pop-up-carousel__nav  js-media-nav  clearfix"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+          <span class="nt">&lt;li&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"pop-up-carousel__nav-item  js-media-nav-item"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">data-id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black"</span><span class="nt">&gt;&lt;/span&gt;</span>
+              Sizes
+            <span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"pop-up-carousel__nav-item  js-media-nav-item"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">data-id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black"</span><span class="nt">&gt;&lt;/span&gt;</span>
+              Papers
+            <span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"pop-up-carousel__nav-item  js-media-nav-item"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">data-id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon  indicator--up--black"</span><span class="nt">&gt;&lt;/span&gt;</span>
+              Covers
+            <span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel__nav--&gt;</span>
+    <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/grid-construct--&gt;</span>
+  <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!--/pop-up-carousel--&gt;</span>
+</pre>
+  </div>
+
+</div>
+
+        </main>
+        <!-- build:js /assets/js/main.min.js -->
+<script src="/assets/js/vendor/requirejs/require.js"></script>
+<script src="/assets/js/main.js"></script>
+<!-- endbuild -->
+
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+  function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+  e.src='//www.google-analytics.com/analytics.js';
+  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
