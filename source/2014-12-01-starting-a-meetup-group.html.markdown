@@ -1,0 +1,134 @@
+---
+title: Starting a Meetup Group
+date: 2014-12-01 16:35 UTC
+tags: community
+author: Estella Madison
+author_url: https://twitter.com/chicagoing
+twitter_username: chicagoing
+---
+
+In February 2014, after moving to Manhattan and being unable to find
+a New York City network for [Women Who Code](https://www.womenwhocode.com/)
+(WWCode), I decided to start one. Ten months later, we have a strong [NYC
+network](meetup.com/Women-Who-Code-NYC/) with over 1500 members. We’re
+growing by 50+ members a month and have no signs of losing steam.
+
+## What has contributed to our success?
+
+We owe much of our success to our San Francisco-based parent
+organization. They made introductions to technology companies with whom
+they’d already built relationships. The Women Who Code brand was also a
+big advantage. Many of our members and partners already know about our
+organization, and thus are more likely to want to be involved. Not
+every meetup group will have a parent organization, so this is very
+unique.
+
+Another important factor was having a co-founder. Starting a meetup
+group is, of course, a huge commitment. With a co-founder, we can split
+a lot of the work required to organize hosts, speakers, and all the
+email correspondence that comes along with starting a network.
+
+A strong and committed membership base has been vital. Our members want
+to be involved and help. Of course, organizing volunteers (we prefer to
+call them *event organizers*) is a lot of work, and luckily my co-founder
+is great at this. She quickly scouted event organizers to run our
+Front-End Developer Study Group, which is a popular weekly event.
+
+## What are our biggest challenges?
+
+### Finding hosts
+
+With up to six events a month, finding organizations to host our events
+is possibly the most challenging aspect of running our meetup group.
+
+We found the host for our first event by approaching the organizer of
+another meetup group, [Luke Melia](https://twitter.com/lukemelia) of
+[Ember NYC](http://www.meetup.com/EmberJS-NYC/). He was generous and made
+several introductions to the CTOs of NYC-based companies. This helped us
+get the ball rolling.
+
+Being a part of the wider Women Who Code network has obviously helped.
+We get many introductions and leads from our parent organization, our
+advisor [Sasha Laundy](https://twitter.com/sashalaundy), and affiliated
+networks. Our members also help us find hosts—usually their employers or
+friends.
+
+Being part of the WWCode organization combined with our large membership
+means many organizations *approach us* to host. While we welcome this,
+we tread carefully. For instance, recruiting agencies and for-profit
+educational institutions often want to host us. We always give them a
+shot, but we ensure our members aren’t being targeted too heavily.
+Additionally, we have to be picky about space. If the wifi was
+unavailable for most of the meetup or the environment was simply not
+conducive to productivity, we won’t have an event there again.
+
+Cold calling, mainly on Twitter, is something we often do. We send
+tweets to CTOs, recruiters, and software engineers at various companies.
+This is most successful if the organization has special diversity
+initiatives. For example, the WWCode CEO alerted us to the [Fog Creek
+Fellowship](http://blog.fogcreek.com/announcing-the-fog-creek-fellowship/).
+We sent a tweet to a top recruiter there and quickly booked them for a
+Lightning Talks event. However, we’re not always this lucky. Tweets
+sometimes go unanswered and we move on.
+
+![Joel Spolsky gave an entertaining presentation at the Lightning Talks that Fog Creek hosted](2014/12/wwcnyc-joel-spolsky.jpg)
+
+LinkedIn has more recently proven to be an important resource. Both my
+co-founder and I get lots of messages from recruiters. If the recruiter
+works at a technology company (versus a recruiting agency), then we ask
+if they might be interested in hosting an event for WWCode. While this
+tactic has only worked 15% of the time, it’s garnered important partners
+like Facebook and LinkedIn.
+
+### Finding speakers
+
+Finding speakers is similar to finding hosts. We find speakers through
+our parent organization, who often recommend potential speakers or make
+introductions. We also encourage our members to speak, especially those
+with interesting side projects or aspirations to become speakers. We
+always invite our hosts to have someone from their organization speak.
+We do our best to keep tabs on people we read about or meet at
+conferences or other meetups, particular those that are NY-based. And
+sometimes women approach us to speak at our events.
+
+In addition, our hosts have been instrumental in finding speakers. For
+example, last Fall we teamed up with Condé Nast for a panel called
+“[Finding Your Voice and Bringing Ideas to Life](http://www.meetup.com/WomenWhoCodeNYC/events/180115572/).”
+They found the moderator and most of the panelists.
+
+## Some tips
+
+* Get to know your meetup attendees. I ask about the type of
+programming they’re doing, their interests, their personal projects,
+and if they have any feedback.
+* Find a co-founder if at all possible to share responsibilities.
+* Fill up your meetup calendar with events at least six months out.
+This gives the impression that your group is active and helps potential
+members determine if the group is right for them.
+* Book hosts well ahead of time. There’s nothing more stressful than
+trying to find a host for an event that’s just a few days away.
+* Always have food at your events. Otherwise, people will arrive late
+or leave early to get dinner.
+* Open up RSVPs about 20 days before the date of your event. We made
+the mistake of allowing people to register for all of the events on
+our calendar, including those six months out. These people simply
+forgot about the events, resulting in lower attendance rates.
+* Do a head count at every event to find patterns and determine your
+average attendance rate. 50% is typical for us, but it also depends
+on the host. A meetup at Facebook or Fog Creek will have a higher
+attendance rate than one at a lesser known organization. We also
+found that our attendance rates dip in the Fall and Winter, probably
+due to the colder weather and shorter days.
+* When approaching potential hosts, keep your email message short
+and to the point. We have a standard template that includes the
+requirements for hosting (space, food, and internet for 20–50 women),
+a list of upcoming events that need hosts, and a sample schedule.
+
+Starting the Women Who Code NYC network is perhaps the most rewarding
+experience I’ve ever had. It’s a lot of work and while it can be
+tiresome, helping women improve their programming and
+tech skills is amazing. I’ve learned a lot about time management
+and event organization, and have met amazing people along the way.
+
+<blockquote class="twitter-tweet" lang="en"><p>Congrats <a href="https://twitter.com/chicagoing">@chicagoing</a> on tonight&#39;s <a href="https://twitter.com/WomenWhoCodeNYC">@womenwhocodenyc</a> event! <a href="https://twitter.com/hashtag/womenwhocodenyc?src=hash">#womenwhocodenyc</a> <a href="https://twitter.com/hashtag/changetheratio?src=hash">#changetheratio</a> <a href="https://twitter.com/hashtag/morevoices?src=hash">#morevoices</a> <a href="http://t.co/sJhDGOO7dF">pic.twitter.com/sJhDGOO7dF</a></p>&mdash; NataliaObertiNoguera (@nakisnakis) <a href="https://twitter.com/nakisnakis/status/486668956145840129">July 9, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
