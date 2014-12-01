@@ -8,10 +8,10 @@ twitter_username: chicagoing
 ---
 
 In February 2014, after moving to Manhattan and being unable to find
-a New York City network for Women Who Code (WWCode), I decided to start
-one. Ten months later, we have a strong NYC network with over 1500
-members. We’re growing by 50+ members a month and have no signs of
-losing steam.
+a New York City network for [Women Who Code](https://www.womenwhocode.com/)
+(WWCode), I decided to start one. Ten months later, we have a strong [NYC
+network](meetup.com/Women-Who-Code-NYC/) with over 1500 members. We’re
+growing by 50+ members a month and have no signs of losing steam.
 
 ## What has contributed to our success?
 
