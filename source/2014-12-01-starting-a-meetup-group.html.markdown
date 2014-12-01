@@ -59,7 +59,7 @@ we tread carefully. For instance, recruiting agencies and for-profit
 educational institutions often want to host us. We always give them a
 shot, but we ensure our members aren’t being targeted too heavily.
 Additionally, we have to be picky about space. If the wifi was
-unavailable for most the meetup or the environment was simply not
+unavailable for most of the meetup or the environment was simply not
 conducive to productivity, we won’t have an event there again.
 
 Cold calling, mainly on Twitter, is something we often do. We send
